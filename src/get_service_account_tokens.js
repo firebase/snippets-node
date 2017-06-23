@@ -4,7 +4,7 @@ var admin = require("firebase-admin");
 var serviceAccount = require("path/to/serviceAccountKey.json");
 var credential = admin.credential.cert(serviceAccount);
 
-var accessTokenInfo = credential.getAccessToken().then(function(accessTokenInfo) {
+credential.getAccessToken().then(function(accessTokenInfo) {
   var accessToken = accessTokenInfo.access_token;
   var expirationTime = accessTokenInfo.expires_in;
 
