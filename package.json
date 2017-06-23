@@ -1,0 +1,10 @@
+{
+  "name": "snippets-node",
+  "version": "1.0.0",
+  "description": "Code snippets used in Node.js documentation on firebase.google.com",
+  "author": "Firebase (https://firebase.google.com/)",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "firebase-admin": "^5.0.0"
+  }
+}
