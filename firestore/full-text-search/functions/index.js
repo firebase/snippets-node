@@ -14,7 +14,7 @@ const ALGOLIA_ADMIN_KEY = functions.config().algolia.api_key;
 
 const ALGOLIA_INDEX_NAME = 'blogposts';
 const client = algoliasearch(ALGOLIA_ID, ALGOLIA_ADMIN_KEY);
-// [END init_agolia]
+// [END init_algolia]
 
 // Initialize Firestore
 const firestoreOptions = {
@@ -68,6 +68,6 @@ exports.searchRequest = firestore.document('post_search_requests/{searchId}').on
             .set({
                 error: err
             });
-    })
+    });
 });
 // [END search_request_function]
