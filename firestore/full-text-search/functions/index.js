@@ -25,9 +25,8 @@ const db = new Firestore(firestoreOptions);
 // [START update_index_function]
 // Update the search index every time a blog post is written.
 exports.indexBlogPost = firestore.document('posts/{postId}').onWrite(event => {
-    // Get the text of the blog post
-    const document = event.data.value;
-    const text = document.fields.text.stringValue;
+    // Get the blog post document
+    const text = event.data.data().text;
 
     // Construct a JSON representation
     const postObject = {
@@ -47,8 +46,7 @@ exports.indexBlogPost = firestore.document('posts/{postId}').onWrite(event => {
 exports.searchRequest = firestore.document('post_search_requests/{searchId}').onWrite(event => {
     // Get the search ID and query from the event
     const searchId = event.params.searchId;
-    const document = event.data.value;
-    const query = document.fields.query.stringValue;
+    const query = event.data.data().query;
 
     // Query the algolia index
     const index = client.initIndex(ALGOLIA_INDEX_NAME);
