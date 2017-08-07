@@ -154,7 +154,7 @@ function addDocument(db) {
 
 function addLater(db) {
     // [START add_later]
-    var newCityRef = db.collection('cities').add();
+    var newCityRef = db.collection('cities').doc();
 
     // Later...
     var setDoc = newCityRef.set({
@@ -620,6 +620,10 @@ describe("Firestore Smoketests", () => {
 
   it("should add a document", () => {
     return addDocument(db)
+  });
+
+  it("should add a document later", () => {
+    return addLater(db);
   });
 
   it("should update a document", () => {
