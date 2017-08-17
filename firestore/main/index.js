@@ -566,6 +566,85 @@ function streamDocument(db, done) {
 }
 
 // ============================================================================
+// https://firebase.google.com/docs/firestore/query-data/query-cursors
+// ============================================================================
+
+function simpleCursors(db) {
+    // [START cursor_simple_start_at]
+    var startAt = db.collection('cities')
+        .orderBy('population')
+        .startAt(1000000);
+    // [END cursor_simple_start_at]
+
+    // [START cursor_simple_end_at]
+    var endAt = db.collection('cities')
+        .orderBy('population')
+        .endAt(1000000);
+    // [END cursor_simple_end_at]
+
+    return Promise.all([
+        startAt.limit(10).get(),
+        endAt.limit(10).get()
+    ]);
+}
+
+function paginateQuery(db) {
+    // [START cursor_paginate]
+    var first = db.collection('cities')
+        .orderBy('population')
+        .limit(3);
+
+    var paginate = first.get()
+        .then((snapshot) => {
+            // ...
+
+            // Get the last document
+            var last = snapshot.docs[snapshot.docs.length - 1];
+
+            // Construct a new query starting at this document.
+            // Note: this will not have the desired effect if multiple
+            // cities have the exact same population value.
+            var next = db.collection('cities')
+                .orderBy('population')
+                .startAfter(last.data().population)
+                .limit(3);
+
+            // Use the query for pagination
+            // [START_EXCLUDE]
+            return next.get().then((snapshot) => {
+                console.log('Num results:', snapshot.docs.length);
+            });
+            // [END_EXCLUDE]
+        });
+    // [END cursor_paginate]
+
+    return paginate;
+}
+
+function multipleCursorConditions(db) {
+    // [START cursor_multiple_one_start]
+    // Will return all Springfields
+    var startAtName = db.collection("cities")
+            .orderBy("name")
+            .orderBy("state")
+            .startAt("Springfield");
+    // [END cursor_multiple_one_start]
+
+    // [START cursor_multiple_two_start]
+    // Will return "Springfield, Missouri" and "Springfield, Wisconsin"
+    var startAtNameAndState = db.collection("cities")
+            .orderBy("name")
+            .orderBy("state")
+            .startAt("Springfield", "Missouri");
+    // [END cursor_multiple_two_start]
+
+    return Promise.all([
+        startAtName.get(),
+        startAtNameAndState.get()
+    ]);
+}
+
+// ============================================================================
 // MAIN
 // ============================================================================
 
@@ -695,5 +774,17 @@ describe("Firestore Smoketests", () => {
 
   it("should stream doc data", (done) => {
     return streamDocument(db, done)
+  });
+
+  it("should support simple cursors", () => {
+    return simpleCursors(db);
+  });
+
+  it("should support pagination", () => {
+    return paginateQuery(db);
+  });
+
+  it("should support multiple cursor conditions", () => {
+    return multipleCursorConditions(db);
   });
 })
