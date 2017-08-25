@@ -1,8 +1,6 @@
 const debug = require('debug')("firestore-snippets-node");
 
 // [START firestore_deps]
-const GoogleAuth = require('google-auth-library');
-const firebase = require('firebase');
 const Firestore = require('@google-cloud/firestore');
 // [END firestore_deps]
 
