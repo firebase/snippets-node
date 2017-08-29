@@ -91,6 +91,31 @@ function quickstartQuery(db) {
 }
 
 // ============================================================================
+// https://firebase.google.com/docs/firestore/data-model
+// ============================================================================
+
+function basicReferences(db) {
+    // [START doc_ref]
+    var alovelaceDocumentRef = db.collection('users').doc('alovelace');
+    // [END doc_ref]
+
+    // [START collection_ref]
+    var usersCollectionRef = db.collection('users');
+    // [END collection_ref]
+}
+
+function advancedReferences(db) {
+    // [START doc_ref_alternate]
+    var alovelaceDocumentRef = db.doc('users/alovelace');
+    // [END doc_ref_alternate]
+
+    // [START subcollection_ref]
+    var messageRef = db.collection('rooms').doc('roomA')
+        .collection('messages').doc('message1');
+    // [END subcollection_ref]
+}
+
+// ============================================================================
 // https://firebase.google.com/docs/firestore/server/save-data
 // ============================================================================
 
