@@ -92,6 +92,24 @@ function quickstartQuery(db) {
     return query;
 }
 
+function quickstartListen(db) {
+    // [START quickstart_listen]
+    db.collection('users').get()
+        .then((snapshot) => {
+            snapshot.forEach((doc) => {
+                console.log(doc.id, '=>', doc.data());
+            });
+        })
+        .catch((err) => {
+            console.log('Error getting documents', err);
+        });
+
+    // RESULT:
+    // alovelace => { first: 'Ada',  last: 'Lovelace',  born: '1815' }
+    // aturing => { first: 'Alan',  middle: 'Mathison',  last: 'Turing',  born: '1912' }
+    // [END quickstart_listen]
+}
+
 // ============================================================================
 // https://firebase.google.com/docs/firestore/data-model
 // ============================================================================
@@ -177,6 +195,14 @@ function addDocument(db) {
     });
 }
 
+function addDocumentWithId(db) {
+    data = { foo: 'bar '};
+
+    // [START add_document_id]
+    db.collection('cities').doc('new-city-id').set(data);
+    // [END add_document_id]
+}
+
 function addLater(db) {
     // [START add_later]
     var newCityRef = db.collection('cities').doc();
@@ -197,11 +223,11 @@ function updateDocument(db) {
     var cityRef = db.collection('cities').doc('LA');
 
     // Set the 'capital' field of the city
-    var updateSingle = cityRef.update({ capital: true });
+    var updateSingle = cityRef.update({ capital: false });
 
     // Set the 'capital' and 'population' fields
     var updateMultiple = cityRef.update({
-        capital: true,
+        capital: false,
         population: 3884000
     });
     // [END update_document]
@@ -358,6 +384,32 @@ function transactionWithResult(db) {
     return transaction;
 }
 
+function updateBatch(db) {
+    // [START update_data_batch]
+    // Get a new write batch
+    var batch = db.batch();
+
+    // Set the value of 'NYC'
+    var nycRef = db.collection('cities').doc('NYC');
+    batch.set(nycRef, { name: 'New York City' });
+
+    // Update the population of 'SF'
+    var sfRef = db.collection('cities').doc('SF');
+    batch.update(sfRef, { population: 1000000 });
+
+    // Delete the city 'LA'
+    var laRef = db.collection('cities').doc('LA');
+    batch.delete(laRef);
+
+    // Commit the batch
+    return batch.commit().then(function () {
+        // [START_EXCLUDE]
+        console.log('Batched.');
+        // [END_EXCLUDE]
+    });
+    // [END update_data_batch]
+}
+
 // ============================================================================
 // https://firebase.google.com/docs/firestore/server/retrieve-data
 // ============================================================================
@@ -481,6 +533,18 @@ function getAll(db) {
 // https://firebase.google.com/docs/firestore/server/query-data
 // ============================================================================
 
+function simpleQuery(db) {
+    // [START simple_query]
+    // Create a reference to the cities collection
+    var citiesRef = db.collection('cities');
+
+    // Create a query against the collection
+    var queryRef = citiesRef.where('state', '==', 'CA');
+    // [END simple_query]
+
+    return simpleQuery.get();
+}
+
 function queryAndFilter(db) {
     // [START create_query]
     // Create a reference to the cities collection
@@ -515,6 +579,10 @@ function orderAndLimit(db) {
     // [START order_limit_desc]
     var lastThree = citiesRef.orderBy('name', 'desc').limit(3);
     // [END order_limit_desc]
+
+    // [START order_multi_field]
+    var byStateByPop = citiesRef.orderBy('state').orderBy('population', 'desc');
+    // [END order_multi_field]
 
     // [START where_and_order]
     var biggest = citiesRef.where('population', '>', 2500000).orderBy('population').limit(2);
@@ -588,6 +656,28 @@ function streamDocument(db, done) {
         console.log(`Encountered error: ${err}`);
     });
     // [END doc_realtime]
+}
+
+function detatchListener(db) {
+    // [START detach_listener]
+    var unsub = db.collection('cities').onSnapshot(() => {});
+
+    // ...
+
+    // Stop listening for changes
+    unsub();
+    // [END detach_listener]
+}
+
+function listenErrors(db) {
+    // [START listen_errors]
+    db.collection("cities")
+        .onSnapshot((snapshot) => {
+            //...
+        }, (error) => {
+            //...
+        });
+    // [END listen_errors]
 }
 
 // ============================================================================
@@ -669,25 +759,52 @@ function multipleCursorConditions(db) {
     ]);
 }
 
+// [START delete_collectiom]
+function deleteCollection(db, collectionPath, batchSize) {
+    var collectionRef = db.collection(collectionPath);
+    var query = collectionRef.orderBy('__name__').limit(batchSize);
+
+    return new Promise((resolve, reject) => {
+        deleteQueryBatch(db, query, batchSize, resolve, reject);
+    });
+}
+
+function deleteQueryBatch(db, query, batchSize, resolve, reject) {
+    query.get()
+        .then((snapshot) => {
+            // When there are no documents left, we are done
+            if (snapshot.size == 0) {
+                return 0;
+            }
+
+            // Delete documents in a batch
+            var batch = db.batch();
+            snapshot.docs.forEach((doc) => {
+                batch.delete(doc.ref);
+            });
+
+            return batch.commit().then(() => {
+                return snapshot.size;
+            });
+        }).then((numDeleted) => {
+            if (numDeleted <= batchSize) {
+                resolve();
+                return;
+            }
+
+            // Recurse on the next process tick, to avoid
+            // exploding the stack.
+            process.nextTick(() => {
+                deleteQueryBatch(db, query, batchSize, resolve, reject);
+            });
+        })
+        .catch(reject);
+}
+// [END delete_collection]
+
 // ============================================================================
 // MAIN
 // ============================================================================
-
-
-function deleteCollection(db, name) {
-    var coll = db.collection(name);
-    return coll.get()
-        .then(res => {
-            var promises = []
-            res.forEach(doc => {
-                var id = doc.id;
-                promises.push(coll.doc(id).delete());
-            });
-
-            console.log('Deleting ', promises.length, ' documents.');
-            return Promise.all(promises);
-        });
-}
 
 describe("Firestore Smoketests", () => {
   var db;
@@ -699,7 +816,7 @@ describe("Firestore Smoketests", () => {
   });
 
   it("should delete existing documents", () => {
-    return deleteCollection(db, 'cities')
+    return deleteCollection(db, 'cities', 50)
   });
 
   it("should store example data", () => {
@@ -753,7 +870,7 @@ describe("Firestore Smoketests", () => {
   it("should handle transaction with a result", () => {
     return transactionWithResult(db).then(res => {
         // Delete data set
-        return deleteCollection(db, 'cities')
+        return deleteCollection(db, 'cities', 50)
     });
   });
 
@@ -789,6 +906,10 @@ describe("Firestore Smoketests", () => {
     return updateNested(db);
   });
 
+  it("should update in a batch", () => {
+      updateBatch(db);
+  });
+
   it("should delete doucment", () => {
     return deleteDocument(db)
   });
@@ -811,5 +932,9 @@ describe("Firestore Smoketests", () => {
 
   it("should support multiple cursor conditions", () => {
     return multipleCursorConditions(db);
+  });
+
+  it("should delete the whole collection", () => {
+    return deleteCollection(db, 'cities', 50)
   });
 })
