@@ -757,7 +757,7 @@ function multipleCursorConditions(db) {
     ]);
 }
 
-// [START delete_collectiom]
+// [START delete_collection]
 function deleteCollection(db, collectionPath, batchSize) {
     var collectionRef = db.collection(collectionPath);
     var query = collectionRef.orderBy('__name__').limit(batchSize);
