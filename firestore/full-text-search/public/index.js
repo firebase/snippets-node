@@ -12,7 +12,7 @@ index
 // [END search_index_unsecure]
 
 // [START search_index_secure]
-const projectID = "calendar-cafe";
+const projectID = "YOUR_PROJECT_ID";
 
 fetch(`https://us-central1-${projectID}.cloudfunctions.net/getSearchKey/`, {
   headers: { Authorization: `Bearer ${token}` }
