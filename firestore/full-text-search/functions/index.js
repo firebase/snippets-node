@@ -95,16 +95,25 @@ app.use(require("cors")({ origin: true }));
 // https://gist.github.com/abehaskins/832d6f8665454d0cd99ef08c229afb42
 app.use(getFirebaseUser);
 
-// Finally, we'll add a route handler to 
+// Add a route handler to the app to generate the secured key 
 app.get("/", (req, res) => {
+  // Create the params object as described in the Algolia documentation:
+  // https://www.algolia.com/doc/guides/security/api-keys/#generating-api-keys
   const params = {
-    hitsPerPage: 20,
+    // This filter ensures that only documents where author == user_id will be readable
     filters: `author:${req.user.user_id}`,
+    // We also proxy the user_id as a unique token for this key.
     userToken: req.user.user_id
   };
+
+  // Call the Algolia API to generate a unique key based on our search key
   const key = client.generateSecuredApiKey(ALGOLIA_SEARCH_KEY, params);
+
+  // Then return this key as {key: "...key"}
   res.json({ key });
 });
 
+// Finally, pass our ExpressJS app to Cloud Functions as a function
+// called "getSearchKey";
 exports.getSearchKey = functions.https.onRequest(app);
 // [END get_algolia_user_token]
