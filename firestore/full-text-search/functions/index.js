@@ -101,7 +101,7 @@ app.get("/", (req, res) => {
     filters: `author:${req.user.user_id}`,
     userToken: req.user.user_id
   };
-  const key = search.generateSecuredApiKey(ALGOLIA_SEARCH_KEY, params);
+  const key = client.generateSecuredApiKey(ALGOLIA_SEARCH_KEY, params);
   res.json({ key });
 });
 
