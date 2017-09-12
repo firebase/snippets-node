@@ -7,5 +7,8 @@
     "firebase-functions": "^0.5.8",
     "@google-cloud/firestore": "file:../../firestore-0.6.6.tgz"
   },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "prettier": "^1.6.1"
+  }
 }
