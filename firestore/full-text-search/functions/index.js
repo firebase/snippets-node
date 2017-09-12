@@ -37,10 +37,8 @@ exports.onNoteCreated = firestore.document("notes/{noteId}").onCreate(event => {
 });
 // [END update_index_function]
 
-// [START get_algolia_user_token]
-const express = require("express");
+// [START get_firebase_user]
 const admin = require("admin");
-const cors = require("cors");
 
 function getFirebaseUser(req, res, next) {
   console.log("Check if request is authorized with Firebase ID token");
@@ -64,7 +62,6 @@ function getFirebaseUser(req, res, next) {
     req.headers.authorization.startsWith("Bearer ")
   ) {
     console.log("Found 'Authorization' header");
-    // Read the ID Token from the Authorization header.
     idToken = req.headers.authorization.split("Bearer ")[1];
   }
 
@@ -81,10 +78,23 @@ function getFirebaseUser(req, res, next) {
       res.status(403).send("Unauthorized");
     });
 }
+// [END get_firebase_user]
 
-const app = express();
-app.use(cors({ origin: true }));
+// [START get_algolia_user_token]
+// This complex HTTP function will be created as an ExpressJS app:
+// https://expressjs.com/en/4x/api.html
+const app = require("express")();
+
+// We'll enable CORS support to allow the function to be invoked
+// from our app client-side.
+app.use(require("cors")({ origin: true }));
+
+// Then we'll also use a special "getFirebaseUser" middleware which
+// verifies the Authorization header and adds a `user` field to the
+// incoming request.
 app.use(getFirebaseUser);
+
+// Finally, we'll add a route handler to 
 app.get("/", (req, res) => {
   const params = {
     hitsPerPage: 20,
