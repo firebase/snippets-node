@@ -107,13 +107,18 @@ userStatusFirestoreRef.onSnapshot(function (doc) {
 }
 
 function fs_listen_online() {
-    // [START fs_onsnapshot_online]
-    firebase.firestore.collection("status")
-        .where("state", "==", "online")
-        .onSnapshot(function (docs) {
-            docs.forEach(function (doc) {
-                console.log(`User ${doc.id} is online`);
-            });
+// [START fs_onsnapshot_online]
+firebase.firestore().collection("status")
+    .where("state", "==", "online")
+    .onSnapshot(function (snapshot) {
+        snapshot.docChanges.forEach(function(change) {
+            if (change.type === "added") {
+                console.log(`User ${change.doc.id} is now online.`);
+            }
+            if (change.type === "removed") {
+                console.log(`User ${change.doc.id} has gone offline.`);
+            }
         });
-    // [END fs_onsnapshot_online]
+    });
+// [END fs_onsnapshot_online]
 }
