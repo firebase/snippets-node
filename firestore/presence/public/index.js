@@ -105,3 +105,15 @@ userStatusFirestoreRef.onSnapshot(function (doc) {
 });
 // [END fs_onsnapshot]
 }
+
+function fs_listen_online() {
+    // [START fs_onsnapshot_online]
+    firebase.firestore.collection("status")
+        .where("state", "==", "online")
+        .onSnapshot(function (docs) {
+            docs.forEach(function (doc) {
+                console.log(`User ${doc.id} is online`);
+            });
+        });
+    // [END fs_onsnapshot_online]
+}

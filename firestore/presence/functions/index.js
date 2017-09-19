@@ -22,18 +22,19 @@ exports.onUserStatusChanged = functions.database
         // this event has already been overwritten by a fast change in
         // online / offline status, so we'll re-read the current data
         // and compare the timestamps.
-        return event.data.ref.once("value").then((snapshot) => {
+        return event.data.ref.once("value").then((statusSnapshot) => {
             return statusSnapshot.val();
         }).then((status) => {
+            console.log(status, eventStatus);
             // If the current timestamp for this data is newer than
             // the data that triggered this event, we exit this function.
             if (status.last_changed > eventStatus.last_changed) return;
 
             // Otherwise, we convert the last_changed field to a Date
-            status.last_changed = new Date(status.last_changed);
+            eventStatus.last_changed = new Date(eventStatus.last_changed);
 
             // ... and write it to Firestore.
-            return userStatusFirestoreRef.set(status);
+            return userStatusFirestoreRef.set(eventStatus);
         });
     });
 // [END presence_sync_function]
