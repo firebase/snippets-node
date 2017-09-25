@@ -257,6 +257,10 @@ function updateServerTimestamp(db) {
     db.collection('objects').doc('some-id').set({});
 
     // [START update_with_server_timestamp]
+    // Get the `FieldValue` object
+    var FieldValue = require("@google-cloud/firestore").FieldValue;
+
+    // Create a document reference
     var docRef = db.collection('objects').doc('some-id');
 
     // Update the timestamp field with the value from the server
@@ -272,6 +276,10 @@ function updateServerTimestamp(db) {
 
 function updateDeleteField(db) {
     // [START update_delete_field]
+    // Get the `FieldValue` object
+    var FieldValue = require("@google-cloud/firestore").FieldValue;
+
+    // Create a document reference
     var cityRef = db.collection('cities').doc('BJ');
 
     // Remove the 'capital' field from the document
