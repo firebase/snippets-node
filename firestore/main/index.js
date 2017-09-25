@@ -261,7 +261,7 @@ function updateServerTimestamp(db) {
 
     // Update the timestamp field with the value from the server
     var updateTimestamp = docRef.update({
-        timestamp: Firestore.FieldValue.serverTimestamp()
+        timestamp: FieldValue.serverTimestamp()
     });
     // [END update_with_server_timestamp]
 
@@ -276,7 +276,7 @@ function updateDeleteField(db) {
 
     // Remove the 'capital' field from the document
     var removeCapital = cityRef.update({
-        capital: Firestore.FieldValue.delete()
+        capital: FieldValue.delete()
     });
     // [END update_delete_field]
 
