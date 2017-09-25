@@ -242,12 +242,12 @@ function updateCreateIfMissing(db) {
     // [START update_create_if_missing]
     var cityRef = db.collection('cities').doc('BJ');
 
-    var updateWithOptions = cityRef.update({
+    var setWithOptions = cityRef.set({
         capital: true
-    }, { createIfMissing: true });
+    }, { merge: true });
     // [END update_create_if_missing]
 
-    return updateWithOptions.then(res => {
+    return setWithOptions.then(res => {
         console.log('Update: ', res);
     });
 }
