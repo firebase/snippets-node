@@ -4,16 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test-debug": "env GCLOUD_PROJECT=firestorebeta1test2 DEBUG=firestore-snippets-node mocha index.js",
-    "test": "env GCLOUD_PROJECT=firestorebeta1test2 ./node_modules/.bin/mocha --timeout 20000 index.js"
+    "test-debug": "env DEBUG=firestore-snippets-node mocha index.js",
+    "test": "env ./node_modules/.bin/mocha --timeout 20000 index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google-cloud/firestore": "file:../firestore-0.6.6.tgz",
-    "firebase": "^3.7.0",
-    "firebase-admin": "^4.1.1",
-    "google-auth-library": "^0.10.0"
+    "@google-cloud/firestore": "file:firestore.tgz",
+    "firebase-admin": "file:firebase-admin.tgz"
   },
   "devDependencies": {
     "mocha": "^3.3.0"

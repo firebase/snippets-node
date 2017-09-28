@@ -1,27 +1,54 @@
 const debug = require('debug')("firestore-snippets-node");
 
 // [START firestore_deps]
-const Firestore = require('@google-cloud/firestore');
+const admin = require('firebase-admin');
 // [END firestore_deps]
 
 // We supress these logs when not in NODE_ENV=debug for cleaner Mocha output
 var console = {log: debug};
 
 function initializeApp() {
+    process.env.GCLOUD_PROJECT = "firestorebeta1test2";
     // [START initialize_app]
-    // Get project ID from environment
-    var firestoreId = process.env.GCLOUD_PROJECT;
 
-    // Initialize Firestore
-    var firestoreOptions = {
-        projectId: firestoreId,
-        keyFilename: __dirname + '/keyfile.json'
-    }
+    admin.initializeApp({
+        credential: admin.credential.applicationDefault()
+    });
 
-    var db = new Firestore(firestoreOptions);
+    var db = admin.firestore();
+
     // [END initialize_app]
     return db;
 }
+
+function initializeAppFunctions() {
+    process.env.GCLOUD_PROJECT = "firestorebeta1test2";
+    // [START initialize_app_functions]
+    const functions = require('firebase-functions');
+
+    admin.initializeApp(functions.config().firebase);
+
+    var db = admin.firestore();
+
+    // [END initialize_app_functions]
+    return db;
+}
+
+function initializeAppSA() {
+    // [START initialize_app_service_account]
+
+    var serviceAccount = require("path/to/serviceAccountKey.json");
+    
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount)
+    });
+
+    var db = admin.firestore();
+
+    // [END initialize_app_service_account]
+    return db;
+}
+
 
 function demoInitialize() {
     // [START demo_initialize]
@@ -242,12 +269,12 @@ function updateCreateIfMissing(db) {
     // [START update_create_if_missing]
     var cityRef = db.collection('cities').doc('BJ');
 
-    var updateWithOptions = cityRef.update({
+    var setWithOptions = cityRef.set({
         capital: true
-    }, { createIfMissing: true });
+    }, { merge: true });
     // [END update_create_if_missing]
 
-    return updateWithOptions.then(res => {
+    return setWithOptions.then(res => {
         console.log('Update: ', res);
     });
 }
@@ -257,11 +284,15 @@ function updateServerTimestamp(db) {
     db.collection('objects').doc('some-id').set({});
 
     // [START update_with_server_timestamp]
+    // Get the `FieldValue` object
+    var FieldValue = require("@google-cloud/firestore").FieldValue;
+
+    // Create a document reference
     var docRef = db.collection('objects').doc('some-id');
 
     // Update the timestamp field with the value from the server
     var updateTimestamp = docRef.update({
-        timestamp: Firestore.FieldValue.serverTimestamp()
+        timestamp: FieldValue.serverTimestamp()
     });
     // [END update_with_server_timestamp]
 
@@ -272,11 +303,15 @@ function updateServerTimestamp(db) {
 
 function updateDeleteField(db) {
     // [START update_delete_field]
+    // Get the `FieldValue` object
+    var FieldValue = require("@google-cloud/firestore").FieldValue;
+
+    // Create a document reference
     var cityRef = db.collection('cities').doc('BJ');
 
     // Remove the 'capital' field from the document
     var removeCapital = cityRef.update({
-        capital: Firestore.FieldValue.delete()
+        capital: FieldValue.delete()
     });
     // [END update_delete_field]
 
