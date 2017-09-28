@@ -8,14 +8,16 @@ const admin = require('firebase-admin');
 var console = {log: debug};
 
 function initializeApp() {
+    const YOUR_PROJECT_ID = "firestorebeta1test2";
     // [START initialize_app]
 
     admin.initializeApp({
-        credential: admin.credential.applicationDefault()
+        credential: admin.credential.applicationDefault(),
+        projectId: YOUR_PROJECT_ID
     });
 
     var db = admin.firestore();
-    
+
     // [END initialize_app]
     return db;
 }

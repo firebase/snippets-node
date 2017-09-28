@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test-debug": "env GCLOUD_PROJECT=firestorebeta1test2 DEBUG=firestore-snippets-node mocha index.js",
-    "test": "env GCLOUD_PROJECT=firestorebeta1test2 ./node_modules/.bin/mocha --timeout 20000 index.js"
+    "test-debug": "env DEBUG=firestore-snippets-node mocha index.js",
+    "test": "env ./node_modules/.bin/mocha --timeout 20000 index.js"
   },
   "author": "",
   "license": "ISC",
