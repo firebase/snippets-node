@@ -9,11 +9,13 @@ var console = {log: debug};
 
 function initializeApp() {
     // [START initialize_app]
+
     admin.initializeApp({
         credential: admin.credential.applicationDefault()
     });
 
     var db = admin.firestore();
+    
     // [END initialize_app]
     return db;
 }
