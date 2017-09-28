@@ -1,7 +1,7 @@
 const debug = require('debug')("firestore-snippets-node");
 
 // [START firestore_deps]
-const Firestore = require('@google-cloud/firestore');
+const admin = require('firebase-admin');
 // [END firestore_deps]
 
 // We supress these logs when not in NODE_ENV=debug for cleaner Mocha output
@@ -9,19 +9,15 @@ var console = {log: debug};
 
 function initializeApp() {
     // [START initialize_app]
-    // Get project ID from environment
-    var firestoreId = process.env.GCLOUD_PROJECT;
+    admin.initializeApp({
+        credential: admin.credential.applicationDefault()
+    });
 
-    // Initialize Firestore
-    var firestoreOptions = {
-        projectId: firestoreId,
-        keyFilename: __dirname + '/keyfile.json'
-    }
-
-    var db = new Firestore(firestoreOptions);
+    var db = admin.firestore();
     // [END initialize_app]
     return db;
 }
+
 
 function demoInitialize() {
     // [START demo_initialize]

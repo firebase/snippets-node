@@ -10,10 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google-cloud/firestore": "file:../firestore-0.6.6.tgz",
+    "@google-cloud/firestore": "file:firestore.tgz",
     "firebase": "^3.7.0",
-    "firebase-admin": "^4.1.1",
-    "google-auth-library": "^0.10.0"
+    "firebase-admin": "file:firebase-admin.tgz"
   },
   "devDependencies": {
     "mocha": "^3.3.0"
