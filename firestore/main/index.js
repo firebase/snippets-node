@@ -8,17 +8,31 @@ const admin = require('firebase-admin');
 var console = {log: debug};
 
 function initializeApp() {
-    const YOUR_PROJECT_ID = "firestorebeta1test2";
+    process.env.GCLOUD_PROJECT = "firestorebeta1test2";
     // [START initialize_app]
 
     admin.initializeApp({
-        credential: admin.credential.applicationDefault(),
-        projectId: YOUR_PROJECT_ID
+        credential: admin.credential.applicationDefault()
     });
 
     var db = admin.firestore();
 
     // [END initialize_app]
+    return db;
+}
+
+function initializeAppSA() {
+    // [START initialize_app_service_account]
+
+    var serviceAccount = require("path/to/serviceAccountKey.json");
+    
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount)
+    });
+
+    var db = admin.firestore();
+
+    // [END initialize_app_service_account]
     return db;
 }
 
