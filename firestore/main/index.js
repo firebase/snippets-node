@@ -21,6 +21,19 @@ function initializeApp() {
     return db;
 }
 
+function initializeAppFunctions() {
+    process.env.GCLOUD_PROJECT = "firestorebeta1test2";
+    // [START initialize_app_functions]
+    const functions = require('firebase-functions');
+
+    admin.initializeApp(functions.config().firebase);
+
+    var db = admin.firestore();
+
+    // [END initialize_app_functions]
+    return db;
+}
+
 function initializeAppSA() {
     // [START initialize_app_service_account]
 
