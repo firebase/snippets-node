@@ -1,5 +1,5 @@
 {
-  "name": "snippets-node",
+  "name": "snippets-node-auth",
   "version": "1.0.0",
   "description": "Code snippets used in Node.js documentation on firebase.google.com",
   "author": "Firebase (https://firebase.google.com/)",
