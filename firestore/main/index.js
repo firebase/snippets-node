@@ -819,7 +819,7 @@ function deleteQueryBatch(db, query, batchSize, resolve, reject) {
                 return snapshot.size;
             });
         }).then((numDeleted) => {
-            if (numDeleted <= batchSize) {
+            if (numDeleted === 0) {
                 resolve();
                 return;
             }
