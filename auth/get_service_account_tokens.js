@@ -13,21 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+'use strict';
 // [START get_service_account_tokens]
-var admin = require("firebase-admin");
+const admin = require('firebase-admin');
 
-var serviceAccount = require("path/to/serviceAccountKey.json");
-var credential = admin.credential.cert(serviceAccount);
+const serviceAccount = require('path/to/serviceAccountKey.json');
+const credential = admin.credential.cert(serviceAccount);
 
-credential.getAccessToken().then(function(accessTokenInfo) {
-  var accessToken = accessTokenInfo.access_token;
-  var expirationTime = accessTokenInfo.expires_in;
+credential.getAccessToken().then((accessTokenInfo) => {
+  const accessToken = accessTokenInfo.access_token;
+  const expirationTime = accessTokenInfo.expires_in;
 
   // Attach accessToken to HTTPS request in the "Authorization: Bearer" header
   // After expirationTime, you must generate a new access token
   // [START_EXCLUDE]
-  console.log("The token " + accessToken + " expires in " + expirationTime);
+  console.log(`The token ${accessToken} expires in ${expirationTime}`);
   // [END_EXCLUDE]
 });
 // [END get_service_account_tokens]
