@@ -38,7 +38,7 @@ function initializeAppSA() {
     // [START initialize_app_service_account]
 
     var serviceAccount = require("path/to/serviceAccountKey.json");
-    
+
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccount)
     });
@@ -285,7 +285,7 @@ function updateServerTimestamp(db) {
 
     // [START update_with_server_timestamp]
     // Get the `FieldValue` object
-    var FieldValue = require("firebase-admin").FieldValue;
+    var FieldValue = require("firebase-admin").firestore.FieldValue;
 
     // Create a document reference
     var docRef = db.collection('objects').doc('some-id');
