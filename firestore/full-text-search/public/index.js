@@ -8,7 +8,7 @@ const query = "Some text";
 // Perform an Algolia search:
 // https://www.algolia.com/doc/api-reference/api-methods/search/
 index
-  .seach({
+  .search({
     query
   })
   .then(responses => {
