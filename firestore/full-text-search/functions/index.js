@@ -1,5 +1,5 @@
 const functions = require("firebase-functions");
-const firestore = require("firebase-functions/lib/providers/datastore");
+const firestore = require("firebase-functions/lib/providers/firestore");
 const Firestore = require("@google-cloud/firestore");
 
 const algoliasearch = require("algoliasearch");
