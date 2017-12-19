@@ -304,7 +304,7 @@ function updateServerTimestamp(db) {
 function updateDeleteField(db) {
     // [START update_delete_field]
     // Get the `FieldValue` object
-    var FieldValue = require("firebase-admin").FieldValue;
+    var FieldValue = require("firebase-admin").firestore.FieldValue;
 
     // Create a document reference
     var cityRef = db.collection('cities').doc('BJ');
