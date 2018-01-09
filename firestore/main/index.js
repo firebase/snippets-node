@@ -165,7 +165,7 @@ function setDocument(db) {
         country: 'USA'
     };
 
-    // Add a new document in collection "cities" with ID 'DC'
+    // Add a new document in collection "cities" with ID 'LA'
     var setDoc = db.collection('cities').doc('LA').set(data);
     // [END set_document]
 
