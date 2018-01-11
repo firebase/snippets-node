@@ -560,6 +560,17 @@ function getAll(db) {
     return allCities;
 }
 
+function getCollections(db) {
+    // [START get_collections]
+    var sfRef = db.collection('cities').doc('SF');
+    sfRef.getCollections().then(collections => {
+        collections.forEach(colleciton => {
+            console.log('Found subcollection with id:', collection.id);
+        });
+    });
+    // [END get_collections]
+}
+
 // ============================================================================
 // https://firebase.google.com/docs/firestore/server/query-data
 // ============================================================================
@@ -920,6 +931,10 @@ describe("Firestore Smoketests", () => {
 
   it("should get all documents", () => {
     return getAll(db)
+  });
+
+  it("should get all subcollections of a document", () => {
+    return getCollections(db);
   });
 
   it("should query and filter", () => {
