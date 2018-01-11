@@ -1,0 +1,19 @@
+{
+  "name": "firestore-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test-debug": "env DEBUG=firestore-snippets-node mocha index.js",
+    "test": "env ./node_modules/.bin/mocha --timeout 20000 index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/firestore": "^0.8.0",
+    "firebase-admin": "^5.4.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.3.0"
+  }
+}
