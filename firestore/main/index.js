@@ -564,7 +564,7 @@ function getCollections(db) {
     // [START get_collections]
     var sfRef = db.collection('cities').doc('SF');
     sfRef.getCollections().then(collections => {
-        collections.forEach(colleciton => {
+        collections.forEach(collection => {
             console.log('Found subcollection with id:', collection.id);
         });
     });
