@@ -1,4 +1,4 @@
-const debug = require('debug')("firestore-snippets-node");
+const debug = require('debug')('firestore-snippets-node');
 
 // [START firestore_deps]
 const admin = require('firebase-admin');
@@ -8,7 +8,7 @@ const admin = require('firebase-admin');
 var console = {log: debug};
 
 function initializeApp() {
-    process.env.GCLOUD_PROJECT = "firestorebeta1test2";
+    process.env.GCLOUD_PROJECT = 'firestorebeta1test2';
     // [START initialize_app]
 
     admin.initializeApp({
@@ -22,7 +22,7 @@ function initializeApp() {
 }
 
 function initializeAppFunctions() {
-    process.env.GCLOUD_PROJECT = "firestorebeta1test2";
+    process.env.GCLOUD_PROJECT = 'firestorebeta1test2';
     // [START initialize_app_functions]
     const functions = require('firebase-functions');
 
@@ -37,10 +37,10 @@ function initializeAppFunctions() {
 function initializeAppSA() {
     // [START initialize_app_service_account]
 
-    var serviceAccount = require("path/to/serviceAccountKey.json");
+    var serviceAccount = require('path/to/serviceAccountKey.json');
 
     admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount)
+        credential: admin.credential.cert(serviceAccount)
     });
 
     var db = admin.firestore();
@@ -49,8 +49,7 @@ function initializeAppSA() {
     return db;
 }
 
-
-function demoInitialize() {
+function demoInitialize(db) {
     // [START demo_initialize]
     // Fetch data from Firestore
     db.collection('cities').get()
@@ -83,7 +82,7 @@ function quickstartAddData(db) {
     // [END add_lovelace]
 
     // [START add_turing]
-    var aTuringRef = db.collection('users').doc('aturing')
+    var aTuringRef = db.collection('users').doc('aturing');
 
     var setAlan = aTuringRef.set({
         'first': 'Alan',
@@ -214,7 +213,7 @@ function addDocument(db) {
 }
 
 function addDocumentWithId(db) {
-    data = { foo: 'bar '};
+    var data = { foo: 'bar '};
 
     // [START add_document_id]
     db.collection('cities').doc('new-city-id').set(data);
@@ -228,7 +227,7 @@ function addLater(db) {
     // Later...
     var setDoc = newCityRef.set({
         // ...
-    })
+    });
     // [END add_later]
 
     return setDoc.then(res => {
@@ -285,7 +284,7 @@ function updateServerTimestamp(db) {
 
     // [START update_with_server_timestamp]
     // Get the `FieldValue` object
-    var FieldValue = require("firebase-admin").firestore.FieldValue;
+    var FieldValue = require('firebase-admin').firestore.FieldValue;
 
     // Create a document reference
     var docRef = db.collection('objects').doc('some-id');
@@ -304,7 +303,7 @@ function updateServerTimestamp(db) {
 function updateDeleteField(db) {
     // [START update_delete_field]
     // Get the `FieldValue` object
-    var FieldValue = require("firebase-admin").firestore.FieldValue;
+    var FieldValue = require('firebase-admin').firestore.FieldValue;
 
     // Create a document reference
     var cityRef = db.collection('cities').doc('BJ');
@@ -330,7 +329,7 @@ function updateNested(db) {
             color: 'Blue',
             subject: 'recess'
         }
-    }
+    };
 
     // [START_EXCLUDE]
     db.collection('users').doc('Frank').set(initialData);
@@ -377,11 +376,9 @@ function transaction(db) {
                 var newPopulation = doc.data().population + 1;
                 t.update(cityRef, { population: newPopulation });
             });
-    })
-    .then(result => {
+    }).then(result => {
         console.log('Transaction success!');
-    })
-    .catch(err => {
+    }).catch(err => {
         console.log('Transaction failure:', err);
     });
     // [END transaction]
@@ -403,11 +400,9 @@ function transactionWithResult(db) {
                     return Promise.reject('Sorry! Population is too big.');
                 }
             });
-    })
-    .then(result => {
+    }).then(result => {
         console.log('Transaction success', result);
-    })
-    .catch(err => {
+    }).catch(err => {
         console.log('Transaction failure:', err);
     });
     // [END transaction_with_result]
@@ -640,7 +635,7 @@ function orderAndLimit(db) {
     });
 }
 
-function validInvalidQueries() {
+function validInvalidQueries(db) {
     var citiesRef = db.collection('cities');
 
     // [START valid_chained]
@@ -670,19 +665,19 @@ function validInvalidQueries() {
 }
 
 function streamSnapshot(db, done) {
-  // [START query_realtime]
-  var query = db.collection("cities").where('state', '==', 'CA');
+    // [START query_realtime]
+    var query = db.collection('cities').where('state', '==', 'CA');
 
-  var observer = query.onSnapshot(querySnapshot => {
-    console.log(`Received query snapshot of size ${querySnapshot.size}`);
-    // [START_EXCLUDE]
-    observer();
-    done();
-    // [END_EXCLUDE]
-  }, err => {
-    console.log(`Encountered error: ${err}`);
-  });
-  // [END query_realtime]
+    var observer = query.onSnapshot(querySnapshot => {
+        console.log(`Received query snapshot of size ${querySnapshot.size}`);
+        // [START_EXCLUDE]
+        observer();
+        done();
+        // [END_EXCLUDE]
+    }, err => {
+        console.log(`Encountered error: ${err}`);
+    });
+    // [END query_realtime]
 }
 
 function streamDocument(db, done) {
@@ -714,7 +709,7 @@ function detatchListener(db) {
 
 function listenErrors(db) {
     // [START listen_errors]
-    db.collection("cities")
+    db.collection('cities')
         .onSnapshot((snapshot) => {
             //...
         }, (error) => {
@@ -782,18 +777,18 @@ function paginateQuery(db) {
 function multipleCursorConditions(db) {
     // [START cursor_multiple_one_start]
     // Will return all Springfields
-    var startAtName = db.collection("cities")
-            .orderBy("name")
-            .orderBy("state")
-            .startAt("Springfield");
+    var startAtName = db.collection('cities')
+        .orderBy('name')
+        .orderBy('state')
+        .startAt('Springfield');
     // [END cursor_multiple_one_start]
 
     // [START cursor_multiple_two_start]
-    // Will return "Springfield, Missouri" and "Springfield, Wisconsin"
-    var startAtNameAndState = db.collection("cities")
-            .orderBy("name")
-            .orderBy("state")
-            .startAt("Springfield", "Missouri");
+    // Will return 'Springfield, Missouri' and 'Springfield, Wisconsin'
+    var startAtNameAndState = db.collection('cities')
+        .orderBy('name')
+        .orderBy('state')
+        .startAt('Springfield', 'Missouri');
     // [END cursor_multiple_two_start]
 
     return Promise.all([
@@ -849,139 +844,141 @@ function deleteQueryBatch(db, query, batchSize, resolve, reject) {
 // MAIN
 // ============================================================================
 
-describe("Firestore Smoketests", () => {
-  var db;
+describe('Firestore Smoketests', () => {
+    var db;
 
-  before(() => { db = initializeApp(); });
-
-  it("should get an empty document", () => {
-    return getDocumentEmpty(db)
-  });
-
-  it("should delete existing documents", () => {
-    return deleteCollection(db, 'cities', 50)
-  });
-
-  it("should store example data", () => {
-    return exampleData(db)
-  });
-
-  it("should add quickstart data", () => {
-    return quickstartAddData(db)
-  });
-
-  it("should query quickstart data", () => {
-    return quickstartQuery(db)
-  });
-
-  it("should set a document", () => {
-    return setDocument(db)
-  });
-
-  it("should manage data types", () => {
-    return dataTypes(db)
-  });
-
-  it("should add a document", () => {
-    return addDocument(db)
-  });
-
-  it("should add a document later", () => {
-    return addLater(db);
-  });
-
-  it("should update a document", () => {
-    return updateDocument(db)
-  });
-
-  it("should update many document", () => {
-    return updateDocumentMany(db)
-  });
-
-  it("should update a missing doc", () => {
-    return updateCreateIfMissing(db)
-  });
-
-  it("should update with server timestamp", () => {
-    return updateServerTimestamp(db)
-  });
-
-  it("should handle transactions", () => {
-    return transaction(db)
-  });
-
-  it("should handle transaction with a result", () => {
-    return transactionWithResult(db).then(res => {
-        // Delete data set
-        return deleteCollection(db, 'cities', 50)
+    before(() => {
+        db = initializeApp();
     });
-  });
 
-  it("should set more example data", () => {
-    return exampleDataTwo(db)
-  });
+    it('should get an empty document', () => {
+        return getDocumentEmpty(db);
+    });
 
-  it("should get document", () => {
-    return getDocument(db)
-  });
+    it('should delete existing documents', () => {
+        return deleteCollection(db, 'cities', 50);
+    });
 
-  it("should get multiple documents", () => {
-    return getMultiple(db)
-  });
+    it('should store example data', () => {
+        return exampleData(db);
+    });
 
-  it("should get all documents", () => {
-    return getAll(db)
-  });
+    it('should add quickstart data', () => {
+        return quickstartAddData(db);
+    });
 
-  it("should get all subcollections of a document", () => {
-    return getCollections(db);
-  });
+    it('should query quickstart data', () => {
+        return quickstartQuery(db);
+    });
 
-  it("should query and filter", () => {
-    return queryAndFilter(db)
-  });
+    it('should set a document', () => {
+        return setDocument(db);
+    });
 
-  it("should order and limit", () => {
-    return orderAndLimit(db)
-  });
+    it('should manage data types', () => {
+        return dataTypes(db);
+    });
 
-  it("should update and delete a field", () => {
-    return updateDeleteField(db)
-  });
+    it('should add a document', () => {
+        return addDocument(db);
+    });
 
-  it("should update nested fields", () => {
-    return updateNested(db);
-  });
+    it('should add a document later', () => {
+        return addLater(db);
+    });
 
-  it("should update in a batch", () => {
-      updateBatch(db);
-  });
+    it('should update a document', () => {
+        return updateDocument(db);
+    });
 
-  it("should delete doucment", () => {
-    return deleteDocument(db)
-  });
+    it('should update many document', () => {
+        return updateDocumentMany(db);
+    });
 
-  it("should stream query data", (done) => {
-    return streamSnapshot(db, done)
-  });
+    it('should update a missing doc', () => {
+        return updateCreateIfMissing(db);
+    });
 
-  it("should stream doc data", (done) => {
-    return streamDocument(db, done)
-  });
+    it('should update with server timestamp', () => {
+        return updateServerTimestamp(db);
+    });
 
-  it("should support simple cursors", () => {
-    return simpleCursors(db);
-  });
+    it('should handle transactions', () => {
+        return transaction(db);
+    });
 
-  it("should support pagination", () => {
-    return paginateQuery(db);
-  });
+    it('should handle transaction with a result', () => {
+        return transactionWithResult(db).then(res => {
+            // Delete data set
+            return deleteCollection(db, 'cities', 50);
+        });
+    });
 
-  it("should support multiple cursor conditions", () => {
-    return multipleCursorConditions(db);
-  });
+    it('should set more example data', () => {
+        return exampleDataTwo(db);
+    });
 
-  it("should delete the whole collection", () => {
-    return deleteCollection(db, 'cities', 50)
-  });
-})
+    it('should get document', () => {
+        return getDocument(db);
+    });
+
+    it('should get multiple documents', () => {
+        return getMultiple(db);
+    });
+
+    it('should get all documents', () => {
+        return getAll(db);
+    });
+
+    it('should get all subcollections of a document', () => {
+        return getCollections(db);
+    });
+
+    it('should query and filter', () => {
+        return queryAndFilter(db);
+    });
+
+    it('should order and limit', () => {
+        return orderAndLimit(db);
+    });
+
+    it('should update and delete a field', () => {
+        return updateDeleteField(db);
+    });
+
+    it('should update nested fields', () => {
+        return updateNested(db);
+    });
+
+    it('should update in a batch', () => {
+        updateBatch(db);
+    });
+
+    it('should delete doucment', () => {
+        return deleteDocument(db);
+    });
+
+    it('should stream query data', (done) => {
+        return streamSnapshot(db, done);
+    });
+
+    it('should stream doc data', (done) => {
+        return streamDocument(db, done);
+    });
+
+    it('should support simple cursors', () => {
+        return simpleCursors(db);
+    });
+
+    it('should support pagination', () => {
+        return paginateQuery(db);
+    });
+
+    it('should support multiple cursor conditions', () => {
+        return multipleCursorConditions(db);
+    });
+
+    it('should delete the whole collection', () => {
+        return deleteCollection(db, 'cities', 50);
+    });
+});
