@@ -1,5 +1,9 @@
 node_modules
 keyfile.json
+service-account.json
 
 .firebaserc
 firebase.json
+
+package-lock.json
+lerna-debug.log

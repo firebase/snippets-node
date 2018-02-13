@@ -848,7 +848,11 @@ describe('Firestore Smoketests', () => {
     var db;
 
     before(() => {
-        db = initializeApp();
+        var serviceAccount = require('../../service-account.json');
+        admin.initializeApp({
+            credential: admin.credential.cert(serviceAccount)
+        });
+        db = admin.firestore();
     });
 
     it('should get an empty document', () => {
