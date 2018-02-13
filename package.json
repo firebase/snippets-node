@@ -1,0 +1,11 @@
+{
+  "name": "snippets-node",
+  "version": "1.0.0",
+  "description": "Code snippets used in Node.js documentation on firebase.google.com",
+  "author": "Firebase (https://firebase.google.com/)",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "eslint": "^4.17.0",
+    "eslint-config-google": "^0.9.1"
+  }
+}
