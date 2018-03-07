@@ -1,0 +1,10 @@
+{
+  "name": "extend-with-functions",
+  "description": "Cloud Functions and Firestore",
+  "main": "index.js",
+  "dependencies": {
+    "firebase-functions": "^0.8.1",
+    "firebase-admin": "^5.4.0",
+    "@google-cloud/firestore": "^0.8.0"
+  }
+}

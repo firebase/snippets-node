@@ -2,6 +2,7 @@
   "lerna": "2.8.0",
   "packages": [
     "firestore/main",
+    "firestore/extend-with-functions",
     "firestore/full-text-search",
     "firestore/presence",
     "auth"
