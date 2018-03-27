@@ -152,7 +152,7 @@ function multiWildcard() {
         .document('users/{userId}/{messageCollectionId}/{messageId}')
         .onWrite((event) => {
             // If we set `/users/marie/incoming_messages/134` to {body: "Hello"} then
-            // event.params.userId == "malcolm";
+            // event.params.userId == "marie";
             // event.params.messageCollectionId == "incoming_messages";
             // event.params.messageId == "134";
             // ... and ...
