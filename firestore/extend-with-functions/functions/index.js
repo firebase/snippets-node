@@ -14,7 +14,7 @@ function triggerNewDocument() {
     // [START trigger_new_document]
     exports.createUser = functions.firestore
         .document('users/{userId}')
-        .onCreate((snao, context) => {
+        .onCreate((snap, context) => {
           // Get an object representing the document
           // e.g. {'name': 'Marie', 'age': 66}
           const newValue = snap.data();
