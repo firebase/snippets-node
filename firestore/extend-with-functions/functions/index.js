@@ -87,7 +87,7 @@ function readingData() {
           const newValue = change.after.data();
 
           // ...or the previous value before this update
-          const previousValue = change.after.data();
+          const previousValue = change.before.data();
         });
     // [END reading_data]
 }
