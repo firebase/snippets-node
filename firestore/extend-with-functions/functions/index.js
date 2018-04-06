@@ -156,7 +156,7 @@ function multiWildcard() {
           // context.params.messageCollectionId == "incoming_messages";
           // context.params.messageId == "134";
           // ... and ...
-          // context.data.data() == {body: "Hello"}
+          // change.after.data() == {body: "Hello"}
         });
     // [END multi_wildcard]
 }
