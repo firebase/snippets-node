@@ -25,6 +25,9 @@ find . -type f -name "*.js" -not -path "*node_modules*" \
 if [ "$TRAVIS_SECURE_ENV_VARS" = false ]; then
   echo "Could not find secure environment variables, skipping integration tests."
 else
+  # Decode secure stuff
+  openssl aes-256-cbc -K $encrypted_001d217edcb2_key -iv $encrypted_001d217edcb2_iv -in service-account.json.enc -out service-account.json -d
+
   # Run all tests
   lerna run test
 fi
