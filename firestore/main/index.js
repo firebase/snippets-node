@@ -336,9 +336,7 @@ function updateNested(db) {
   // [END_EXCLUDE]
   var updateNested = db.collection('users').doc('Frank').update({
     age: 13,
-    favorites: {
-      color: 'Red'
-    }
+    'favorites.color': 'Red'
   });
   // [END update_nested]
 
