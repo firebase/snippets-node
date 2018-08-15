@@ -133,7 +133,7 @@ function writingData() {
 
 function basicWildcard() {
   // [START basic_wildcard]
-  // Listen for changes in all documents and all sub-collections
+  // Listen for changes in all documents in the 'users' collection
   exports.useWildcard = functions.firestore
       .document('users/{userId}')
       .onWrite((change, context) => {
@@ -147,7 +147,7 @@ function basicWildcard() {
 
 function multiWildcard() {
   // [START multi_wildcard]
-  // Listen for changes in all documents and all subcollections
+  // Listen for changes in all documents in the 'users' collection and all subcollections
   exports.useMultipleWildcards = functions.firestore
       .document('users/{userId}/{messageCollectionId}/{messageId}')
       .onWrite((change, context) => {
