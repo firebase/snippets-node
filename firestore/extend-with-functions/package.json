@@ -4,7 +4,7 @@
   "main": "index.js",
   "dependencies": {
     "firebase-functions": "^1.0.0",
-    "firebase-admin": "~5.11.0",
-    "@google-cloud/firestore": "^0.8.0"
+    "firebase-admin": "^5.13.0",
+    "@google-cloud/firestore": "^0.16.1"
   }
 }

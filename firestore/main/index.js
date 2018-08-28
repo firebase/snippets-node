@@ -678,6 +678,29 @@ function streamSnapshot(db, done) {
   // [END query_realtime]
 }
 
+function listenDiffs(db, done) {
+  // [START listen_diffs]
+  var observer = db.collection('cities').where('state', '==', 'CA')
+    .onSnapshot(querySnapshot => {
+      querySnapshot.docChanges.forEach(change => {
+        if (change.type === 'added') {
+          console.log('New city: ', change.doc.data());
+        }
+        if (change.type === 'modified') {
+          console.log('Modified city: ', change.doc.data());
+        }
+        if (change.type === 'removed') {
+          console.log('Removed city: ', change.doc.data());
+        }
+      });
+      // [START_EXCLUDE silent]
+      observer();
+      done();
+      // [END_EXCLUDE]
+    });
+  // [END listen_diffs]
+}
+
 function streamDocument(db, done) {
   // [START doc_realtime]
   var doc = db.collection('cities').doc('SF');
@@ -962,6 +985,10 @@ describe('Firestore Smoketests', () => {
 
   it('should stream query data', (done) => {
     return streamSnapshot(db, done);
+  });
+
+  it('should listen with diffs', (done) => {
+    return listenDiffs(db, done);
   });
 
   it('should stream doc data', (done) => {
