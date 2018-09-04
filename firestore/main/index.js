@@ -248,6 +248,27 @@ function updateDocument(db) {
   });
 }
 
+function updateDocumentArray(db) {
+  // [START update_document_array]
+  var admin = require('firebase-admin');
+  // ...
+  var washingtonRef = db.collection('cities').doc('DC');
+
+  // Atomically add a new region to the "regions" array field.
+  var arrUnion = washingtonRef.update({
+    regions: admin.firestore.FieldValue.arrayUnion('greater_virginia')
+  });
+  // Atomically remove a region from the "regions" array field.
+  var arrRm = washingtonRef.update({
+    regions: admin.firestore.FieldValue.arrayRemove('east_coast')
+  });
+  // [END update_document_array]
+
+  return Promise.all([arrUnion, arrRm]).then(res => {
+    console.log('Update array: ', res);
+  });
+}
+
 function updateDocumentMany(db) {
   // [START update_document_many]
   var cityRef = db.collection('cities').doc('DC');
@@ -444,19 +465,24 @@ function exampleData(db) {
 
   var setSf = citiesRef.doc('SF').set({
       name: 'San Francisco', state: 'CA', country: 'USA',
-      capital: false, population: 860000 });
+      capital: false, population: 860000,
+      regions: ['west_coast', 'norcal'] });
   var setLa = citiesRef.doc('LA').set({
       name: 'Los Angeles', state: 'CA', country: 'USA',
-      capital: false, population: 3900000 });
+      capital: false, population: 3900000,
+      regions: ['west_coast', 'socal']  });
   var setDc = citiesRef.doc('DC').set({
       name: 'Washington, D.C.', state: null, country: 'USA',
-      capital: true, population: 680000 });
+      capital: true, population: 680000,
+      regions: ['east_coast'] });
   var setTok = citiesRef.doc('TOK').set({
       name: 'Tokyo', state: null, country: 'Japan',
-      capital: true, population: 9000000 });
+      capital: true, population: 9000000,
+      regions: ['kanto', 'honshu'] });
   var setBj = citiesRef.doc('BJ').set({
       name: 'Beijing', state: null, country: 'China',
-      capital: true, population: 21500000 });
+      capital: true, population: 21500000,
+      regions: ['jingjinji', 'hebei'] });
   // [END example_data]
 
   return Promise.all([setSf, setLa, setDc, setTok, setBj]);
@@ -603,6 +629,18 @@ function queryAndFilter(db) {
       console.log();
     });
   });
+}
+
+function arrayFilter(db) {
+  var citiesRef = db.collection('cities');
+  // [START array_contains_filter]
+  var westCoastCities = citiesRef.where('regions', 'array-contains', 'west_coast');
+  // [END array_contains_filter]
+
+  return westCoastCities.get()
+    .then(res => {
+      console.log('West Coast get: ', res);
+    });
 }
 
 function orderAndLimit(db) {
@@ -916,6 +954,10 @@ describe('Firestore Smoketests', () => {
     return updateDocument(db);
   });
 
+  it('should update array fields in a document', () => {
+    return updateDocumentArray(db);
+  });
+
   it('should update many document', () => {
     return updateDocumentMany(db);
   });
@@ -961,6 +1003,10 @@ describe('Firestore Smoketests', () => {
 
   it('should query and filter', () => {
     return queryAndFilter(db);
+  });
+  
+  it('should query and filter an array', () => {
+    return arrayFilter(db);
   });
 
   it('should order and limit', () => {
