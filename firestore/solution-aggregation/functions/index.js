@@ -11,7 +11,7 @@ exports.aggregateRatings = functions.firestore
       var ratingVal = change.after.data().rating;
 
       // Get a reference to the restaurant
-      var restRef = db.collection('restaurants').document(context.params.restId);
+      var restRef = db.collection('restaurants').doc(context.params.restId);
 
       // Update aggregations in a transaction
       return db.runTransaction(transaction => {
