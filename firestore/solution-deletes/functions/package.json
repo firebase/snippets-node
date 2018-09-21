@@ -1,0 +1,16 @@
+{
+  "name": "solution-deletes",
+  "version": "1.0.0",
+  "description": "Firestore delete data solution",
+  "main": "index.js",
+  "engines": {
+    "node": "8"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "firebase-admin": "^6.0.0",
+    "firebase-functions": "^2.0.5",
+    "firebase-tools": "^4.2.1"
+  }
+}
