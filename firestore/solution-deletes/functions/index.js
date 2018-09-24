@@ -28,7 +28,7 @@ exports.mintAdminToken = functions.https.onCall((data, context) => {
 /**
  * Initiate a recursive delete of documents at a given path.
  * 
- * The calling user must be authenticated and habe the custom "admin" attribute
+ * The calling user must be authenticated and have the custom "admin" attribute
  * set to true on the auth token.
  * 
  * This delete is NOT an atomic operation and it's possible
