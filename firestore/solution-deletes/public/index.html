@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Firestore - Delete Demo</title>
+
+    <script defer src="/__/firebase/5.5.1/firebase-app.js"></script>
+    <script defer src="/__/firebase/5.5.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/5.5.1/firebase-functions.js"></script>
+    <script defer src="/__/firebase/init.js"></script>
+
+    <link rel="stylesheet" href="index.css" />
+    <script defer src="index.js"></script>
+  </head>
+  <body>
+    <div id="message" class="shadow">
+      <h2>Cloud Firestore Demo</h2>
+      <h1>Server-Side Deletes</h1>
+      <p>Use the form below to initiate a delete.</p>
+
+      <div id="form-signin">
+        <input type="submit" class="btn shadow" id="btn-signin" value="Sign In">
+      </div>
+
+      <hr />
+
+      <div id="form-delete">
+        <input type="text" id="input-delete" placeholder="Path to delete...">
+        <input type="submit" class="btn shadow" id="btn-delete" value="Delete">
+      </div>
+
+
+      <p id="status">
+        Logs:
+        <ul id="log-list">
+        </ul>
+      </p>
+    </div>
+  </body>
+</html>
