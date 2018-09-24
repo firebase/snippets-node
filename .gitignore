@@ -3,7 +3,6 @@ keyfile.json
 service-account.json
 
 .firebaserc
-firebase.json
 firebase-debug.log
 
 package-lock.json

@@ -24,23 +24,15 @@ exports.mintAdminToken = functions.https.onCall((data, context) => {
     });
 });
 
+// [START recursive_delete_function]
 /**
  * Initiate a recursive delete of documents at a given path.
  * 
- * This function first checks to make sure that the calling user is
- * authenticated and that the token has the custom "admin" attribute
- * set to true.
+ * The calling user must be authenticated and habe the custom "admin" attribute
+ * set to true on the auth token.
  * 
- * Next, the function calls the firestore:delet functionality
- * of the firebase-tools library to initiate a recursive delete.
  * This delete is NOT an atomic operation and it's possible
  * that it may fail after only deleting some documents.
- * 
- * Deployment notes:
- *   - The fb.token variable must be set in the functions config. This
- *     token can be obtained by running 'firebase login:ci'
- *   - The runtime options are set to the max timeout and RAM to allow
- *     for long-running delete operations of many documents.
  * 
  * @param {string} data.path the document or collection path to delete.
  */
@@ -63,7 +55,9 @@ exports.recursiveDelete = functions
       `User ${context.auth.uid} has requested to delete path ${path}`
     );
 
-    // Run a recursive delete on the given document or collection path/
+    // Run a recursive delete on the given document or collection path.
+    // The 'token' must be set in the functions config, and can be generated
+    // at the command line by running 'firebase login:ci'.
     return firebase_tools.firestore
       .delete(path, {
         project: process.env.GCLOUD_PROJECT,
@@ -72,6 +66,9 @@ exports.recursiveDelete = functions
         token: functions.config().fb.token
       })
       .then(() => {
-        return { path: path };
+        return {
+          path: path 
+        };
       });
   });
+  // [END recursive_delete_function]

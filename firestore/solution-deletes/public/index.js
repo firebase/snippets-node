@@ -1,5 +1,6 @@
 var firebase = firebase || {};
 
+// [START call_delete_function]
 /**
  * Call the 'recursiveDelete' callable function with a path to initiate
  * a server-side delete.
@@ -7,13 +8,15 @@ var firebase = firebase || {};
 function deleteAtPath(path) {
     var deleteFn = firebase.functions().httpsCallable('recursiveDelete');
     deleteFn({ path: path })
-        .then(function (result) {
-            console.log(result);
+        .then(function(result) {
+            logMessage('Delete success: ' + JSON.stringify(result));
         })
-        .catch(function (err) {
+        .catch(function(err) {
+            logMessage('Delete failed, see console,');
             console.warn(err);
         });
 }
+// [END call_delete_function]
 
 /**
  * Call the 'mintAdminToken' callable function to get a custom token that
@@ -30,11 +33,24 @@ function signInAsAdmin() {
  * Helper function: set the signed-in state of the UI.
  */
 function setSignedIn(signedIn) {
-    console.log('Signed in: ' + signedIn);
+    if (signedIn) {
+        logMessage('Signed in.');
+    } else {
+        logMessage('Not signed in.');
+    }
 
     setEnabled('input-delete', signedIn);
     setEnabled('btn-delete', signedIn);
     setEnabled('btn-signin', !signedIn);
+}
+
+/**
+ * Helper function: log a message to the UI.
+ */
+function logMessage(msg) {
+    var msgLi = document.createElement('li');
+    msgLi.innerText = msg;
+    document.getElementById('log-list').appendChild(msgLi);
 }
 
 /**
