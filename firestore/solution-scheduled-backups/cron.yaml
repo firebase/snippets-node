@@ -1,0 +1,5 @@
+cron:
+- description: "Daily Cloud Firestore Export"
+  url: /cloud-firestore-export?outputUriPrefix=gs://BUCKET_NAME[/PATH]&collections=test1,test2
+  target: cloud-firestore-admin
+  schedule: every 24 hours
