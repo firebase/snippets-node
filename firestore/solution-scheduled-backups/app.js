@@ -38,7 +38,7 @@ app.get('/cloud-firestore-export', async (req, res) => {
   };
 
   // If specified, mark specific collections for backup
-  const collectionParam = req.param('collections')
+  const collectionParam = req.param('collections');
   if (collectionParam) {
     body.collectionIds = collectionParam.split(',');
   }
@@ -53,6 +53,10 @@ app.get('/cloud-firestore-export', async (req, res) => {
       .send(response.data)
       .end();
   } catch (e) {
+    if (e.response) {
+      console.warn(e.response.data);
+    }
+
     res
       .status(500)
       .send('Could not start backup: ' + e)
