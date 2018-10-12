@@ -23,10 +23,10 @@ $ gcloud projects add-iam-policy-binding YOUR_PROJECT_ID \
 ```
 
 Give the service account permission to write to the GCS bucket you
-are going to use. Here we will use the default bucket:
+are going to use. Here, we will use the default bucket:
 
 ```shell
-$ sutil iam ch \
+$ gsutil iam ch \
   serviceAccount:YOUR_PROJECT_ID@appspot.gserviceaccount.com:objectCreator \
   gs://YOUR_PROJECT_ID.appspot.com
 ```
@@ -38,7 +38,7 @@ Open `cron.yaml` and edit this line:
 /cloud-firestore-export?outputUriPrefix=gs://BUCKET_NAME[/PATH]&collections=test1,test2
 ```
 
-You shoudl change `gs://BUCKET_NAME[/PATH]` to the Google Cloud Storage
+You should change `gs://BUCKET_NAME[/PATH]` to the Google Cloud Storage
 path where your data should be backed up. If you only want to back up certain
 collections, change `test1,test2` to a comma-separated list of those collections.
 Otherwise, delete the `&collections=test1,test2` param.
