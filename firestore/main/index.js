@@ -739,7 +739,7 @@ function listenDiffs(db, done) {
   // [START listen_diffs]
   var observer = db.collection('cities').where('state', '==', 'CA')
     .onSnapshot(querySnapshot => {
-      querySnapshot.docChanges.forEach(change => {
+      querySnapshot.docChanges().forEach(change => {
         if (change.type === 'added') {
           console.log('New city: ', change.doc.data());
         }
