@@ -560,6 +560,11 @@ function getMultiple(db) {
   var citiesRef = db.collection('cities');
   var query = citiesRef.where('capital', '==', true).get()
     .then(snapshot => {
+      if (snapshot.empty) {
+        console.log('No matching documents.');
+        return;
+      }  
+      
       snapshot.forEach(doc => {
         console.log(doc.id, '=>', doc.data());
       });
@@ -734,7 +739,7 @@ function listenDiffs(db, done) {
   // [START listen_diffs]
   var observer = db.collection('cities').where('state', '==', 'CA')
     .onSnapshot(querySnapshot => {
-      querySnapshot.docChanges.forEach(change => {
+      querySnapshot.docChanges().forEach(change => {
         if (change.type === 'added') {
           console.log('New city: ', change.doc.data());
         }
