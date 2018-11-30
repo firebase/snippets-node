@@ -560,6 +560,11 @@ function getMultiple(db) {
   var citiesRef = db.collection('cities');
   var query = citiesRef.where('capital', '==', true).get()
     .then(snapshot => {
+      if (snapshot.empty) {
+        console.log('No matching documents.');
+        return;
+      }  
+      
       snapshot.forEach(doc => {
         console.log(doc.id, '=>', doc.data());
       });
