@@ -137,7 +137,7 @@ function basicWildcard() {
   exports.useWildcard = functions.firestore
       .document('users/{userId}')
       .onWrite((change, context) => {
-        // If we set `/users/marie` to {name: "marie"} then
+        // If we set `/users/marie` to {name: "Marie"} then
         // context.params.userId == "marie"
         // ... and ...
         // change.after.data() == {name: "Marie"}
