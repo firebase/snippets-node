@@ -4,8 +4,14 @@
   "description": "Code snippets used in Node.js documentation on firebase.google.com",
   "author": "Firebase (https://firebase.google.com/)",
   "license": "Apache-2.0",
+  "scripts": {
+    "lerna-test": "lerna run test",
+    "lerna-bootstrap": "lerna bootstrap",
+    "lint": "find . -type f -name \"*.js\" -not -path \"*node_modules*\" | xargs eslint"
+  },
   "devDependencies": {
     "eslint": "^4.17.0",
-    "eslint-config-google": "^0.9.1"
+    "eslint-config-google": "^0.9.1",
+    "lerna": "^2.8.0"
   }
 }

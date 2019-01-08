@@ -1,5 +1,9 @@
 set -e
 
+# 0) Bootstrap
+echo "Bootstrapping..."
+npm run lerna-bootstrap
+
 # 1) Pull request
 if [ -z "$TRAVIS_PULL_REQUEST" ]; then
   echo "TRAVIS_PULL_REQUEST: unset, setting to false"
@@ -18,8 +22,7 @@ fi
 
 # Run linter
 echo "Linting..."
-find . -type f -name "*.js" -not -path "*node_modules*" \
-  | xargs eslint
+npm run lint
 
 # Only run test suite when we can decode the service acct
 if [ "$TRAVIS_SECURE_ENV_VARS" = false ]; then
@@ -29,5 +32,5 @@ else
   openssl aes-256-cbc -K $encrypted_001d217edcb2_key -iv $encrypted_001d217edcb2_iv -in service-account.json.enc -out service-account.json -d
 
   # Run all tests
-  lerna run test
+  npm run lerna-test
 fi

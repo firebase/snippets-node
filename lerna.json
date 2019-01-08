@@ -1,11 +1,12 @@
 {
   "lerna": "2.8.0",
   "packages": [
+    "auth",
     "firestore/main",
     "firestore/extend-with-functions",
     "firestore/full-text-search",
     "firestore/presence",
-    "auth"
+    "functions/stackdriver-logging"
   ],
   "version": "1.0.0"
 }

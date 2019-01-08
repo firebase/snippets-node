@@ -1,9 +1,7 @@
 language: node_js
 node_js:
-  - "7"
+  - "8"
 install:
-  - npm install -g lerna
-  - npm install -g eslint
-  - lerna bootstrap
+  - npm install
 script:
   - ./scripts/test.sh
