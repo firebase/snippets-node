@@ -631,12 +631,12 @@ function queryAndFilter(db) {
   // [END create_query]
 
   // [START example_filters]
-  var brazilCities = citiesRef.where('state', '==', 'CA');
-  var smallCities = citiesRef.where('population', '<', 1000000);
-  var afterParis = citiesRef.where('name', '>=', 'San Francisco');
+  var stateQuery = citiesRef.where('state', '==', 'CA');
+  var populationQuery = citiesRef.where('population', '<', 1000000);
+  var nameQuery = citiesRef.where('name', '>=', 'San Francisco');
   // [END example_filters]
 
-  return Promise.all([brazilCities.get(), smallCities.get(), afterParis.get()])
+  return Promise.all([stateQuery.get(), populationQuery.get(), nameQuery.get()])
     .then(res => {
       res.forEach(r => {
         r.forEach(d => {
