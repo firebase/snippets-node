@@ -179,7 +179,7 @@ function dataTypes(db) {
     stringExample: 'Hello, World!',
     booleanExample: true,
     numberExample: 3.14159265,
-    dateExample: new Date('December 10, 1815'),
+    dateExample: admin.firestore.Timestamp.fromDate(new Date('December 10, 1815')),
     arrayExample: [5, true, 'hello'],
     nullExample: null,
     objectExample: {
