@@ -275,7 +275,7 @@ function updateDocumentIncrement(db) {
   // ...
   var washingtonRef = db.collection('cities').doc('DC');
 
-  // Atomically incrememnt the population of the city by 50.
+  // Atomically increment the population of the city by 50.
   // Note that increment() with no arguments increments by 1.
   var popIncrement = washingtonRef.update({
     population: admin.firestore.FieldValue.increment(50)
