@@ -15,7 +15,11 @@ function initializeApp() {
     credential: admin.credential.applicationDefault()
   });
 
-  var db = admin.firestore();
+  const db = admin.firestore();
+  // [START_EXCLUDE]
+  const settings = {timestampsInSnapshots: true};
+  db.settings(settings);
+  // [END_EXCLUDE]
 
   // [END initialize_app]
   return db;
