@@ -10,8 +10,8 @@
     "lint": "find . -type f -name \"*.js\" -not -path \"*node_modules*\" | xargs eslint"
   },
   "devDependencies": {
-    "eslint": "^4.17.0",
-    "eslint-config-google": "^0.9.1",
-    "lerna": "^2.8.0"
+    "eslint": "^5.15.3",
+    "eslint-config-google": "^0.12.0",
+    "lerna": "^3.13.1"
   }
 }

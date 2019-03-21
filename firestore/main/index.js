@@ -273,6 +273,24 @@ function updateDocumentArray(db) {
   });
 }
 
+function updateDocumentIncrement(db) {
+  // [START update_document_increment]
+  var admin = require('firebase-admin');
+  // ...
+  var washingtonRef = db.collection('cities').doc('DC');
+
+  // Atomically increment the population of the city by 50.
+  // Note that increment() with no arguments increments by 1.
+  var popIncrement = washingtonRef.update({
+    population: admin.firestore.FieldValue.increment(50)
+  });
+  // [END update_document_increment]
+
+  return popIncrement.then(res => {
+    console.log('Increment: ' + res);
+  });
+}
+
 function updateDocumentMany(db) {
   // [START update_document_many]
   var cityRef = db.collection('cities').doc('DC');
@@ -395,7 +413,9 @@ function transaction(db) {
   var transaction = db.runTransaction(t => {
     return t.get(cityRef)
       .then(doc => {
-        // Add one person to the city population
+        // Add one person to the city population.
+        // Note: this could be done without a transaction
+        //       by updating the population using FieldValue.increment()
         var newPopulation = doc.data().population + 1;
         t.update(cityRef, {population: newPopulation});
       });
@@ -996,7 +1016,11 @@ describe('Firestore Smoketests', () => {
     return updateDocumentArray(db);
   });
 
-  it('should update many document', () => {
+  it('should update a document using numeric transforms', () => {
+    return updateDocumentIncrement(db);
+  });
+
+  it('should update many documents', () => {
     return updateDocumentMany(db);
   });
 
