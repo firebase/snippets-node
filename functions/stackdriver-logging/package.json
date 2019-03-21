@@ -6,7 +6,7 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "@google-cloud/logging": "^4.2.0",
-    "firebase-functions": "^2.1.0"
+    "@google-cloud/logging": "^4.5.1",
+    "firebase-functions": "^2.2.1"
   }
 }
