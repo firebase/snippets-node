@@ -62,3 +62,9 @@ admin.auth().generateSignInWithEmailLink(usremail, actionCodeSettings)
     // Some error occurred.
   });
 // [END sign_in_with_email_link]
+
+let displayName;
+function sendSignInEmail() {}
+function sendCustomVerificationEmail() {}
+function sendCustomPasswordResetEmail() {}
+
