@@ -37,12 +37,12 @@ admin.auth().generatePasswordResetLink(email, actionCodeSettings)
 
 // [START email_verification_link]
 // Admin SDK API to generate the email verification link.
-const email = 'user@example.com';
-admin.auth().generateEmailVerificationLink(email, actionCodeSettings)
+const useremail = 'user@example.com';
+admin.auth().generateEmailVerificationLink(useremail, actionCodeSettings)
   .then((link) => {
     // Construct email verification template, embed the link and send
     // using custom SMTP server.
-    return sendCustomVerificationEmail(email, displayName, link);
+    return sendCustomVerificationEmail(useremail, displayName, link);
   })
   .catch((error) => {
     // Some error occurred.
@@ -51,12 +51,12 @@ admin.auth().generateEmailVerificationLink(email, actionCodeSettings)
 
 // [START sign_in_with_email_link]
 // Admin SDK API to generate the sign in with email link.
-const email = 'user@example.com';
-admin.auth().generateSignInWithEmailLink(email, actionCodeSettings)
+const usremail = 'user@example.com';
+admin.auth().generateSignInWithEmailLink(usremail, actionCodeSettings)
   .then((link) => {
     // Construct sign-in with email link template, embed the link and
     // send using custom SMTP server.
-    return sendSignInEmail(email, displayName, link);
+    return sendSignInEmail(usremail, displayName, link);
   })
   .catch((error) => {
     // Some error occurred.
