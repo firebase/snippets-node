@@ -4,7 +4,7 @@ admin.initializeApp();
 
 //[START build_user_list]
 // Up to 1000 users can be imported at once.
-var userImportRecords = [
+let userImportRecords = [
   {
     uid: 'uid1',
     email: 'user1@example.com',
@@ -21,7 +21,7 @@ var userImportRecords = [
 ];
 //[END build_user_list]
 
-var userImportOptions = {
+let userImportOptions = {
   hash: {
     algorithm: 'HMAC_SHA256',
     key: Buffer.from('secretKey')
