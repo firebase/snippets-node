@@ -22,6 +22,20 @@ const actionCodeSettings = {
 };
 // [END init_action_code_settings]
 
+// [START password_reset_link]
+// Admin SDK API to generate the password reset link.
+const userEmail = 'user@example.com';
+admin.auth().generatePasswordResetLink(userEmail, actionCodeSettings)
+  .then((link) => {
+    // Construct password reset email template, embed the link and send
+    // using custom SMTP server.
+    return sendCustomPasswordResetEmail(email, displayName, link);
+  })
+  .catch((error) => {
+    // Some error occurred.
+  });
+// [END password_reset_link]
+
 // [START email_verification_link]
 // Admin SDK API to generate the password reset link.
 const email = 'user@example.com';

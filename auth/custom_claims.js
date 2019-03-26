@@ -22,3 +22,11 @@ admin.auth().verifyIdToken(idToken).then((claims) => {
   }
 });
 // [END verify_custom_claims]
+
+// [START read_custom_user_claims]
+// Lookup the user associated with the specified uid.
+admin.auth().getUser(uid).then((userRecord) => {
+  // The claims can be accessed on the user record.
+  console.log(userRecord.customClaims.admin);
+});
+// [END read_custom_user_claims]
