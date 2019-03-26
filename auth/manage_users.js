@@ -4,35 +4,35 @@ admin.initializeApp();
 
 // [START get_user_by_id]
 admin.auth().getUser(uid)
-.then(function(userRecord) {
-  // See the UserRecord reference doc for the contents of userRecord.
-  console.log('Successfully fetched user data:', userRecord.toJSON());
-})
-.catch(function(error) {
-  console.log('Error fetching user data:', error);
-});
+  .then(function(userRecord) {
+    // See the UserRecord reference doc for the contents of userRecord.
+    console.log('Successfully fetched user data:', userRecord.toJSON());
+  })
+  .catch(function(error) {
+    console.log('Error fetching user data:', error);
+  });
 // [END get_user_by_id]
 
 // [START get_user_by_email]
 admin.auth().getUserByEmail(email)
-.then(function(userRecord) {
-  // See the UserRecord reference doc for the contents of userRecord.
-  console.log('Successfully fetched user data:', userRecord.toJSON());
-})
-.catch(function(error) {
-  console.log('Error fetching user data:', error);
-});
+  .then(function(userRecord) {
+    // See the UserRecord reference doc for the contents of userRecord.
+    console.log('Successfully fetched user data:', userRecord.toJSON());
+  })
+  .catch(function(error) {
+   console.log('Error fetching user data:', error);
+  });
 // [END get_user_by_email]
 
 // [START get_user_by_phone]
 admin.auth().getUserByPhoneNumber(phoneNumber)
-.then(function(userRecord) {
-  // See the UserRecord reference doc for the contents of userRecord.
-  console.log('Successfully fetched user data:', userRecord.toJSON());
-})
-.catch(function(error) {
-  console.log('Error fetching user data:', error);
-});
+  .then(function(userRecord) {
+    // See the UserRecord reference doc for the contents of userRecord.
+    console.log('Successfully fetched user data:', userRecord.toJSON());
+  })
+  .catch(function(error) {
+    console.log('Error fetching user data:', error);
+  });
 // [END get_user_by_phone]
 
 // [START create_user]
@@ -90,12 +90,12 @@ admin.auth().updateUser(uid, {
 
 // [START delete_user]
 admin.auth().deleteUser(uid)
-.then(function() {
-  console.log('Successfully deleted user');
-})
-.catch(function(error) {
-  console.log('Error deleting user:', error);
-});
+  .then(function() {
+    console.log('Successfully deleted user');
+  })
+  .catch(function(error) {
+    console.log('Error deleting user:', error);
+  });
 // [END delete_user]
 
 // [START list_all_users]
