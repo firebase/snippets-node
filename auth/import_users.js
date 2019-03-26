@@ -59,13 +59,15 @@ admin.auth().importUsers([{
     // Must be provided in a byte buffer.
     key: Buffer.from('secret')
   }
-}).then(function(results) {
-  results.errors.forEach(function(indexedError) {
-    console.log('Error importing user ' + indexedError.index);
+})
+  .then(function(results) {
+    results.errors.forEach(function(indexedError) {
+     console.log('Error importing user ' + indexedError.index);
+    });
+  })
+  .catch(function(error) {
+    console.log('Error importing users:', error);
   });
-}).catch(function(error) {
-  console.log('Error importing users:', error);
-});
 // [END import_with_hmac] 
 
 // [START import_with_pbkdf]
@@ -81,13 +83,15 @@ admin.auth().importUsers([{
     algorithm: 'PBKDF2_SHA256',
     rounds: 100000
   }
-}).then(function(results) {
-  results.errors.forEach(function(indexedError) {
-    console.log('Error importing user ' + indexedError.index);
+})
+  .then(function(results) {
+   results.errors.forEach(function(indexedError) {
+      console.log('Error importing user ' + indexedError.index);
+    });
+  })
+  .catch(function(error) {
+    console.log('Error importing users:', error);
   });
-}).catch(function(error) {
-  console.log('Error importing users:', error);
-});
 // [END import_with_pbkdf]
 
 // [START import_with_standard_scrypt]
@@ -106,13 +110,15 @@ admin.auth().importUsers([{
     blockSize: 8,
     derivedKeyLength: 64
   }
-}).then(function(results) {
-  results.errors.forEach(function(indexedError) {
-    console.log('Error importing user ' + indexedError.index);
+})
+  .then(function(results) {
+    results.errors.forEach(function(indexedError) {
+     console.log('Error importing user ' + indexedError.index);
+    });
+  })
+  .catch(function(error) {
+    console.log('Error importing users:', error);
   });
-}).catch(function(error) {
-  console.log('Error importing users:', error);
-});
 // [END import_with_standard_scrypt]
 
 // [START import_with_bcrypt]
@@ -125,13 +131,15 @@ admin.auth().importUsers([{
   hash: {
     algorithm: 'BCRYPT'
   }
-}).then(function(results) {
-  results.errors.forEach(function(indexedError) {
-    console.log('Error importing user ' + indexedError.index);
+})
+  .then(function(results) {
+    results.errors.forEach(function(indexedError) {
+      console.log('Error importing user ' + indexedError.index);
+    });
+  })
+  .catch(function(error) {
+    console.log('Error importing users:', error);
   });
-}).catch(function(error) {
-  console.log('Error importing users:', error);
-});
 // [END import_with_bcrypt]
 
 
@@ -153,13 +161,15 @@ admin.auth().importUsers([{
     rounds: 8,
     memoryCost: 14
   }
-}).then(function(results) {
-  results.errors.forEach(function(indexedError) {
-    console.log('Error importing user ' + indexedError.index);
+})
+  .then(function(results) {
+    results.errors.forEach(function(indexedError) {
+      console.log('Error importing user ' + indexedError.index);
+    });
+  })
+  .catch(function(error) {
+    console.log('Error importing users:', error);
   });
-}).catch(function(error) {
-  console.log('Error importing users:', error);
-});
 // [END import_with_scrypt]
 
 // [START import_without_password]
@@ -180,13 +190,15 @@ admin.auth().importUsers([{
     photoURL: 'http://www.example.com/12345678/photo.png',
     providerId: 'google.com'
   }]
-}]).then(function(results) {
-  results.errors.forEach(function(indexedError) {
-    console.log('Error importing user ' + indexedError.index);
+}])
+  .then(function(results) {
+    results.errors.forEach(function(indexedError) {
+     console.log('Error importing user ' + indexedError.index);
+    });
+  })
+  .catch(function(error) {
+    console.log('Error importing users:', error);
   });
-}).catch(function(error) {
-  console.log('Error importing users:', error);
-});
 // [END import_without_password]
 
 
