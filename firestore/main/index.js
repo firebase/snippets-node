@@ -1182,6 +1182,6 @@ describe('Firestore Smoketests', () => {
   });
 
   it('should find all museums when querying a collection group', () => {
-    return collectionGroupQuery();
+    return collectionGroupQuery(db);
   });
 });
