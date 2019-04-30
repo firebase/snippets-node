@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "lerna-test": "lerna run test",
-    "lerna-bootstrap": "lerna bootstrap",
+    "lerna-bootstrap": "lerna bootstrap && lerna run setup-test",
     "lint": "find . -type f -name \"*.js\" -not -path \"*node_modules*\" | xargs eslint"
   },
   "devDependencies": {
