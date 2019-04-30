@@ -4,16 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "setup-test": "GOOGLE_APPLICATION_CREDENTIALS=../../service-account.json firebase --project=firestore-snippets deploy --only firestore:indexes",
     "test-debug": "env DEBUG=firestore-snippets-node mocha index.js",
     "test": "env ./node_modules/.bin/mocha --timeout 20000 index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google-cloud/firestore": "^1.1.0",
+    "@google-cloud/firestore": "^1.3.0",
     "firebase-admin": "^7.1.1"
   },
   "devDependencies": {
+    "firebase-tools": "^6.7.2",
     "mocha": "^6.0.2"
   }
 }
