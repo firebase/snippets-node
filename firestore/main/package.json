@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "setup-test": "GOOGLE_APPLICATION_CREDENTIALS=../../service-account.json firebase deploy --only firestore:indexes",
+    "setup-test": "GOOGLE_APPLICATION_CREDENTIALS=../../service-account.json firebase --project=firestore-snippets deploy --only firestore:indexes",
     "test-debug": "env DEBUG=firestore-snippets-node mocha index.js",
     "test": "env ./node_modules/.bin/mocha --timeout 20000 index.js"
   },
