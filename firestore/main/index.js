@@ -876,7 +876,7 @@ function collectionGroupQuery(db) {
       console.log(doc.id, ' => ', doc.data());
     });
   });
-  // [end fs_collection_group_query]
+  // [END fs_collection_group_query]
 }
 
 // ============================================================================
