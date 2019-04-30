@@ -821,7 +821,7 @@ function listenErrors(db) {
 }
 
 function collectionGroupQuery(db) {
-  // [START collection_group_query_data_setup]
+  // [START fs_collection_group_query_data_setup]
   var citiesRef = db.collection('cities');
 
   var landmarks = Promise.all([
@@ -866,17 +866,17 @@ function collectionGroupQuery(db) {
       type: 'museum'
     })
   ]);
-  // [END collection_group_query_data_setup]
+  // [END fs_collection_group_query_data_setup]
   landmarks.then((l) => console.log(l));
 
-  // [START collection_group_query]
+  // [START fs_collection_group_query]
   let museums = db.collectionGroup('landmarks').where('type', '==', 'museum');
   museums.get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
       console.log(doc.id, ' => ', doc.data());
     });
   });
-  // [end collection_group_query]
+  // [end fs_collection_group_query]
 }
 
 // ============================================================================
