@@ -21,10 +21,10 @@ exports.aggregateRatings = functions.firestore
       return db.runTransaction(transaction => {
         return transaction.get(restRef).then(restDoc => {
           // Compute new number of ratings
-          var newNumRatings = restDoc.data('numRatings') + 1;
+          var newNumRatings = restDoc.data().numRatings + 1;
 
           // Compute new average rating
-          var oldRatingTotal = restDoc.data('avgRating') * restDoc.data('numRatings');
+          var oldRatingTotal = restDoc.data().avgRating * restDoc.data().numRatings;
           var newAvgRating = (oldRatingTotal + ratingVal) / newNumRatings;
 
           // Update restaurant info
