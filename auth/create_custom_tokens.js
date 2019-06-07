@@ -14,7 +14,7 @@ admin.initializeApp({
 // [END initialize_sdk_with_service_account_id]
 
 // [START custom_token]
-var uid = 'some-uid';
+let uid = 'some-uid';
 
 admin.auth().createCustomToken(uid)
   .then(function(customToken) {
@@ -26,8 +26,8 @@ admin.auth().createCustomToken(uid)
 // [END custom_token]
 
 // [START custom_token_with_claims]
-var userId = 'some-uid';
-var additionalClaims = {
+let userId = 'some-uid';
+let additionalClaims = {
   premiumAccount: true
 };
 
