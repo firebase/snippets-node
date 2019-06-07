@@ -6,7 +6,7 @@ admin.initializeApp();
 // idToken comes from the client app
 admin.auth().verifyIdToken(idToken)
   .then(function(decodedToken) {
-    var uid = decodedToken.uid;
+    let uid = decodedToken.uid;
     // ...
   }).catch(function(error) {
     // Handle error
