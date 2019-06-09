@@ -14,28 +14,32 @@ admin.initializeApp({
 // [END initialize_sdk_with_service_account_id]
 
 // [START custom_token]
-let uid = 'some-uid';
+const uid = 'some-uid';
 
-admin.auth().createCustomToken(uid)
-  .then(function(customToken) {
+admin
+    .auth()
+    .createCustomToken(uid)
+    .then(function(customToken) {
     // Send token back to client
-  })
-  .catch(function(error) {
-    console.log('Error creating custom token:', error);
-  });
+    })
+    .catch(function(error) {
+      console.log('Error creating custom token:', error);
+    });
 // [END custom_token]
 
 // [START custom_token_with_claims]
-let userId = 'some-uid';
-let additionalClaims = {
-  premiumAccount: true
+const userId = 'some-uid';
+const additionalClaims = {
+  premiumAccount: true,
 };
 
-admin.auth().createCustomToken(userId, additionalClaims)
-  .then(function(customToken) {
+admin
+    .auth()
+    .createCustomToken(userId, additionalClaims)
+    .then(function(customToken) {
     // Send token back to client
-  })
-  .catch(function(error) {
-    console.log('Error creating custom token:', error);
-  });
+    })
+    .catch(function(error) {
+      console.log('Error creating custom token:', error);
+    });
 // [END custom_token_with_claims]

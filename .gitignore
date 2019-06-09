@@ -6,3 +6,4 @@ service-account.json
 firebase-debug.log
 
 lerna-debug.log
+.idea

@@ -31,4 +31,3 @@ credential.getAccessToken().then((accessTokenInfo) => {
   // [END_EXCLUDE]
 });
 // [END get_service_account_tokens]
-

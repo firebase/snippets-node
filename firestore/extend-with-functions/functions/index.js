@@ -4,8 +4,9 @@ function triggerSpecificDocument() {
   // [START trigger_specific_document]
   // Listen for any change on document `marie` in collection `users`
   exports.myFunctionName = functions.firestore
-      .document('users/marie').onWrite((change, context) => {
-        // ... Your code here
+      .document('users/marie')
+      .onWrite((change, context) => {
+      // ... Your code here
       });
   // [END trigger_specific_document]
 }
@@ -15,14 +16,14 @@ function triggerNewDocument() {
   exports.createUser = functions.firestore
       .document('users/{userId}')
       .onCreate((snap, context) => {
-        // Get an object representing the document
-        // e.g. {'name': 'Marie', 'age': 66}
+      // Get an object representing the document
+      // e.g. {'name': 'Marie', 'age': 66}
         const newValue = snap.data();
 
         // access a particular field as you would any JS property
         const name = newValue.name;
 
-        // perform desired operations ...
+      // perform desired operations ...
       });
   // [END trigger_new_document]
 }
@@ -32,8 +33,8 @@ function triggerDocumentUpdated() {
   exports.updateUser = functions.firestore
       .document('users/{userId}')
       .onUpdate((change, context) => {
-        // Get an object representing the document
-        // e.g. {'name': 'Marie', 'age': 66}
+      // Get an object representing the document
+      // e.g. {'name': 'Marie', 'age': 66}
         const newValue = change.after.data();
 
         // ...or the previous value before this update
@@ -42,7 +43,7 @@ function triggerDocumentUpdated() {
         // access a particular field as you would any JS property
         const name = newValue.name;
 
-        // perform desired operations ...
+      // perform desired operations ...
       });
   // [END trigger_document_updated]
 }
@@ -52,11 +53,11 @@ function triggerDocumentDeleted() {
   exports.deleteUser = functions.firestore
       .document('users/{userID}')
       .onDelete((snap, context) => {
-        // Get an object representing the document prior to deletion
-        // e.g. {'name': 'Marie', 'age': 66}
+      // Get an object representing the document prior to deletion
+      // e.g. {'name': 'Marie', 'age': 66}
         const deletedValue = snap.data();
 
-        // perform desired operations ...
+      // perform desired operations ...
       });
   // [END trigger_document_deleted]
 }
@@ -66,14 +67,14 @@ function triggerDocumentAnyChange() {
   exports.modifyUser = functions.firestore
       .document('users/{userID}')
       .onWrite((change, context) => {
-        // Get an object with the current document value.
-        // If the document does not exist, it has been deleted.
+      // Get an object with the current document value.
+      // If the document does not exist, it has been deleted.
         const document = change.after.exists ? change.after.data() : null;
 
         // Get an object with the previous document value (for update or delete)
         const oldDocument = change.before.data();
 
-        // perform desired operations ...
+      // perform desired operations ...
       });
   // [END trigger_document_any_change]
 }
@@ -83,7 +84,7 @@ function readingData() {
   exports.updateUser = functions.firestore
       .document('users/{userId}')
       .onUpdate((change, context) => {
-        // Get an object representing the current document
+      // Get an object representing the current document
         const newValue = change.after.data();
 
         // ...or the previous value before this update
@@ -109,7 +110,7 @@ function writingData() {
   exports.countNameChanges = functions.firestore
       .document('users/{userId}')
       .onUpdate((change, context) => {
-        // Retrieve the current and previous value
+      // Retrieve the current and previous value
         const data = change.after.data();
         const previousData = change.before.data();
 
@@ -124,9 +125,12 @@ function writingData() {
         }
 
         // Then return a promise of a set operation to update the count
-        return change.after.ref.set({
-          name_change_count: count + 1
-        }, {merge: true});
+        return change.after.ref.set(
+            {
+              name_change_count: count + 1,
+            },
+            {merge: true}
+        );
       });
   // [END writing_data]
 }
@@ -137,10 +141,10 @@ function basicWildcard() {
   exports.useWildcard = functions.firestore
       .document('users/{userId}')
       .onWrite((change, context) => {
-        // If we set `/users/marie` to {name: "Marie"} then
-        // context.params.userId == "marie"
-        // ... and ...
-        // change.after.data() == {name: "Marie"}
+      // If we set `/users/marie` to {name: "Marie"} then
+      // context.params.userId == "marie"
+      // ... and ...
+      // change.after.data() == {name: "Marie"}
       });
   // [END basic_wildcard]
 }
@@ -151,12 +155,12 @@ function multiWildcard() {
   exports.useMultipleWildcards = functions.firestore
       .document('users/{userId}/{messageCollectionId}/{messageId}')
       .onWrite((change, context) => {
-        // If we set `/users/marie/incoming_messages/134` to {body: "Hello"} then
-        // context.params.userId == "marie";
-        // context.params.messageCollectionId == "incoming_messages";
-        // context.params.messageId == "134";
-        // ... and ...
-        // change.after.data() == {body: "Hello"}
+      // If we set `/users/marie/incoming_messages/134` to {body: "Hello"} then
+      // context.params.userId == "marie";
+      // context.params.messageCollectionId == "incoming_messages";
+      // context.params.messageId == "134";
+      // ... and ...
+      // change.after.data() == {body: "Hello"}
       });
   // [END multi_wildcard]
 }

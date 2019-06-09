@@ -6,7 +6,7 @@
         "node": true,
         "mocha": true
     },
-    "extends": "eslint:recommended",
+    "extends": "google",
     "parserOptions": {
         "ecmaVersion": 8,
         "sourceType": "module"

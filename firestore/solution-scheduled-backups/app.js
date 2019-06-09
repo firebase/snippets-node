@@ -1,14 +1,14 @@
 const axios = require('axios');
 const dateformat = require('dateformat');
 const express = require('express');
-const { google } = require('googleapis');
+const {google} = require('googleapis');
 
 const app = express();
 
 // Trigger a backup
 app.get('/cloud-firestore-export', async (req, res) => {
   const auth = await google.auth.getClient({
-    scopes: ['https://www.googleapis.com/auth/datastore']
+    scopes: ['https://www.googleapis.com/auth/datastore'],
   });
 
   const accessTokenResponse = await auth.getAccessToken();
@@ -16,7 +16,7 @@ app.get('/cloud-firestore-export', async (req, res) => {
 
   const headers = {
     'Content-Type': 'application/json',
-    Authorization: 'Bearer ' + accessToken
+    'Authorization': 'Bearer ' + accessToken,
   };
 
   const outputUriPrefix = req.param('outputUriPrefix');
@@ -34,7 +34,7 @@ app.get('/cloud-firestore-export', async (req, res) => {
   }
 
   const body = {
-    outputUriPrefix: path
+    outputUriPrefix: path,
   };
 
   // If specified, mark specific collections for backup
@@ -47,29 +47,29 @@ app.get('/cloud-firestore-export', async (req, res) => {
   const url = `https://firestore.googleapis.com/v1beta1/projects/${projectId}/databases/(default):exportDocuments`;
 
   try {
-    const response = await axios.post(url, body, { headers: headers });
+    const response = await axios.post(url, body, {headers: headers});
     res
-      .status(200)
-      .send(response.data)
-      .end();
+        .status(200)
+        .send(response.data)
+        .end();
   } catch (e) {
     if (e.response) {
       console.warn(e.response.data);
     }
 
     res
-      .status(500)
-      .send('Could not start backup: ' + e)
-      .end();
+        .status(500)
+        .send('Could not start backup: ' + e)
+        .end();
   }
 });
 
 // Index page, just to make it easy to see if the app is working.
 app.get('/', (req, res) => {
   res
-    .status(200)
-    .send('[scheduled-backups]: Hello, world!')
-    .end();
+      .status(200)
+      .send('[scheduled-backups]: Hello, world!')
+      .end();
 });
 
 // Start the server
