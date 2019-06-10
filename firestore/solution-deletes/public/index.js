@@ -1,4 +1,4 @@
-var firebase = firebase || {};
+const firebase = firebase || {};
 
 // [START call_delete_function]
 /**

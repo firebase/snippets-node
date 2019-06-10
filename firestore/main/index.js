@@ -474,7 +474,7 @@ function transactionWithResult(db) {
             t.update(cityRef, {population: newPopulation});
             return Promise.resolve('Population increased to ' + newPopulation);
           } else {
-            return Promise.reject('Sorry! Population is too big.');
+            return Promise.reject(new Error('Sorry! Population is too big.'));
           }
         });
       })

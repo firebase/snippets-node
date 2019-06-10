@@ -1,5 +1,5 @@
 const admin = require('firebase-admin');
-const firebase_tools = require('firebase-tools');
+const firebaseTools = require('firebase-tools');
 const functions = require('firebase-functions');
 
 admin.initializeApp();
@@ -58,7 +58,7 @@ exports.recursiveDelete = functions
       // Run a recursive delete on the given document or collection path.
       // The 'token' must be set in the functions config, and can be generated
       // at the command line by running 'firebase login:ci'.
-      return firebase_tools.firestore
+      return firebaseTools.firestore
           .delete(path, {
             project: process.env.GCLOUD_PROJECT,
             recursive: true,

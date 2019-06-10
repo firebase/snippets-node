@@ -25,6 +25,9 @@
             "always"
         ],
         "no-console": 0,
-        "no-unused-vars": 0
+        "no-unused-vars": 0,
+        "max-len": 0,
+        "require-jsdoc": 0,
+        "valid-jsdoc": 0
     }
 }
