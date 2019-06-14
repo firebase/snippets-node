@@ -9,31 +9,31 @@ db.settings(settings);
 
 // [START aggregate_function]
 exports.aggregateRatings = functions.firestore
-    .document('restaurants/{restId}/ratings/{ratingId}')
-    .onWrite((change, context) => {
+  .document('restaurants/{restId}/ratings/{ratingId}')
+  .onWrite((change, context) => {
     // Get value of the newly added rating
-      const ratingVal = change.after.data().rating;
+    const ratingVal = change.after.data().rating;
 
-      // Get a reference to the restaurant
-      const restRef = db.collection('restaurants').doc(context.params.restId);
+    // Get a reference to the restaurant
+    const restRef = db.collection('restaurants').doc(context.params.restId);
 
-      // Update aggregations in a transaction
-      return db.runTransaction((transaction) => {
-        return transaction.get(restRef).then((restDoc) => {
+    // Update aggregations in a transaction
+    return db.runTransaction((transaction) => {
+      return transaction.get(restRef).then((restDoc) => {
         // Compute new number of ratings
-          const newNumRatings = restDoc.data().numRatings + 1;
+        const newNumRatings = restDoc.data().numRatings + 1;
 
-          // Compute new average rating
-          const oldRatingTotal =
+        // Compute new average rating
+        const oldRatingTotal =
           restDoc.data().avgRating * restDoc.data().numRatings;
-          const newAvgRating = (oldRatingTotal + ratingVal) / newNumRatings;
+        const newAvgRating = (oldRatingTotal + ratingVal) / newNumRatings;
 
-          // Update restaurant info
-          return transaction.update(restRef, {
-            avgRating: newAvgRating,
-            numRatings: newNumRatings,
-          });
+        // Update restaurant info
+        return transaction.update(restRef, {
+          avgRating: newAvgRating,
+          numRatings: newNumRatings,
         });
       });
     });
+  });
 // [END aggregate_function]

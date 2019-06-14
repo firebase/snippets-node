@@ -21,19 +21,19 @@ app.post('/sessionLogin', (req, res) => {
   // To only allow session cookie setting on recent sign-in, auth_time in ID token
   // can be checked to ensure user was recently signed in before creating a session cookie.
   admin
-      .auth()
-      .createSessionCookie(idToken, {expiresIn})
-      .then(
-          (sessionCookie) => {
-            // Set cookie policy for session cookie.
-            const options = {maxAge: expiresIn, httpOnly: true, secure: true};
-            res.cookie('session', sessionCookie, options);
-            res.end(JSON.stringify({status: 'success'}));
-          },
-          (error) => {
-            res.status(401).send('UNAUTHORIZED REQUEST!');
-          }
-      );
+    .auth()
+    .createSessionCookie(idToken, {expiresIn})
+    .then(
+      (sessionCookie) => {
+        // Set cookie policy for session cookie.
+        const options = {maxAge: expiresIn, httpOnly: true, secure: true};
+        res.cookie('session', sessionCookie, options);
+        res.end(JSON.stringify({status: 'success'}));
+      },
+      (error) => {
+        res.status(401).send('UNAUTHORIZED REQUEST!');
+      }
+    );
 });
 // [END session_login]
 
@@ -44,18 +44,18 @@ app.post('/verifyToken', (req, res) => {
   const expiresIn = 60 * 60 * 24 * 5 * 1000;
   // [START check_auth_time]
   admin
-      .auth()
-      .verifyIdToken(idToken)
-      .then((decodedIdToken) => {
+    .auth()
+    .verifyIdToken(idToken)
+    .then((decodedIdToken) => {
       // Only process if the user just signed in in the last 5 minutes.
-        if (new Date().getTime() / 1000 - decodedIdToken.auth_time < 5 * 60) {
+      if (new Date().getTime() / 1000 - decodedIdToken.auth_time < 5 * 60) {
         // Create session cookie and set it.
-          return admin.auth().createSessionCookie(idToken, {expiresIn});
-        }
-        // A user that was not recently signed in is trying to set a session cookie.
-        // To guard against ID token theft, require re-authentication.
-        res.status(401).send('Recent sign in required!');
-      });
+        return admin.auth().createSessionCookie(idToken, {expiresIn});
+      }
+      // A user that was not recently signed in is trying to set a session cookie.
+      // To guard against ID token theft, require re-authentication.
+      res.status(401).send('Recent sign in required!');
+    });
   // [END check_auth_time]
 });
 
@@ -66,15 +66,15 @@ app.post('/profile', (req, res) => {
   // Verify the session cookie. In this case an additional check is added to detect
   // if the user's Firebase session was revoked, user deleted/disabled, etc.
   admin
-      .auth()
-      .verifySessionCookie(sessionCookie, true /** checkRevoked */)
-      .then((decodedClaims) => {
-        serveContentForUser('/profile', req, res, decodedClaims);
-      })
-      .catch((error) => {
+    .auth()
+    .verifySessionCookie(sessionCookie, true /** checkRevoked */)
+    .then((decodedClaims) => {
+      serveContentForUser('/profile', req, res, decodedClaims);
+    })
+    .catch((error) => {
       // Session cookie is unavailable or invalid. Force user to login.
-        res.redirect('/login');
-      });
+      res.redirect('/login');
+    });
 });
 // [END session_verify]
 
@@ -82,19 +82,19 @@ app.post('/verifySessionCookie', (req, res) => {
   const sessionCookie = req.cookies.session || '';
   // [START session_verify_with_permission_check]
   admin
-      .auth()
-      .verifySessionCookie(sessionCookie, true)
-      .then((decodedClaims) => {
+    .auth()
+    .verifySessionCookie(sessionCookie, true)
+    .then((decodedClaims) => {
       // Check custom claims to confirm user is an admin.
-        if (decodedClaims.admin === true) {
-          return serveContentForAdmin('/admin', req, res, decodedClaims);
-        }
-        res.status(401).send('UNAUTHORIZED REQUEST!');
-      })
-      .catch((error) => {
+      if (decodedClaims.admin === true) {
+        return serveContentForAdmin('/admin', req, res, decodedClaims);
+      }
+      res.status(401).send('UNAUTHORIZED REQUEST!');
+    })
+    .catch((error) => {
       // Session cookie is unavailable or invalid. Force user to login.
-        res.redirect('/login');
-      });
+      res.redirect('/login');
+    });
   // [END session_verify_with_permission_check]
 });
 
@@ -110,17 +110,17 @@ app.post('/sessionLogout', (req, res) => {
   const sessionCookie = req.cookies.session || '';
   res.clearCookie('session');
   admin
-      .auth()
-      .verifySessionCookie(sessionCookie)
-      .then((decodedClaims) => {
-        return admin.auth().revokeRefreshTokens(decodedClaims.sub);
-      })
-      .then(() => {
-        res.redirect('/login');
-      })
-      .catch((error) => {
-        res.redirect('/login');
-      });
+    .auth()
+    .verifySessionCookie(sessionCookie)
+    .then((decodedClaims) => {
+      return admin.auth().revokeRefreshTokens(decodedClaims.sub);
+    })
+    .then(() => {
+      res.redirect('/login');
+    })
+    .catch((error) => {
+      res.redirect('/login');
+    });
 });
 // [END session_clear_and_revoke]
 

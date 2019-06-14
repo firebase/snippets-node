@@ -17,14 +17,14 @@ admin.initializeApp({
 const uid = 'some-uid';
 
 admin
-    .auth()
-    .createCustomToken(uid)
-    .then(function(customToken) {
+  .auth()
+  .createCustomToken(uid)
+  .then(function(customToken) {
     // Send token back to client
-    })
-    .catch(function(error) {
-      console.log('Error creating custom token:', error);
-    });
+  })
+  .catch(function(error) {
+    console.log('Error creating custom token:', error);
+  });
 // [END custom_token]
 
 // [START custom_token_with_claims]
@@ -34,12 +34,12 @@ const additionalClaims = {
 };
 
 admin
-    .auth()
-    .createCustomToken(userId, additionalClaims)
-    .then(function(customToken) {
+  .auth()
+  .createCustomToken(userId, additionalClaims)
+  .then(function(customToken) {
     // Send token back to client
-    })
-    .catch(function(error) {
-      console.log('Error creating custom token:', error);
-    });
+  })
+  .catch(function(error) {
+    console.log('Error creating custom token:', error);
+  });
 // [END custom_token_with_claims]

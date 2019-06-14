@@ -8,13 +8,13 @@ const firebase = firebase || {};
 function deleteAtPath(path) {
   const deleteFn = firebase.functions().httpsCallable('recursiveDelete');
   deleteFn({path: path})
-      .then(function(result) {
-        logMessage('Delete success: ' + JSON.stringify(result));
-      })
-      .catch(function(err) {
-        logMessage('Delete failed, see console,');
-        console.warn(err);
-      });
+    .then(function(result) {
+      logMessage('Delete success: ' + JSON.stringify(result));
+    })
+    .catch(function(err) {
+      logMessage('Delete failed, see console,');
+      console.warn(err);
+    });
 }
 // [END call_delete_function]
 

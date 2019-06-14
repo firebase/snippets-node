@@ -49,27 +49,27 @@ app.get('/cloud-firestore-export', async (req, res) => {
   try {
     const response = await axios.post(url, body, {headers: headers});
     res
-        .status(200)
-        .send(response.data)
-        .end();
+      .status(200)
+      .send(response.data)
+      .end();
   } catch (e) {
     if (e.response) {
       console.warn(e.response.data);
     }
 
     res
-        .status(500)
-        .send('Could not start backup: ' + e)
-        .end();
+      .status(500)
+      .send('Could not start backup: ' + e)
+      .end();
   }
 });
 
 // Index page, just to make it easy to see if the app is working.
 app.get('/', (req, res) => {
   res
-      .status(200)
-      .send('[scheduled-backups]: Hello, world!')
-      .end();
+    .status(200)
+    .send('[scheduled-backups]: Hello, world!')
+    .end();
 });
 
 // Start the server

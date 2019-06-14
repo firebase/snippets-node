@@ -57,17 +57,17 @@ function demoInitialize(db) {
   // [START demo_initialize]
   // Fetch data from Firestore
   db.collection('cities')
-      .get()
-      .then((documentSet) => {
+    .get()
+    .then((documentSet) => {
       // Print the ID and contents of each document
-        documentSet.forEach((doc) => {
-          console.log(doc.id, ' => ', doc.data());
-        });
-      })
-      .catch((err) => {
-      // Error fetching documents
-        console.log('Error', err);
+      documentSet.forEach((doc) => {
+        console.log(doc.id, ' => ', doc.data());
       });
+    })
+    .catch((err) => {
+      // Error fetching documents
+      console.log('Error', err);
+    });
   // [END demo_initialize]
 }
 
@@ -104,17 +104,17 @@ function quickstartQuery(db) {
   // [START quickstart_query]
   // Realtime listens are not yet supported in the Node.js SDK
   const query = db
-      .collection('users')
-      .where('born', '<', 1900)
-      .get()
-      .then((snapshot) => {
-        snapshot.forEach((doc) => {
-          console.log(doc.id, '=>', doc.data());
-        });
-      })
-      .catch((err) => {
-        console.log('Error getting documents', err);
+    .collection('users')
+    .where('born', '<', 1900)
+    .get()
+    .then((snapshot) => {
+      snapshot.forEach((doc) => {
+        console.log(doc.id, '=>', doc.data());
       });
+    })
+    .catch((err) => {
+      console.log('Error getting documents', err);
+    });
   // [END quickstart_query]
 
   return query;
@@ -123,15 +123,15 @@ function quickstartQuery(db) {
 function quickstartListen(db) {
   // [START quickstart_listen]
   db.collection('users')
-      .get()
-      .then((snapshot) => {
-        snapshot.forEach((doc) => {
-          console.log(doc.id, '=>', doc.data());
-        });
-      })
-      .catch((err) => {
-        console.log('Error getting documents', err);
+    .get()
+    .then((snapshot) => {
+      snapshot.forEach((doc) => {
+        console.log(doc.id, '=>', doc.data());
       });
+    })
+    .catch((err) => {
+      console.log('Error getting documents', err);
+    });
   // [END quickstart_listen]
 }
 
@@ -156,10 +156,10 @@ function advancedReferences(db) {
 
   // [START subcollection_ref]
   const messageRef = db
-      .collection('rooms')
-      .doc('roomA')
-      .collection('messages')
-      .doc('message1');
+    .collection('rooms')
+    .doc('roomA')
+    .collection('messages')
+    .doc('message1');
   // [END subcollection_ref]
 }
 
@@ -177,9 +177,9 @@ function setDocument(db) {
 
   // Add a new document in collection "cities" with ID 'LA'
   const setDoc = db
-      .collection('cities')
-      .doc('LA')
-      .set(data);
+    .collection('cities')
+    .doc('LA')
+    .set(data);
   // [END set_document]
 
   return setDoc.then((res) => {
@@ -194,7 +194,7 @@ function dataTypes(db) {
     booleanExample: true,
     numberExample: 3.14159265,
     dateExample: admin.firestore.Timestamp.fromDate(
-        new Date('December 10, 1815')
+      new Date('December 10, 1815')
     ),
     arrayExample: [5, true, 'hello'],
     nullExample: null,
@@ -205,9 +205,9 @@ function dataTypes(db) {
   };
 
   const setDoc = db
-      .collection('data')
-      .doc('one')
-      .set(data);
+    .collection('data')
+    .doc('one')
+    .set(data);
   // [END data_types]
 
   return setDoc.then((res) => {
@@ -219,14 +219,14 @@ function addDocument(db) {
   // [START add_document]
   // Add a new document with a generated id.
   const addDoc = db
-      .collection('cities')
-      .add({
-        name: 'Tokyo',
-        country: 'Japan',
-      })
-      .then((ref) => {
-        console.log('Added document with ID: ', ref.id);
-      });
+    .collection('cities')
+    .add({
+      name: 'Tokyo',
+      country: 'Japan',
+    })
+    .then((ref) => {
+      console.log('Added document with ID: ', ref.id);
+    });
   // [END add_document]
 
   return addDoc.then((res) => {
@@ -239,8 +239,8 @@ function addDocumentWithId(db) {
 
   // [START add_document_id]
   db.collection('cities')
-      .doc('new-city-id')
-      .set(data);
+    .doc('new-city-id')
+    .set(data);
   // [END add_document_id]
 }
 
@@ -331,10 +331,10 @@ function updateCreateIfMissing(db) {
   const cityRef = db.collection('cities').doc('BJ');
 
   const setWithOptions = cityRef.set(
-      {
-        capital: true,
-      },
-      {merge: true}
+    {
+      capital: true,
+    },
+    {merge: true}
   );
   // [END update_create_if_missing]
 
@@ -346,8 +346,8 @@ function updateCreateIfMissing(db) {
 function updateServerTimestamp(db) {
   // Create the object before updating it (racy on first run, oh well)
   db.collection('objects')
-      .doc('some-id')
-      .set({});
+    .doc('some-id')
+    .set({});
 
   // [START update_with_server_timestamp]
   // Get the `FieldValue` object
@@ -400,16 +400,16 @@ function updateNested(db) {
 
   // [START_EXCLUDE]
   db.collection('users')
-      .doc('Frank')
-      .set(initialData);
+    .doc('Frank')
+    .set(initialData);
   // [END_EXCLUDE]
   const updateNested = db
-      .collection('users')
-      .doc('Frank')
-      .update({
-        'age': 13,
-        'favorites.color': 'Red',
-      });
+    .collection('users')
+    .doc('Frank')
+    .update({
+      'age': 13,
+      'favorites.color': 'Red',
+    });
   // [END update_nested]
 
   return updateNested.then((res) => {
@@ -420,9 +420,9 @@ function updateNested(db) {
 function deleteDocument(db) {
   // [START delete_document]
   const deleteDoc = db
-      .collection('cities')
-      .doc('DC')
-      .delete();
+    .collection('cities')
+    .doc('DC')
+    .delete();
   // [END delete_document]
 
   return deleteDoc.then((res) => {
@@ -443,21 +443,21 @@ function transaction(db) {
   });
 
   const transaction = db
-      .runTransaction((t) => {
-        return t.get(cityRef).then((doc) => {
+    .runTransaction((t) => {
+      return t.get(cityRef).then((doc) => {
         // Add one person to the city population.
         // Note: this could be done without a transaction
         //       by updating the population using FieldValue.increment()
-          const newPopulation = doc.data().population + 1;
-          t.update(cityRef, {population: newPopulation});
-        });
-      })
-      .then((result) => {
-        console.log('Transaction success!');
-      })
-      .catch((err) => {
-        console.log('Transaction failure:', err);
+        const newPopulation = doc.data().population + 1;
+        t.update(cityRef, {population: newPopulation});
       });
+    })
+    .then((result) => {
+      console.log('Transaction success!');
+    })
+    .catch((err) => {
+      console.log('Transaction failure:', err);
+    });
   // [END transaction]
 
   return transaction;
@@ -467,23 +467,23 @@ function transactionWithResult(db) {
   // [START transaction_with_result]
   const cityRef = db.collection('cities').doc('SF');
   const transaction = db
-      .runTransaction((t) => {
-        return t.get(cityRef).then((doc) => {
-          const newPopulation = doc.data().population + 1;
-          if (newPopulation <= 1000000) {
-            t.update(cityRef, {population: newPopulation});
-            return Promise.resolve('Population increased to ' + newPopulation);
-          } else {
-            return Promise.reject(new Error('Sorry! Population is too big.'));
-          }
-        });
-      })
-      .then((result) => {
-        console.log('Transaction success', result);
-      })
-      .catch((err) => {
-        console.log('Transaction failure:', err);
+    .runTransaction((t) => {
+      return t.get(cityRef).then((doc) => {
+        const newPopulation = doc.data().population + 1;
+        if (newPopulation <= 1000000) {
+          t.update(cityRef, {population: newPopulation});
+          return Promise.resolve('Population increased to ' + newPopulation);
+        } else {
+          return Promise.reject(new Error('Sorry! Population is too big.'));
+        }
       });
+    })
+    .then((result) => {
+      console.log('Transaction success', result);
+    })
+    .catch((err) => {
+      console.log('Transaction failure:', err);
+    });
   // [END transaction_with_result]
 
   return transaction;
@@ -616,17 +616,17 @@ function getDocument(db) {
   // [START get_document]
   const cityRef = db.collection('cities').doc('SF');
   const getDoc = cityRef
-      .get()
-      .then((doc) => {
-        if (!doc.exists) {
-          console.log('No such document!');
-        } else {
-          console.log('Document data:', doc.data());
-        }
-      })
-      .catch((err) => {
-        console.log('Error getting document', err);
-      });
+    .get()
+    .then((doc) => {
+      if (!doc.exists) {
+        console.log('No such document!');
+      } else {
+        console.log('Document data:', doc.data());
+      }
+    })
+    .catch((err) => {
+      console.log('Error getting document', err);
+    });
   // [END get_document]
 
   return getDoc;
@@ -649,21 +649,21 @@ function getMultiple(db) {
   // [START get_multiple]
   const citiesRef = db.collection('cities');
   const query = citiesRef
-      .where('capital', '==', true)
-      .get()
-      .then((snapshot) => {
-        if (snapshot.empty) {
-          console.log('No matching documents.');
-          return;
-        }
+    .where('capital', '==', true)
+    .get()
+    .then((snapshot) => {
+      if (snapshot.empty) {
+        console.log('No matching documents.');
+        return;
+      }
 
-        snapshot.forEach((doc) => {
-          console.log(doc.id, '=>', doc.data());
-        });
-      })
-      .catch((err) => {
-        console.log('Error getting documents', err);
+      snapshot.forEach((doc) => {
+        console.log(doc.id, '=>', doc.data());
       });
+    })
+    .catch((err) => {
+      console.log('Error getting documents', err);
+    });
   // [END get_multiple]
 
   return query;
@@ -673,15 +673,15 @@ function getAll(db) {
   // [START get_all]
   const citiesRef = db.collection('cities');
   const allCities = citiesRef
-      .get()
-      .then((snapshot) => {
-        snapshot.forEach((doc) => {
-          console.log(doc.id, '=>', doc.data());
-        });
-      })
-      .catch((err) => {
-        console.log('Error getting documents', err);
+    .get()
+    .then((snapshot) => {
+      snapshot.forEach((doc) => {
+        console.log(doc.id, '=>', doc.data());
       });
+    })
+    .catch((err) => {
+      console.log('Error getting documents', err);
+    });
   // [END get_all]
 
   return allCities;
@@ -747,9 +747,9 @@ function arrayFilter(db) {
   const citiesRef = db.collection('cities');
   // [START array_contains_filter]
   const westCoastCities = citiesRef.where(
-      'regions',
-      'array-contains',
-      'west_coast'
+    'regions',
+    'array-contains',
+    'west_coast'
   );
   // [END array_contains_filter]
 
@@ -774,20 +774,20 @@ function orderAndLimit(db) {
 
   // [START where_and_order]
   const biggest = citiesRef
-      .where('population', '>', 2500000)
-      .orderBy('population')
-      .limit(2);
+    .where('population', '>', 2500000)
+    .orderBy('population')
+    .limit(2);
   // [END where_and_order]
 
   return Promise.all([firstThree.get(), lastThree.get(), biggest.get()]).then(
-      (res) => {
-        res.forEach((r) => {
-          r.forEach((d) => {
-            console.log('Get:', d);
-          });
-          console.log();
+    (res) => {
+      res.forEach((r) => {
+        r.forEach((d) => {
+          console.log('Get:', d);
         });
-      }
+        console.log();
+      });
+    }
   );
 }
 
@@ -825,16 +825,16 @@ function streamSnapshot(db, done) {
   const query = db.collection('cities').where('state', '==', 'CA');
 
   const observer = query.onSnapshot(
-      (querySnapshot) => {
-        console.log(`Received query snapshot of size ${querySnapshot.size}`);
-        // [START_EXCLUDE]
-        observer();
-        done();
+    (querySnapshot) => {
+      console.log(`Received query snapshot of size ${querySnapshot.size}`);
+      // [START_EXCLUDE]
+      observer();
+      done();
       // [END_EXCLUDE]
-      },
-      (err) => {
-        console.log(`Encountered error: ${err}`);
-      }
+    },
+    (err) => {
+      console.log(`Encountered error: ${err}`);
+    }
   );
   // [END query_realtime]
 }
@@ -842,25 +842,25 @@ function streamSnapshot(db, done) {
 function listenDiffs(db, done) {
   // [START listen_diffs]
   const observer = db
-      .collection('cities')
-      .where('state', '==', 'CA')
-      .onSnapshot((querySnapshot) => {
-        querySnapshot.docChanges().forEach((change) => {
-          if (change.type === 'added') {
-            console.log('New city: ', change.doc.data());
-          }
-          if (change.type === 'modified') {
-            console.log('Modified city: ', change.doc.data());
-          }
-          if (change.type === 'removed') {
-            console.log('Removed city: ', change.doc.data());
-          }
-        });
-        // [START_EXCLUDE silent]
-        observer();
-        done();
-      // [END_EXCLUDE]
+    .collection('cities')
+    .where('state', '==', 'CA')
+    .onSnapshot((querySnapshot) => {
+      querySnapshot.docChanges().forEach((change) => {
+        if (change.type === 'added') {
+          console.log('New city: ', change.doc.data());
+        }
+        if (change.type === 'modified') {
+          console.log('Modified city: ', change.doc.data());
+        }
+        if (change.type === 'removed') {
+          console.log('Removed city: ', change.doc.data());
+        }
       });
+      // [START_EXCLUDE silent]
+      observer();
+      done();
+      // [END_EXCLUDE]
+    });
   // [END listen_diffs]
 }
 
@@ -869,16 +869,16 @@ function streamDocument(db, done) {
   const doc = db.collection('cities').doc('SF');
 
   const observer = doc.onSnapshot(
-      (docSnapshot) => {
-        console.log(`Received doc snapshot: ${docSnapshot}`);
-        // [START_EXCLUDE]
-        observer();
-        done();
+    (docSnapshot) => {
+      console.log(`Received doc snapshot: ${docSnapshot}`);
+      // [START_EXCLUDE]
+      observer();
+      done();
       // [END_EXCLUDE]
-      },
-      (err) => {
-        console.log(`Encountered error: ${err}`);
-      }
+    },
+    (err) => {
+      console.log(`Encountered error: ${err}`);
+    }
   );
   // [END doc_realtime]
 }
@@ -897,12 +897,12 @@ function detatchListener(db) {
 function listenErrors(db) {
   // [START listen_errors]
   db.collection('cities').onSnapshot(
-      (snapshot) => {
+    (snapshot) => {
       // ...
-      },
-      (error) => {
+    },
+    (error) => {
       // ...
-      }
+    }
   );
   // [END listen_errors]
 }
@@ -913,85 +913,85 @@ function collectionGroupQuery(db) {
 
   const landmarks = Promise.all([
     citiesRef
-        .doc('SF')
-        .collection('landmarks')
-        .doc()
-        .set({
-          name: 'Golden Gate Bridge',
-          type: 'bridge',
-        }),
+      .doc('SF')
+      .collection('landmarks')
+      .doc()
+      .set({
+        name: 'Golden Gate Bridge',
+        type: 'bridge',
+      }),
     citiesRef
-        .doc('SF')
-        .collection('landmarks')
-        .doc()
-        .set({
-          name: 'Legion of Honor',
-          type: 'museum',
-        }),
+      .doc('SF')
+      .collection('landmarks')
+      .doc()
+      .set({
+        name: 'Legion of Honor',
+        type: 'museum',
+      }),
     citiesRef
-        .doc('LA')
-        .collection('landmarks')
-        .doc()
-        .set({
-          name: 'Griffith Park',
-          type: 'park',
-        }),
+      .doc('LA')
+      .collection('landmarks')
+      .doc()
+      .set({
+        name: 'Griffith Park',
+        type: 'park',
+      }),
     citiesRef
-        .doc('LA')
-        .collection('landmarks')
-        .doc()
-        .set({
-          name: 'The Getty',
-          type: 'museum',
-        }),
+      .doc('LA')
+      .collection('landmarks')
+      .doc()
+      .set({
+        name: 'The Getty',
+        type: 'museum',
+      }),
     citiesRef
-        .doc('DC')
-        .collection('landmarks')
-        .doc()
-        .set({
-          name: 'Lincoln Memorial',
-          type: 'memorial',
-        }),
+      .doc('DC')
+      .collection('landmarks')
+      .doc()
+      .set({
+        name: 'Lincoln Memorial',
+        type: 'memorial',
+      }),
     citiesRef
-        .doc('DC')
-        .collection('landmarks')
-        .doc()
-        .set({
-          name: 'National Air and Space Museum',
-          type: 'museum',
-        }),
+      .doc('DC')
+      .collection('landmarks')
+      .doc()
+      .set({
+        name: 'National Air and Space Museum',
+        type: 'museum',
+      }),
     citiesRef
-        .doc('TOK')
-        .collection('landmarks')
-        .doc()
-        .set({
-          name: 'Ueno Park',
-          type: 'park',
-        }),
+      .doc('TOK')
+      .collection('landmarks')
+      .doc()
+      .set({
+        name: 'Ueno Park',
+        type: 'park',
+      }),
     citiesRef
-        .doc('TOK')
-        .collection('landmarks')
-        .doc()
-        .set({
-          name: 'National Museum of Nature and Science',
-          type: 'museum',
-        }),
+      .doc('TOK')
+      .collection('landmarks')
+      .doc()
+      .set({
+        name: 'National Museum of Nature and Science',
+        type: 'museum',
+      }),
     citiesRef
-        .doc('BJ')
-        .collection('landmarks')
-        .doc()
-        .set({
-          name: 'Jingshan Park',
-          type: 'park',
-        }),
+      .doc('BJ')
+      .collection('landmarks')
+      .doc()
+      .set({
+        name: 'Jingshan Park',
+        type: 'park',
+      }),
     citiesRef
-        .doc('BJ')
-        .collection('landmarks')
-        .doc()
-        .set({
-          name: 'Beijing Ancient Observatory',
-          type: 'museum',
-        }),
+      .doc('BJ')
+      .collection('landmarks')
+      .doc()
+      .set({
+        name: 'Beijing Ancient Observatory',
+        type: 'museum',
+      }),
   ]);
   // [END fs_collection_group_query_data_setup]
   landmarks.then((l) => console.log(l));
@@ -1013,16 +1013,16 @@ function collectionGroupQuery(db) {
 function simpleCursors(db) {
   // [START cursor_simple_start_at]
   const startAt = db
-      .collection('cities')
-      .orderBy('population')
-      .startAt(1000000);
+    .collection('cities')
+    .orderBy('population')
+    .startAt(1000000);
   // [END cursor_simple_start_at]
 
   // [START cursor_simple_end_at]
   const endAt = db
-      .collection('cities')
-      .orderBy('population')
-      .endAt(1000000);
+    .collection('cities')
+    .orderBy('population')
+    .endAt(1000000);
   // [END cursor_simple_end_at]
 
   return Promise.all([startAt.limit(10).get(), endAt.limit(10).get()]);
@@ -1033,9 +1033,9 @@ function snapshotCursors(db) {
   const docRef = db.collection('cities').doc('SF');
   return docRef.get().then((snapshot) => {
     const startAtSnapshot = db
-        .collection('cities')
-        .orderBy('population')
-        .startAt(snapshot);
+      .collection('cities')
+      .orderBy('population')
+      .startAt(snapshot);
 
     return startAtSnapshot.limit(10).get();
   });
@@ -1045,9 +1045,9 @@ function snapshotCursors(db) {
 function paginateQuery(db) {
   // [START cursor_paginate]
   const first = db
-      .collection('cities')
-      .orderBy('population')
-      .limit(3);
+    .collection('cities')
+    .orderBy('population')
+    .limit(3);
 
   const paginate = first.get().then((snapshot) => {
     // ...
@@ -1059,10 +1059,10 @@ function paginateQuery(db) {
     // Note: this will not have the desired effect if multiple
     // cities have the exact same population value.
     const next = db
-        .collection('cities')
-        .orderBy('population')
-        .startAfter(last.data().population)
-        .limit(3);
+      .collection('cities')
+      .orderBy('population')
+      .startAfter(last.data().population)
+      .limit(3);
 
     // Use the query for pagination
     // [START_EXCLUDE]
@@ -1080,19 +1080,19 @@ function multipleCursorConditions(db) {
   // [START cursor_multiple_one_start]
   // Will return all Springfields
   const startAtName = db
-      .collection('cities')
-      .orderBy('name')
-      .orderBy('state')
-      .startAt('Springfield');
+    .collection('cities')
+    .orderBy('name')
+    .orderBy('state')
+    .startAt('Springfield');
   // [END cursor_multiple_one_start]
 
   // [START cursor_multiple_two_start]
   // Will return 'Springfield, Missouri' and 'Springfield, Wisconsin'
   const startAtNameAndState = db
-      .collection('cities')
-      .orderBy('name')
-      .orderBy('state')
-      .startAt('Springfield', 'Missouri');
+    .collection('cities')
+    .orderBy('name')
+    .orderBy('state')
+    .startAt('Springfield', 'Missouri');
   // [END cursor_multiple_two_start]
 
   return Promise.all([startAtName.get(), startAtNameAndState.get()]);
@@ -1110,36 +1110,36 @@ function deleteCollection(db, collectionPath, batchSize) {
 
 function deleteQueryBatch(db, query, batchSize, resolve, reject) {
   query
-      .get()
-      .then((snapshot) => {
+    .get()
+    .then((snapshot) => {
       // When there are no documents left, we are done
-        if (snapshot.size == 0) {
-          return 0;
-        }
+      if (snapshot.size == 0) {
+        return 0;
+      }
 
-        // Delete documents in a batch
-        const batch = db.batch();
-        snapshot.docs.forEach((doc) => {
-          batch.delete(doc.ref);
-        });
+      // Delete documents in a batch
+      const batch = db.batch();
+      snapshot.docs.forEach((doc) => {
+        batch.delete(doc.ref);
+      });
 
-        return batch.commit().then(() => {
-          return snapshot.size;
-        });
-      })
-      .then((numDeleted) => {
-        if (numDeleted === 0) {
-          resolve();
-          return;
-        }
+      return batch.commit().then(() => {
+        return snapshot.size;
+      });
+    })
+    .then((numDeleted) => {
+      if (numDeleted === 0) {
+        resolve();
+        return;
+      }
 
-        // Recurse on the next process tick, to avoid
-        // exploding the stack.
-        process.nextTick(() => {
-          deleteQueryBatch(db, query, batchSize, resolve, reject);
-        });
-      })
-      .catch(reject);
+      // Recurse on the next process tick, to avoid
+      // exploding the stack.
+      process.nextTick(() => {
+        deleteQueryBatch(db, query, batchSize, resolve, reject);
+      });
+    })
+    .catch(reject);
 }
 
 // [END delete_collection]
