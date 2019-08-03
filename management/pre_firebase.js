@@ -74,5 +74,3 @@ async function checkOperation(operationName) {
   }
 }
 // [END check_operation]
-
-listProjects();
