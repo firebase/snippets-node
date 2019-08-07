@@ -39,10 +39,6 @@ async function addFirebase(projectId) {
     headers: {
       'Authorization': 'Bearer ' + '<OAUTH2_ACCESS_TOKEN>',
     },
-    body: {
-      'timeZone': 'America/Los_Angeles',
-      'regionCode': 'US'
-    },
     json: true,
   };
 
