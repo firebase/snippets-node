@@ -1121,8 +1121,8 @@ describe('Firestore Smoketests', () => {
     return getCollections(db);
   });
 
-  it('should query and filter', () => {
-    return queryAndFilter(db);
+  it('should simple query', () => {
+    return simpleQuery(db);
   });
 
   it('should query and filter an array', () => {
