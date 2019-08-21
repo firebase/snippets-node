@@ -1130,6 +1130,10 @@ describe('Firestore Smoketests', () => {
     return simpleQuery(db);
   });
 
+  it('should query and filter', () => {
+    return queryAndFilter(db);
+  });
+
   it('should query and filter an array', () => {
     return arrayFilter(db);
   });
