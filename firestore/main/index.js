@@ -71,7 +71,7 @@ function demoInitialize(db) {
 }
 
 // ============================================================================
-// https://firebase.google.com/docs/firestore/server/quickstart
+// https://firebase.google.com/docs/firestore/quickstart
 // ============================================================================
 
 function quickstartAddData(db) {
