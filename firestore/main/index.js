@@ -641,7 +641,7 @@ function simpleQuery(db) {
   let queryRef = citiesRef.where('state', '==', 'CA');
   // [END simple_query]
 
-  return simpleQuery.get();
+  return queryRef.get();
 }
 
 function queryAndFilter(db) {
