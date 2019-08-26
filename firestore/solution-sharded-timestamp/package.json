@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Documents with Timestamp fields sharded to increase write throughput",
   "engines": {
-    "node": "8.x.x"
+    "node": "8"
   },
   "author": "Google, Inc.",
   "license": "Apache-2.0",
