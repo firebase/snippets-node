@@ -20,7 +20,7 @@ app.get('/cloud-firestore-export', async (req, res) => {
   };
 
   const outputUriPrefix = req.param('outputUriPrefix');
-  if (!(outputUriPrefix && outputUriPrefix.indexOf('gs://') === 0)) {
+  if (outputUriPrefix && outputUriPrefix.indexOf('gs://') !== 0) {
     res.status(500).send(`Malformed outputUriPrefix: ${outputUriPrefix}`);
   }
 
