@@ -19,7 +19,7 @@ app.get('/cloud-firestore-export', async (req, res) => {
     Authorization: `Bearer ${accessToken}`,
   };
 
-  const outputUriPrefix = req.param('outputUriPrefix');
+  const { outputUriPrefix } = req.params;
   if (outputUriPrefix && outputUriPrefix.indexOf('gs://') !== 0) {
     res.status(500).send(`Malformed outputUriPrefix: ${outputUriPrefix}`);
   }
@@ -38,9 +38,9 @@ app.get('/cloud-firestore-export', async (req, res) => {
   };
 
   // If specified, mark specific collections for backup
-  const collectionParam = req.param('collections');
-  if (collectionParam) {
-    body.collectionIds = collectionParam.split(',');
+  const { collections } = req.params;
+  if (collections) {
+    body.collectionIds = collections.split(',');
   }
 
   const projectId = process.env.GOOGLE_CLOUD_PROJECT;
