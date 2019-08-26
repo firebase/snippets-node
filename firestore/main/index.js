@@ -71,7 +71,7 @@ function demoInitialize(db) {
 }
 
 // ============================================================================
-// https://firebase.google.com/docs/firestore/server/quickstart
+// https://firebase.google.com/docs/firestore/quickstart
 // ============================================================================
 
 function quickstartAddData(db) {
@@ -641,7 +641,12 @@ function simpleQuery(db) {
   let queryRef = citiesRef.where('state', '==', 'CA');
   // [END simple_query]
 
-  return simpleQuery.get();
+  return queryRef.get()
+    .then(res => {
+      res.forEach(doc => {
+        console.log(doc.id, ' => ', doc.data());
+      });
+    });
 }
 
 function queryAndFilter(db) {
@@ -1119,6 +1124,10 @@ describe('Firestore Smoketests', () => {
 
   it('should get all subcollections of a document', () => {
     return getCollections(db);
+  });
+
+  it('should simple query', () => {
+    return simpleQuery(db);
   });
 
   it('should query and filter', () => {
