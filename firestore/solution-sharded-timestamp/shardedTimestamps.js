@@ -1,7 +1,9 @@
-const {Firestore} = require('@google-cloud/firestore');
+const util = require('util');
+const admin = require('firebase-admin');
+admin.initializeApp();
 
 // Create a new client
-const fs = new Firestore();
+const fs = admin.firestore();
 
 // [START fs_sharded_timestamps_define_shards]
 // Define our 'K' shard values
@@ -26,7 +28,7 @@ async function insertData() {
       },
       exchange: 'EXCHG1',
       instrumentType: 'commonstock',
-      timestamp: Firestore.Timestamp.fromMillis(
+      timestamp: admin.firestore.Timestamp.fromMillis(
           Date.parse('2019-01-01T13:45:23.010Z'))
     },
     {
@@ -38,7 +40,7 @@ async function insertData() {
       },
       exchange: 'EXCHG2',
       instrumentType: 'commonstock',
-      timestamp: Firestore.Timestamp.fromMillis(
+      timestamp: admin.firestore.Timestamp.fromMillis(
           Date.parse('2019-01-01T13:45:23.101Z'))
     },
     {
@@ -50,7 +52,7 @@ async function insertData() {
       },
       exchange: 'EXCHG1',
       instrumentType: 'etf',
-      timestamp: Firestore.Timestamp.fromMillis(
+      timestamp: admin.firestore.Timestamp.fromMillis(
           Date.parse('2019-01-01T13:45:23.001Z'))
     }
   ];
@@ -110,6 +112,10 @@ function queryUSDInstruments() {
 
 // [END fs_sharded_timestamps_post_query]
 
+function jsonify(obj) {
+  return util.inspect(obj.data(), {depth: 4});
+}
+
 // [START fs_sharded_timestamps_post_exec]
 insertData()
     .then(() => {
@@ -118,7 +124,7 @@ insertData()
               (docs) => {
                 console.log('--- queryCommonStock: ');
                 docs.forEach((doc) => {
-                  console.log(`doc = ${JSON.stringify(doc)}`);
+                  console.log(`doc = ${jsonify(doc)}`);
                 });
               }
           );
@@ -127,7 +133,7 @@ insertData()
               (docs) => {
                 console.log('--- queryExchange1Instruments: ');
                 docs.forEach((doc) => {
-                  console.log(`doc = ${JSON.stringify(doc)}`);
+                  console.log(`doc = ${jsonify(doc)}`);
                 });
               }
           );
@@ -136,7 +142,7 @@ insertData()
               (docs) => {
                 console.log('--- queryUSDInstruments: ');
                 docs.forEach((doc) => {
-                  console.log(`doc = ${JSON.stringify(doc)}`);
+                  console.log(`doc = ${jsonify(doc)}`);
                 });
               }
           );

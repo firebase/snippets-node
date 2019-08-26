@@ -8,6 +8,6 @@
   "author": "Google, Inc.",
   "license": "Apache-2.0",
   "dependencies": {
-    "@google-cloud/firestore": "^2.2.7"
+    "firebase-admin": "^7.1.1"
   }
 }
