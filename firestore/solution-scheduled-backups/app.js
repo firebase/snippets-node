@@ -19,7 +19,7 @@ app.get('/cloud-firestore-export', async (req, res) => {
     Authorization: `Bearer ${accessToken}`,
   };
 
-  const { outputUriPrefix } = req.params;
+  const { outputUriPrefix } = req.query;
   if (outputUriPrefix && outputUriPrefix.indexOf('gs://') !== 0) {
     res.status(500).send(`Malformed outputUriPrefix: ${outputUriPrefix}`);
   }
@@ -38,7 +38,7 @@ app.get('/cloud-firestore-export', async (req, res) => {
   };
 
   // If specified, mark specific collections for backup
-  const { collections } = req.params;
+  const { collections } = req.query;
   if (collections) {
     body.collectionIds = collections.split(',');
   }
