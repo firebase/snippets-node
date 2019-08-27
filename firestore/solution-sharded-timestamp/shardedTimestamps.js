@@ -114,8 +114,8 @@ function queryUSDInstruments() {
 
 // [START fs_sharded_timestamps_post_exec]
 insertData()
-    .then(() => {
-      queryCommonStock()
+    .then(async () => {
+      await queryCommonStock()
           .then(
               (docs) => {
                 console.log('--- queryCommonStock: ');
@@ -124,7 +124,7 @@ insertData()
                 });
               }
           );
-      queryExchange1Instruments()
+      await queryExchange1Instruments()
           .then(
               (docs) => {
                 console.log('--- queryExchange1Instruments: ');
@@ -133,7 +133,7 @@ insertData()
                 });
               }
           );
-      queryUSDInstruments()
+      await queryUSDInstruments()
           .then(
               (docs) => {
                 console.log('--- queryUSDInstruments: ');
