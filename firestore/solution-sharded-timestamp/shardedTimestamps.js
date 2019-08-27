@@ -124,8 +124,8 @@ function queryUSDInstruments() {
 
 // [START fs_sharded_timestamps_post_exec]
 insertData()
-    .then(async () => {
-      await queryCommonStock()
+    .then(() => {
+      const commonStock = queryCommonStock()
           .then(
               (docs) => {
                 console.log('--- queryCommonStock: ');
@@ -134,7 +134,7 @@ insertData()
                 });
               }
           );
-      await queryExchange1Instruments()
+      const exchange1Instruments = queryExchange1Instruments()
           .then(
               (docs) => {
                 console.log('--- queryExchange1Instruments: ');
@@ -143,7 +143,7 @@ insertData()
                 });
               }
           );
-      await queryUSDInstruments()
+      const usdInstruments = queryUSDInstruments()
           .then(
               (docs) => {
                 console.log('--- queryUSDInstruments: ');
@@ -152,5 +152,6 @@ insertData()
                 });
               }
           );
+      return Promise.all([commonStock, exchange1Instruments, usdInstruments]);
     });
 // [END fs_sharded_timestamps_post_exec]
