@@ -95,9 +95,9 @@ function createQuery(fieldName, fieldOperator, fieldValue, limit = 5) {
         // descending and take the first `limit` values. By returning negated
         // values we can easily get a descending value.
         docs.sort((a, b) => {
-          let aT = a.data().timestamp;
-          let bT = b.data().timestamp;
-          let secondsDiff = aT.seconds - bT.seconds;
+          const aT = a.data().timestamp;
+          const bT = b.data().timestamp;
+          const secondsDiff = aT.seconds - bT.seconds;
           if (secondsDiff === 0) {
             return -(aT.nanoseconds - bT.nanoseconds);
           } else {
