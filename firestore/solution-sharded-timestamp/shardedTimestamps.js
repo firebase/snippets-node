@@ -92,8 +92,18 @@ function createQuery(fieldName, fieldOperator, fieldValue, limit = 5) {
           });
         });
         // since we're wanting the `limit` newest values, sort the array
-        // descending and take the first `limit` values
-        docs.sort(d => -d.timestamp);
+        // descending and take the first `limit` values. By returning negated
+        // values we can easily get a descending value.
+        docs.sort((a, b) => {
+          let aT = a.data().timestamp;
+          let bT = b.data().timestamp;
+          let secondsDiff = aT.seconds - bT.seconds;
+          if (secondsDiff === 0) {
+            return -(aT.nanoseconds - bT.nanoseconds);
+          } else {
+            return -secondsDiff;
+          }
+        });
         return docs.slice(0, limit);
       });
 }
