@@ -1,3 +1,4 @@
+// [START fs_schedule_export]
 const functions = require('firebase-functions');
 const firestore = require('@google-cloud/firestore');
 
@@ -23,9 +24,11 @@ exports.scheduledFirestoreExport = functions.pubsub
        })
    .then(responses => {
        const response = responses[0];
+       // Log operation name
        console.log(response['name'])
    })
    .catch(err => {
        console.error(err);
    });
 });
+// [END fs_schedule_export]
