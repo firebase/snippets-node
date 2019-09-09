@@ -5,14 +5,13 @@ const firestore = require('@google-cloud/firestore');
 const client = new firestore.v1.FirestoreAdminClient();
 
 exports.scheduledFirestoreExport = functions.pubsub
-                                            // Set schedule
                                             .schedule('every 24 hours')
                                             .onRun((context) => {
    const databaseName = 
        client.databasePath(process.env.GCP_PROJECT, '(default)');
 
    // Replace BUCKET_NAME
-   const bucket = 'gs://BUCKET_NAME'
+   const bucket = 'gs://BUCKET_NAME';
 
    client.exportDocuments({
        name: databaseName,
@@ -24,11 +23,11 @@ exports.scheduledFirestoreExport = functions.pubsub
        })
    .then(responses => {
        const response = responses[0];
-       // Log operation name
-       console.log(response['name'])
+       console.log(`Operation Name: ${response['name']}`);
    })
    .catch(err => {
        console.error(err);
    });
+   return null;
 });
 // [END fs_schedule_export]
