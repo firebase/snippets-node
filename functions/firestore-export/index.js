@@ -13,7 +13,7 @@ exports.scheduledFirestoreExport = functions.pubsub
    // Replace BUCKET_NAME
    const bucket = 'gs://BUCKET_NAME';
 
-   client.exportDocuments({
+   return client.exportDocuments({
        name: databaseName,
        outputUriPrefix: bucket,
        // Leave collectionIds empty to export all collections
@@ -28,6 +28,5 @@ exports.scheduledFirestoreExport = functions.pubsub
    .catch(err => {
        console.error(err);
    });
-   return null;
 });
 // [END fs_schedule_export]
