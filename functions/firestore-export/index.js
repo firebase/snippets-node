@@ -27,7 +27,7 @@ exports.scheduledFirestoreExport = functions.pubsub
   })
   .catch(err => {
     console.error(err);
-    throw new Error("Export operation failed");
+    throw new Error('Export operation failed');
   });
 });
 // [END fs_schedule_export]
