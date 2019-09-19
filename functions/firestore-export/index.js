@@ -23,9 +23,11 @@ exports.scheduledFirestoreExport = functions.pubsub
   .then(responses => {
     const response = responses[0];
     console.log(`Operation Name: ${response['name']}`);
+    return response;
   })
   .catch(err => {
     console.error(err);
+    throw new Error("Export operation failed");
   });
 });
 // [END fs_schedule_export]
