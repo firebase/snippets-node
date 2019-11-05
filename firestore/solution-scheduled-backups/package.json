@@ -4,7 +4,7 @@
   "description": "Scheduled Cloud Firestore backups via AppEngine cron",
   "main": "app.js",
   "engines": {
-    "node": "8.x.x"
+    "node": "10.x.x"
   },
   "scripts": {
     "deploy": "gcloud app deploy --quiet app.yaml cron.yaml",
@@ -13,12 +13,12 @@
   "author": "Google, Inc.",
   "license": "Apache-2.0",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "dateformat": "^3.0.3",
-    "express": "^4.16.4",
-    "googleapis": "^38.0.0"
+    "express": "^4.17.1",
+    "googleapis": "^42.0.0"
   },
   "devDependencies": {
-    "prettier": "^1.16.4"
+    "prettier": "^1.18.2"
   }
 }
