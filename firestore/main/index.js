@@ -688,6 +688,43 @@ function arrayFilter(db) {
     });
 }
 
+function arrayContainsAnyQueries(db) {
+  const citiesRef = db.collection('cities');
+  // [START array_contains_any_filter]
+  const coastalCities = citiesRef.where('regions', 'array-contains-any',
+      ['west_coast', 'east_coast']);
+  // [END array_contains_any_filter]
+
+  return coastalCities.get()
+    .then(res => {
+      console.log('Coastal cities get: ', res);
+    });
+}
+
+function inQueries(db) {
+  const citiesRef = db.collection('cities');
+  // [START in_filter]
+  const usaOrJapan = citiesRef.where('region', 'in', ['USA', 'Japan']);
+  // [END in_filter]
+
+  // [START in_filter_with_array]
+  const exactlyOneCoast = citiesRef.where('region', 'in',
+      [['west_coast', 'east_coast']]);
+  // [END in_filter_with_array]
+
+  const inGet = usaOrJapan.get()
+      .then(res => {
+        console.log('USA or Japan get: ', res);
+      });
+
+  const inArrayGet = exactlyOneCoast.get()
+    .then(res => {
+      console.log('Exactly One Coast get: ', res);
+    });
+
+  return Promise.all([inGet, inArrayGet]);
+}
+
 function orderAndLimit(db) {
   let citiesRef = db.collection('cities');
   // [START order_limit]
@@ -1136,6 +1173,14 @@ describe('Firestore Smoketests', () => {
 
   it('should query and filter an array', () => {
     return arrayFilter(db);
+  });
+
+  it('should support array contains any', () => {
+    return arrayContainsAnyQueries(db);
+  });
+
+  it('should support in queries', () => {
+    return inQueries(db);
   });
 
   it('should order and limit', () => {
