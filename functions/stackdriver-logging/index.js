@@ -1,5 +1,5 @@
 // [START sd_logging_import]
-const { Logging } = require('@google-cloud/logging');
+const {Logging} = require('@google-cloud/logging');
 // [END sd_logging_import]
 const functions = require('firebase-functions');
 
@@ -24,9 +24,9 @@ const METADATA = {
     type: 'cloud_function',
     labels: {
       function_name: 'CustomMetrics',
-      region: 'us-central1'
-    }
-  }
+      region: 'us-central1',
+    },
+  },
 };
 // [END sd_logging_setup]
 
@@ -40,7 +40,7 @@ function writeLog() {
 
     // Optional 'message' property will show up in the Firebase
     // console and other human-readable logging surfaces
-    message: 'my-event: foo-bar-baz'
+    message: 'my-event: foo-bar-baz',
   };
 
   // Write to the log. The log.write() call returns a Promise if you want to

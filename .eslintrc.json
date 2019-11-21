@@ -6,7 +6,7 @@
         "node": true,
         "mocha": true
     },
-    "extends": "eslint:recommended",
+    "extends": "google",
     "parserOptions": {
         "ecmaVersion": 8,
         "sourceType": "module"
@@ -25,6 +25,18 @@
             "always"
         ],
         "no-console": 0,
-        "no-unused-vars": 0
+        "no-unused-vars": 0,
+        "max-len": [
+          "error",
+          {
+            "code": 120
+          }
+        ],
+        "require-jsdoc": 0,
+        "valid-jsdoc": 0,
+        "indent": [
+          "error",
+          2
+        ]
     }
 }

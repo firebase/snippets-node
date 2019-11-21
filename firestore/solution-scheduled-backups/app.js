@@ -1,7 +1,7 @@
 const axios = require('axios');
 const dateformat = require('dateformat');
 const express = require('express');
-const { google } = require('googleapis');
+const {google} = require('googleapis');
 
 const app = express();
 
