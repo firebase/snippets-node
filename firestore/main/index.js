@@ -1065,10 +1065,7 @@ describe('Firestore Smoketests', () => {
   let db;
 
   before(() => {
-    let serviceAccount = require('../../service-account.json');
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount)
-    });
+    admin.initializeApp();
     db = admin.firestore();
   });
 

@@ -5,4 +5,4 @@ service-account.json
 .firebaserc
 firebase-debug.log
 
-lerna-debug.log
+*-debug.log
