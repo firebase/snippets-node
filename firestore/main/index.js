@@ -361,7 +361,7 @@ function updateDeleteField(db) {
   });
 }
 
-function updateNested(db) {
+async function updateNested(db) {
   // [START update_nested]
   let initialData = {
     name: 'Frank',
@@ -374,7 +374,7 @@ function updateNested(db) {
   };
 
   // [START_EXCLUDE]
-  db.collection('users').doc('Frank').set(initialData);
+  await db.collection('users').doc('Frank').set(initialData);
   // [END_EXCLUDE]
   let updateNested = db.collection('users').doc('Frank').update({
     age: 13,
@@ -620,7 +620,7 @@ function getAll(db) {
 function getCollections(db) {
   // [START get_collections]
   let sfRef = db.collection('cities').doc('SF');
-  sfRef.getCollections().then(collections => {
+  sfRef.listCollections().then(collections => {
     collections.forEach(collection => {
       console.log('Found subcollection with id:', collection.id);
     });
@@ -1160,7 +1160,7 @@ describe('Firestore Smoketests', () => {
   });
 
   it('should get all subcollections of a document', () => {
-    return getCollections(db);
+    getCollections(db);
   });
 
   it('should simple query', () => {
