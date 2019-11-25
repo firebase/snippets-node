@@ -12,6 +12,7 @@
   "devDependencies": {
     "eslint": "^5.15.3",
     "eslint-config-google": "^0.12.0",
+    "firebase-tools": "^7.8.1",
     "lerna": "^3.13.1"
   }
 }
