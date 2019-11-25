@@ -12,10 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "@google-cloud/firestore": "^2.6.0",
-    "firebase-admin": "^7.4.0"
+    "firebase-admin": "^8.8.0"
   },
   "devDependencies": {
-    "firebase-tools": "^6.12.0",
+    "firebase-tools": "^7.8.1",
     "mocha": "^6.2.2"
   }
 }
