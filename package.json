@@ -5,7 +5,7 @@
   "author": "Firebase (https://firebase.google.com/)",
   "license": "Apache-2.0",
   "scripts": {
-    "lerna-test": "lerna run setup-test && lerna run test",
+    "lerna-test": "lerna run test",
     "lerna-bootstrap": "lerna bootstrap",
     "lint": "find . -type f -name \"*.js\" -not -path \"*node_modules*\" | xargs eslint"
   },
