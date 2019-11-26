@@ -704,7 +704,7 @@ function arrayContainsAnyQueries(db) {
 function inQueries(db) {
   const citiesRef = db.collection('cities');
   // [START in_filter]
-  const usaOrJapan = citiesRef.where('region', 'in', ['USA', 'Japan']);
+  const usaOrJapan = citiesRef.where('country', 'in', ['USA', 'Japan']);
   // [END in_filter]
 
   // [START in_filter_with_array]
