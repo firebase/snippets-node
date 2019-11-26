@@ -320,9 +320,9 @@ function updateCreateIfMissing(db) {
   });
 }
 
-function updateServerTimestamp(db) {
-  // Create the object before updating it (racy on first run, oh well)
-  db.collection('objects').doc('some-id').set({});
+async function updateServerTimestamp(db) {
+  // Create the object before updating it
+  await db.collection('objects').doc('some-id').set({});
 
   // [START update_with_server_timestamp]
   // Get the `FieldValue` object
