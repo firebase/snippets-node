@@ -9,8 +9,10 @@ const bucket = 'gs://BUCKET_NAME';
 exports.scheduledFirestoreExport = functions.pubsub
                                             .schedule('every 24 hours')
                                             .onRun((context) => {
+                                              
+  const projectId = process.env.GCP_PROJECT || process.env.GCLOUD_PROJECT;
   const databaseName = 
-    client.databasePath(process.env.GCP_PROJECT, '(default)');
+    client.databasePath(projectId, '(default)');
 
   return client.exportDocuments({
     name: databaseName,
