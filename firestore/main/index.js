@@ -1027,7 +1027,7 @@ function deleteQueryBatch(db, query, batchSize, resolve, reject) {
   query.get()
     .then((snapshot) => {
       // When there are no documents left, we are done
-      if (snapshot.size == 0) {
+      if (snapshot.size === 0) {
         return 0;
       }
 
