@@ -19,7 +19,7 @@ We promise to extend courtesy and respect to everyone involved in this project r
 
 If any member of the community violates this code of conduct, the maintainers of the project may take action, removing issues, comments, and PRs or blocking accounts as deemed appropriate.
 
-If you are subject to or witness unacceptable behavior, or have any other concerns, please drop us a line at nivco@google.com.
+If you are subject to or witness unacceptable behavior, or have any other concerns, please drop us a line at samstern [at] google [dot] com.
 
 ## <a name="question"></a> Got a Question or Problem?
 
