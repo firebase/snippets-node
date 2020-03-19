@@ -7,7 +7,6 @@ We'd love for you to contribute to our source code and to make it even better th
  - [Issues and Bugs](#issue)
  - [Feature Requests](#feature)
  - [Submission Guidelines](#submit)
- - [Coding Rules](#rules)
  - [Signing the CLA](#cla)
 
 ## <a name="coc"></a> Code of Conduct
@@ -58,30 +57,12 @@ chances of your issue being dealt with quickly:
 
 * **Overview of the Issue** - if an error is being thrown a non-minified stack trace helps
 * **Motivation for or Use Case** - explain why this is a bug for you
-* **Browsers and Operating System** - is this a problem with all browsers or only IE9?
 * **Reproduce the Error** - provide a live example or an unambiguous set of steps.
 * **Related Issues** - has a similar issue been reported before?
 * **Suggest a Fix** - if you can't fix the bug yourself, perhaps you can point to what might be
   causing the problem (line of code or commit)
 
 **If you get help, help others. Good karma rulez!**
-
-Here's a template to get you started:
-
-```
-System information (OS, Device, etc):
-
-What steps will reproduce the problem:
-1.
-2.
-3.
-
-What is the expected result?
-
-What happens instead of that?
-
-Code, logs, or screenshot that illustrate the problem:
-```
 
 ### Submitting a Pull Request
 Before you submit your pull request consider the following guidelines:
@@ -97,7 +78,6 @@ Before you submit your pull request consider the following guidelines:
      ```
 
 * Create your patch, **including appropriate test cases**.
-* Follow our [Coding Rules](#rules).
 * Commit your changes using a descriptive commit message.
 
      ```shell
@@ -105,62 +85,13 @@ Before you submit your pull request consider the following guidelines:
      ```
   Note: the optional commit `-a` command line option will automatically "add" and "rm" edited files.
 
-* Build your changes locally to ensure all the tests pass:
+* Push your branch to your fork on GitHub (make sure you already have a fork!):
 
     ```shell
-   gulp
-    ```
-
-* Push your branch to GitHub:
-
-    ```shell
-    git push origin my-fix-branch
+    git push fork my-fix-branch
     ```
 
 * In GitHub, send a pull request to `master`.
-* If we suggest changes then:
-  * Make the required updates.
-  * Rebase your branch and force push to your GitHub repository (this will update your Pull Request):
-
-    ```shell
-    git rebase master -i
-    git push origin my-fix-branch -f
-    ```
-
-That's it! Thank you for your contribution!
-
-#### After your pull request is merged
-
-After your pull request is merged, you can safely delete your branch and pull the changes
-from the main (upstream) repository:
-
-* Delete the remote branch on GitHub either through the GitHub UI or your local shell as follows:
-
-    ```shell
-    git push origin --delete my-fix-branch
-    ```
-
-* Check out the master branch:
-
-    ```shell
-    git checkout master -f
-    ```
-
-* Delete the local branch:
-
-    ```shell
-    git branch -D my-fix-branch
-    ```
-
-* Update your master with the latest upstream version:
-
-    ```shell
-    git pull --ff upstream master
-    ```
-
-## <a name="rules"></a> Coding Rules
-
-We generally follow [Google's style guides][style-guide].
 
 ## <a name="cla"></a> Signing the CLA
 
