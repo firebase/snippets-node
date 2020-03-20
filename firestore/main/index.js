@@ -1019,11 +1019,11 @@ function deleteCollection(db, collectionPath, batchSize) {
   let query = collectionRef.orderBy('__name__').limit(batchSize);
 
   return new Promise((resolve, reject) => {
-    deleteQueryBatch(db, query, batchSize, resolve, reject);
+    deleteQueryBatch(db, query, resolve, reject);
   });
 }
 
-function deleteQueryBatch(db, query, batchSize, resolve, reject) {
+function deleteQueryBatch(db, query, resolve, reject) {
   query.get()
     .then((snapshot) => {
       // When there are no documents left, we are done
@@ -1049,7 +1049,7 @@ function deleteQueryBatch(db, query, batchSize, resolve, reject) {
       // Recurse on the next process tick, to avoid
       // exploding the stack.
       process.nextTick(() => {
-        deleteQueryBatch(db, query, batchSize, resolve, reject);
+        deleteQueryBatch(db, query, resolve, reject);
       });
     })
     .catch(reject);
