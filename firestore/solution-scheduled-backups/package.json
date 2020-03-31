@@ -8,7 +8,8 @@
   },
   "scripts": {
     "deploy": "gcloud app deploy --quiet app.yaml cron.yaml",
-    "start": "node app.js"
+    "start": "node app.js",
+    "compile": "cp ../../tsconfig.json.template ./tsconfig.json && tsc"
   },
   "author": "Google, Inc.",
   "license": "Apache-2.0",

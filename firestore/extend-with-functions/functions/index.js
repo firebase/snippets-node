@@ -80,7 +80,7 @@ function triggerDocumentAnyChange() {
 
 function readingData() {
   // [START reading_data]
-  exports.updateUser = functions.firestore
+  exports.updateUser2 = functions.firestore
       .document('users/{userId}')
       .onUpdate((change, context) => {
         // Get an object representing the current document

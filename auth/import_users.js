@@ -147,7 +147,7 @@ admin.auth().importUsers([{
   // Must be provided in a byte buffer.
   passwordHash: Buffer.from('base64-password-hash', 'base64'),
   // Must be provided in a byte buffer.
-  passwordSalt: Buffer.from('base64-salt', 'base64')
+  passwordSalt: Buffer.from('base64-salt', 'base64'),
 }], {
   hash: {
     algorithm: 'SCRYPT',

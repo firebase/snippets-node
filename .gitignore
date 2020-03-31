@@ -8,3 +8,5 @@ tsconfig.json
 firebase-debug.log
 
 *-debug.log
+
+.DS_Store

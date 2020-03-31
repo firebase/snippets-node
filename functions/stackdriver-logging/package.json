@@ -5,8 +5,11 @@
   "main": "index.js",
   "author": "",
   "license": "Apache-2.0",
+  "scripts": {
+    "compile": "cp ../../tsconfig.json.template ./tsconfig.json && tsc"
+  },
   "dependencies": {
     "@google-cloud/logging": "^4.5.1",
-    "firebase-functions": "^2.2.1"
+    "firebase-functions": "^3.3.0"
   }
 }
