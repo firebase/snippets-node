@@ -2,12 +2,12 @@
 const admin = require('firebase-admin');
 admin.initializeApp();
 
-const uid = "some_uid_1234";
-const uid1 = "some_uid_1";
-const uid2 = "some_uid_2";
-const uid3 = "some_uid_3";
-const email = "someone@example.com";
-const phoneNumber = "+15558675309";
+const uid = 'some_uid_1234';
+const uid1 = 'some_uid_1';
+const uid2 = 'some_uid_2';
+const uid3 = 'some_uid_3';
+const email = 'someone@example.com';
+const phoneNumber = '+15558675309';
 
 // [START get_user_by_id]
 admin.auth().getUser(uid)

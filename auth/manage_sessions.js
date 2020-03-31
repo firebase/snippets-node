@@ -2,8 +2,8 @@
 const admin = require('firebase-admin');
 admin.initializeApp();
 
-const uid = "some_uid_1234";
-const idToken = "some_id_token";
+const uid = 'some_uid_1234';
+const idToken = 'some_id_token';
 const utcRevocationTimeSecs = 60 * 60;
 
 // [START revoke_tokens]
