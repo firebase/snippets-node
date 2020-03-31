@@ -11,5 +11,5 @@ echo "Linting..."
 npm run lint
 
 # 2) Run tests in emulator
-${DIR}/set-credentials.sh
+source ${DIR}/set-credentials.sh
 npx firebase --project="firestore-snippets" emulators:exec --only firestore "npm run lerna-test"
