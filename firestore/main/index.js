@@ -41,7 +41,7 @@ function initializeAppFunctions() {
 function initializeAppSA() {
   // [START initialize_app_service_account]
 
-  let serviceAccount = require('path/to/serviceAccountKey.json');
+  let serviceAccount = require('./path/to/serviceAccountKey.json');
 
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)

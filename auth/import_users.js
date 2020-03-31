@@ -21,23 +21,20 @@ let userImportRecords = [
 ];
 //[END build_user_list]
 
-let userImportOptions = {
-  hash: {
-    algorithm: 'HMAC_SHA256',
-    key: Buffer.from('secretKey')
-  }
-};
-
 // [START import_users]
-admin.auth().importUsers(userImportRecords, userImportOptions)
+admin.auth().importUsers(userImportRecords, {
+    hash: {
+      algorithm: 'HMAC_SHA256',
+      key: Buffer.from('secretKey')
+    }
+  })
   .then(function(userImportResult) {
     // The number of successful imports is determined via: userImportResult.successCount.
     // The number of failed imports is determined via: userImportResult.failureCount.
     // To get the error details.
-    userImportResult.forEach(function(indexedError) {
-        // The corresponding user that failed to upload.
-        console.log(userImportRecords[indexedError.index].uid +' failed to import',
-            indexedError.error);
+    userImportResult.errors.forEach(function(indexedError) {
+      // The corresponding user that failed to upload.
+      console.log('Error ' + indexedError.index, ' failed to import: ' ,indexedError.error);
     });
   })
   .catch(function(error) {
@@ -150,14 +147,14 @@ admin.auth().importUsers([{
   // Must be provided in a byte buffer.
   passwordHash: Buffer.from('base64-password-hash', 'base64'),
   // Must be provided in a byte buffer.
-  passwordSalt: Buffer.from('base64-salt', 'base64')
+  passwordSalt: Buffer.from('base64-salt', 'base64'),
 }], {
   hash: {
     algorithm: 'SCRYPT',
     // All the parameters below can be obtained from the Firebase Console's users section.
     // Must be provided in a byte buffer.
     key: Buffer.from('base64-secret', 'base64'),
-    saltSeparator: Buffer.from('base64SaltSeparator', 'base64'),
+    saltSeparator: Buffer.from('base64SaltSeparator', 'base64').toString(),
     rounds: 8,
     memoryCost: 14
   }

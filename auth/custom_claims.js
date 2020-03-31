@@ -3,7 +3,8 @@ const admin = require('firebase-admin');
 admin.initializeApp();
 
 const uid = 'firebaseUserId123';
-let idToken;
+const idToken = 'some-invalid-token';
+
 // [START set_custom_user_claims]
 // Set admin privilege on the user corresponding to uid.
 
@@ -27,7 +28,7 @@ admin.auth().verifyIdToken(idToken).then((claims) => {
 // Lookup the user associated with the specified uid.
 admin.auth().getUser(uid).then((userRecord) => {
   // The claims can be accessed on the user record.
-  console.log(userRecord.customClaims.admin);
+  console.log(userRecord.customClaims['admin']);
 });
 // [END read_custom_user_claims]
 
@@ -51,7 +52,7 @@ admin.auth().getUserByEmail('user@admin.example.com').then((user) => {
 admin.auth().getUserByEmail('user@admin.example.com').then((user) => {
   // Add incremental custom claim without overwriting existing claims.
   const currentCustomClaims = user.customClaims;
-  if (currentCustomClaims.admin) {
+  if (currentCustomClaims['admin']) {
     // Add level.
     currentCustomClaims['accessLevel'] = 10;
     // Add custom claims for additional privileges.

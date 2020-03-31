@@ -6,8 +6,13 @@
     "firestore/main",
     "firestore/extend-with-functions",
     "firestore/full-text-search",
+    "firestore/solution-deletes",
+    "firestore/solution-scheduled-backups",
+    "firestore/solution-sharded-timestamp",
+    "firestore/solution-aggregation/functions",
     "firestore/presence",
-    "functions/stackdriver-logging"
+    "functions/stackdriver-logging",
+    "functions/firestore-export"
   ],
   "version": "1.0.0"
 }
