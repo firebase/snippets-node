@@ -2,7 +2,7 @@ const admin = require('firebase-admin');
 
 function multipleFirebaseApps() {
     // [START firebase_options]
-    const secondaryServiceAccount = require('path/to/serviceAccountKey.json');
+    const secondaryServiceAccount = require('./path/to/serviceAccountKey.json');
 
     // All required options are specified by the service account,
     // add service-specific configuration like databaseURL as needed.

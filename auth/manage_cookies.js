@@ -113,5 +113,9 @@ app.post('/sessionLogout', (req, res) => {
 });
 // [END session_clear_and_revoke]
 
-function serveContentForAdmin(){}
-function serveContentForUser(){}
+function serveContentForAdmin(...args){
+    // TODO: this function is just here to make the code "compile"
+}
+function serveContentForUser(...args){
+    // TODO: this function is just here to make the code "compile"
+}

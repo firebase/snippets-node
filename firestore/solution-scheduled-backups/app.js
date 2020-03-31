@@ -49,7 +49,7 @@ app.get('/cloud-firestore-export', async (req, res) => {
   const url = `https://firestore.googleapis.com/v1beta1/projects/${projectId}/databases/(default):exportDocuments`;
 
   try {
-    const response = await axios.post(url, body, { headers });
+    const response = await axios.default.post(url, body, { headers });
     res
       .status(200)
       .send(response.data)

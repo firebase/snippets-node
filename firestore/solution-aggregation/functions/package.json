@@ -6,11 +6,12 @@
     "shell": "firebase experimental:functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "compile": "cp ../../../tsconfig.json.template ./tsconfig.json && tsc"
   },
   "dependencies": {
-    "firebase-admin": "^7.1.1",
-    "firebase-functions": "^2.2.1"
+    "firebase-admin": "^8.9.2",
+    "firebase-functions": "^3.3.0"
   },
   "private": true
 }

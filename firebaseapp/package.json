@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "",
   "license": "Apache-2.0",
+  "scripts": {
+    "compile": "cp ../tsconfig.json.template ./tsconfig.json && tsc"
+  },
   "dependencies": {
     "firebase-admin": "^8.9.2"
   }

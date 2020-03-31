@@ -2,6 +2,13 @@
 const admin = require('firebase-admin');
 admin.initializeApp();
 
+const uid = 'some_uid_1234';
+const uid1 = 'some_uid_1';
+const uid2 = 'some_uid_2';
+const uid3 = 'some_uid_3';
+const email = 'someone@example.com';
+const phoneNumber = '+15558675309';
+
 // [START get_user_by_id]
 admin.auth().getUser(uid)
   .then(function(userRecord) {
@@ -155,5 +162,3 @@ function listAllUsers(nextPageToken) {
 // Start listing users from the beginning, 1000 at a time.
 listAllUsers();
 // [END list_all_users]
-
-let uid, uid1, uid2, uid3, email, phoneNumber;
