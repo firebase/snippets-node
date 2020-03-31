@@ -17,6 +17,9 @@
 // [START get_service_account_tokens]
 const admin = require('firebase-admin');
 
+// [START_EXCLUDE silent]
+// @ts-ignore
+// [END_EXCLUDE]
 const serviceAccount = require('path/to/serviceAccountKey.json');
 const credential = admin.credential.cert(serviceAccount);
 
