@@ -28,4 +28,6 @@ jobs:
           key: ${{ runner.os }}-node-${{ matrix.node-version }}-${{ hashFiles('**/package-lock.json') }}
 
       - run: npm install
+      - run: echo ${{ secrets.service_account_json_base64 }} | base64 -d > ./scripts/service-account.json
+      - run: export GOOGLE_APPLICATION_CREDENTIALS=./scripts/service-account.json
       - run: ./scripts/test.sh
