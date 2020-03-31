@@ -9,4 +9,5 @@ echo "Linting..."
 npm run lint
 
 # 2) Run tests in emulator
-npx firebase --project="${GCLOUD_PROJECT}" emulators:exec --only firestore "npm run lerna-test"
+./set-credentials.sh
+npx firebase --project="firestore-snippets" emulators:exec --only firestore "npm run lerna-test"

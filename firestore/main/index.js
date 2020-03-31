@@ -1062,9 +1062,8 @@ function deleteQueryBatch(db, query, batchSize, resolve, reject) {
 // ============================================================================
 
 describe('Firestore Smoketests', () => {
-  admin.initializeApp({
-    projectId: process.env.GCLOUD_PROJECT
-  });
+
+  admin.initializeApp();
   const db = admin.firestore();
 
   it('should get an empty document', () => {
