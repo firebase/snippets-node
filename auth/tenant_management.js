@@ -9,7 +9,8 @@ function createTenant() {
     displayName: 'myTenant1',
     emailSignInConfig: {
       enabled: true,
-      passwordRequired: false, // Email link sign-in enabled.
+      // Email link sign-in enabled.
+      passwordRequired: false, 
     },
   })
   .then((createdTenant) => {
@@ -26,8 +27,11 @@ function updateTenant() {
   admin.auth().tenantManager().updateTenant(tenantId, {
     displayName: 'updatedName',
     emailSignInConfig: {
-      enabled: false, // Disable email provider.
+      // Disable email provider.
+      enabled: false, 
     },
+    // Enable anonymous sign-in
+    anonymousSignInEnabled: true,
   })
   .then((updatedTenant) => {
     console.log(updatedTenant.toJSON());
@@ -63,19 +67,3 @@ function listAllTenants(nextPageToken) {
     });
 }
 // [END auth_list_all_tentants]
-
-
-function enableAnonymousSignIn() {
-  // [START auth_tenant_enable_anon]
-  const manager = admin.auth().tenantManager();
-  manager.updateTenant(tenantId, {
-    anonymousSignInEnabled: true,
-  })
-  .then(function(tenant) {
-    console.log('Successfully updated tenant: ', JSON.stringify(tenant));
-  })
-  .catch(function(error) {
-    console.log('Error updating tenant: ', JSON.stringify(error));
-  });
-  // [END auth_tenant_enable_anon]
-}
