@@ -4,6 +4,9 @@
   "description": "Code snippets used in Node.js documentation on firebase.google.com",
   "author": "Firebase (https://firebase.google.com/)",
   "license": "Apache-2.0",
+  "scripts": {
+    "compile": "cp ../tsconfig.json.template ./tsconfig.json && tsc"
+  },
   "dependencies": {
     "firebase-admin": "^7.1.1"
   }

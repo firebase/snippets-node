@@ -2,6 +2,8 @@ node_modules
 keyfile.json
 service-account.json
 
+tsconfig.json
+
 .firebaserc
 firebase-debug.log
 

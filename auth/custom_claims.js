@@ -3,7 +3,8 @@ const admin = require('firebase-admin');
 admin.initializeApp();
 
 const uid = 'firebaseUserId123';
-let idToken;
+const idToken = "some-invalid-token";
+
 // [START set_custom_user_claims]
 // Set admin privilege on the user corresponding to uid.
 

@@ -7,7 +7,8 @@
     "firestore/extend-with-functions",
     "firestore/full-text-search",
     "firestore/presence",
-    "functions/stackdriver-logging"
+    "functions/stackdriver-logging",
+    "functions/firestore-export"
   ],
   "version": "1.0.0"
 }

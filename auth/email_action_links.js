@@ -78,7 +78,13 @@ admin.auth().generateSignInWithEmailLink(usremail, actionCodeSettings)
 // [END sign_in_with_email_link]
 
 let displayName;
-function sendSignInEmail() {}
-function sendCustomVerificationEmail() {}
-function sendCustomPasswordResetEmail() {}
+function sendSignInEmail(...args) {
+  // TODO: this function is just here to make the code "compile"
+}
+function sendCustomVerificationEmail(...args) {
+    // TODO: this function is just here to make the code "compile"
+}
+function sendCustomPasswordResetEmail(...args) {
+    // TODO: this function is just here to make the code "compile"
+}
 

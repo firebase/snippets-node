@@ -2,6 +2,10 @@
 const admin = require('firebase-admin');
 admin.initializeApp();
 
+const uid = "some_uid_1234";
+const idToken = "some_id_token";
+const utcRevocationTimeSecs = 60 * 60;
+
 // [START revoke_tokens]
 // Revoke all refresh tokens for a specified user for whatever reason.
 // Retrieve the timestamp of the revocation, in seconds since the epoch.
@@ -41,5 +45,3 @@ admin.auth().verifyIdToken(idToken, checkRevoked)
     }
   });
 // [END verify_id_token_check_revoked]
-
-let uid, idToken, utcRevocationTimeSecs;
