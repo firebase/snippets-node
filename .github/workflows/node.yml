@@ -33,4 +33,4 @@ jobs:
         run: echo ${{ secrets.service_account_json_base64 }} | base64 -d > ./scripts/service-account.json 
       
       - name: "Lint and Test"
-      - run: ./scripts/test.sh
+        run: ./scripts/test.sh
