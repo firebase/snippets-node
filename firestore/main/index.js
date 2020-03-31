@@ -1062,12 +1062,9 @@ function deleteQueryBatch(db, query, resolve, reject) {
 // ============================================================================
 
 describe('Firestore Smoketests', () => {
-  let db;
 
-  before(() => {
-    admin.initializeApp();
-    db = admin.firestore();
-  });
+  admin.initializeApp();
+  const db = admin.firestore();
 
   it('should get an empty document', () => {
     return getDocumentEmpty(db);
