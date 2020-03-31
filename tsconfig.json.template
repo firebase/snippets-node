@@ -6,8 +6,9 @@
     "lib": [],                                /* Specify library files to be included in the compilation. */
     "allowJs": true,                          /* Allow javascript files to be compiled. */
     "checkJs": true,                          /* Report errors in .js files. */
-    "outDir": "./dist",                           /* Redirect output structure to the directory. */
+    "outDir": "./dist",                       /* Redirect output structure to the directory. */
     "noEmit": true,                           /* Do not emit outputs. */
+    "resolveJsonModule": true,
 
     /* Strict Type-Checking Options */
     "strict": true,                           /* Enable all strict type-checking options. */
