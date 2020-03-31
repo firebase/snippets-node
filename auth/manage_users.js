@@ -126,8 +126,8 @@ admin.auth().updateUser(uid, {
 // Link the user with a federated identity provider (like Google).
 admin.auth().updateUser(uid, {
     providerToLink: {
-      uid: 'google_uid12345',
-      providerId: 'google.com'
+      providerId: 'google.com',
+      uid: 'google_uid12345'
     }
   })
   .then(function(userRecord) {
