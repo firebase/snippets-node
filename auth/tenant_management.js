@@ -54,7 +54,7 @@ function deleteTenant() {
   // [END auth_delete_tenant]
 }
 
-// [START auth_list_all_tentants]
+// [START auth_list_all_tenants]
 function listAllTenants(nextPageToken) {
   return admin.auth().tenantManager().listTenants(100, nextPageToken)
     .then((result) => {
@@ -66,4 +66,6 @@ function listAllTenants(nextPageToken) {
       }
     });
 }
-// [END auth_list_all_tentants]
+
+listAllTenants();
+// [END auth_list_all_tenants]
