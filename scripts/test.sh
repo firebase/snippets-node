@@ -15,5 +15,5 @@ echo "Compiling..."
 npm run lerna-compile
 
 # 3) Run tests in emulator
-source ${DIR}/set-credentials.sh
-npx firebase --project="firestore-snippets" emulators:exec --only firestore "npm run lerna-test"
+export GCLOUD_PROJECT="firestore-snippets"
+npx firebase --project="$GCLOUD_PROJECT" emulators:exec --only firestore "npm run lerna-test"
