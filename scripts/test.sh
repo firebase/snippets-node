@@ -8,7 +8,7 @@ npm run lerna-bootstrap
 
 # 1) Run linter
 echo "Linting..."
-npm run lint
+# npm run lint
 
 # 2) "Compile" the code
 echo "Compiling..."
