@@ -8,11 +8,11 @@ npm run lerna-bootstrap
 
 # 1) Run linter
 echo "Linting..."
-# npm run lint
+npm run lint
 
 # 2) "Compile" the code
 echo "Compiling..."
-npm run lerna-compile
+# npm run lerna-compile
 
 # 3) Run tests in emulator
 export GCLOUD_PROJECT="firestore-snippets"
