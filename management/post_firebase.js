@@ -1,6 +1,7 @@
 const requestPromise = require('request-promise');
+const admin = require('firebase-admin');
 
-function getAccessToken() {
+export function getAccessToken() {
   return admin.credential.applicationDefault().getAccessToken()
       .then(accessToken => {
         return accessToken.access_token;
