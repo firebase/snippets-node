@@ -1,29 +1,16 @@
 const requestPromise = require('request-promise');
 
-// [START get_sa_access_token]
-const {google} = require('googleapis');
-const SCOPES = ['https://www.googleapis.com/auth/firebase'];
-
 function getAccessToken() {
-  return new Promise(function(resolve, reject) {
-    const key = require('./service-account.json');
-    const jwtClient = new google.auth.JWT(
-        key.client_email,
-        null,
-        key.private_key,
-        SCOPES,
-        null
-    );
-    jwtClient.authorize(function(err, tokens) {
-      if (err) {
-        reject(err);
-        return;
-      }
-      resolve(tokens.access_token);
-    });
-  });
+  return admin.credential.applicationDefault().getAccessToken()
+      .then(accessToken => {
+        return accessToken.access_token;
+      })
+      .catch(err => {
+        console.log('Unable to get access token');
+        console.log(err);
+      });
 }
-// [END get_sa_access_token]
+
 
 // [START add_ios_app]
 async function addIosApp(projectId, displayName, bundleId) {
@@ -43,7 +30,7 @@ async function addIosApp(projectId, displayName, bundleId) {
 
   try {
     const resp = await requestPromise(options);
-    console.log(resp);
+    console.log(JSON.stringify(resp));
   } catch(err) {
     console.error(err['message']);
   }
@@ -68,7 +55,7 @@ async function addAndroidApp(projectId, displayName, packageName) {
 
   try {
     const resp = await requestPromise(options);
-    console.log(resp);
+    console.log(JSON.stringify(resp));
   } catch(err) {
     console.error(err['message']);
   }
@@ -92,7 +79,7 @@ async function addWebApp(projectId, displayName) {
 
   try {
     const resp = await requestPromise(options);
-    console.log(resp);
+    console.log(JSON.stringify(resp));
   } catch(err) {
     console.error(err['message']);
   }
@@ -116,7 +103,7 @@ async function finalizeProjectLocation(projectId, locationId) {
 
   try {
     const resp = await requestPromise(options);
-    console.log(resp);
+    console.log(JSON.stringify(resp));
   } catch(err) {
     console.error(err['message']);
   }

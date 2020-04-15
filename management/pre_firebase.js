@@ -7,23 +7,25 @@ async function listProjects() {
     uri: 'https://firebase.googleapis.com/v1beta1/availableProjects',
     method: 'GET',
     headers: {
-      'Authorization': 'Bearer ' + '<OAUTH2_ACCESS_TOKEN>',
+      'Authorization': 'Bearer ' + accessToken,
     },
     json: true,
   };
 
   try {
     const resp = await requestPromise(options);
-    console.log(resp);
+    console.log(JSON.stringify(resp));
     const projects = resp['projectInfo'];
-    console.log('Project total: ' + projects.length);
-    console.log('');
+    console.log(`Project total: ${projects.length}\n`);
     for (let i in projects) {
       const project = projects[i];
-      console.log('Project ' + i);
-      console.log('ID: ' + project['project']);
-      console.log('Display Name: ' + project['displayName']);
-      console.log('');
+      console.log(
+`
+Project ${i} 
+ID: ${project['project']} 
+Display Name: ${project['displayName']}
+`
+      );
     }
   } catch(err) {
     console.error(err);
@@ -44,7 +46,7 @@ async function addFirebase(projectId) {
 
   try {
     const resp = await requestPromise(options);
-    console.log(resp);
+    console.log(JSON.stringify(resp));
   } catch(err) {
     console.error(err['message']);
   }
@@ -64,7 +66,7 @@ async function checkOperation(operationName) {
 
   try {
     const resp = await requestPromise(options);
-    console.log(resp);
+    console.log(JSON.stringify(resp));
   } catch(err) {
     console.error(err['message']);
   }
