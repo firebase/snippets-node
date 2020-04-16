@@ -12,7 +12,8 @@
     "firestore/solution-aggregation/functions",
     "firestore/presence",
     "functions/stackdriver-logging",
-    "functions/firestore-export"
+    "functions/firestore-export",
+    "management"
   ],
   "version": "1.0.0"
 }
