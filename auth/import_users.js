@@ -154,7 +154,7 @@ admin.auth().importUsers([{
     // All the parameters below can be obtained from the Firebase Console's users section.
     // Must be provided in a byte buffer.
     key: Buffer.from('base64-secret', 'base64'),
-    saltSeparator: Buffer.from('base64SaltSeparator', 'base64').toString(),
+    saltSeparator: Buffer.from('base64SaltSeparator', 'base64'),
     rounds: 8,
     memoryCost: 14
   }
