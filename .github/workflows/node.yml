@@ -29,10 +29,5 @@ jobs:
 
       - run: npm install
       
-      - name: "Set up Cloud credentials"
-        run: echo ${{ secrets.service_account_json_base64 }} | base64 -d > ./scripts/service-account.json 
-      
       - name: "Lint and Test"
-        env:
-          FIREBASE_TOKEN: ${{ secrets.firebase_token }}
         run: ./scripts/test.sh

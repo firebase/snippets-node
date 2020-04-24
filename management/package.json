@@ -1,14 +1,15 @@
 {
-  "name": "firebaseapp",
+  "name": "management",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "author": "",
-  "license": "Apache-2.0",
+  "main": "post_firebase.js",
   "scripts": {
     "compile": "cp ../tsconfig.json.template ./tsconfig.json && tsc"
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
+    "request-promise": "^4.2.5",
     "firebase-admin": "^8.11.0"
   }
 }

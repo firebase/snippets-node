@@ -170,20 +170,6 @@ admin.auth().deleteUser(uid)
   });
 // [END delete_user]
 
-// [START bulk_delete_users]
-admin.auth().deleteUsers([uid1, uid2, uid3])
-  .then(function(deleteUsersResult) {
-    console.log('Successfully deleted ' + deleteUsersResult.successCount + ' users');
-    console.log('Failed to delete ' +  deleteUsersResult.failureCount + ' users');
-    deleteUsersResult.errors.forEach(function(err) {
-      console.log(err.error.toJSON());
-    });
-  })
-  .catch(function(error) {
-    console.log('Error deleting users:', error);
-  });
-// [END bulk_delete_users]
-
 // [START list_all_users]
 function listAllUsers(nextPageToken) {
   // List batch of users, 1000 at a time.
