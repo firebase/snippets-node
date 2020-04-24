@@ -10,8 +10,8 @@
     "compile": "cp ../../../tsconfig.json.template ./tsconfig.json && tsc"
   },
   "dependencies": {
-    "firebase-admin": "^8.9.2",
-    "firebase-functions": "^3.3.0"
+    "firebase-admin": "^8.11.0",
+    "firebase-functions": "^3.6.0"
   },
   "private": true
 }
