@@ -13,7 +13,8 @@
     "firestore/presence",
     "functions/stackdriver-logging",
     "functions/firestore-export",
-    "management"
+    "management",
+    "config"
   ],
   "version": "1.0.0"
 }

@@ -1,0 +1,14 @@
+{
+  "name": "config",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "cp ../tsconfig.json.template ./tsconfig.json && tsc"
+  },
+  "dependencies": {
+    "firebase-admin": "^8.11.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
