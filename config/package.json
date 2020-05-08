@@ -1,15 +1,14 @@
 {
-  "name": "management",
+  "name": "config",
   "version": "1.0.0",
   "description": "",
-  "main": "post_firebase.js",
+  "main": "index.js",
   "scripts": {
     "compile": "cp ../tsconfig.json.template ./tsconfig.json && tsc"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "request-promise": "^4.2.5",
     "firebase-admin": "^8.12.1"
-  }
+  },
+  "author": "",
+  "license": "ISC"
 }

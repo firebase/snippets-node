@@ -25,7 +25,6 @@ exports.scheduledFirestoreExport = functions.pubsub
   .then(responses => {
     const response = responses[0];
     console.log(`Operation Name: ${response['name']}`);
-    return response;
   })
   .catch(err => {
     console.error(err);
