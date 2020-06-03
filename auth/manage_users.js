@@ -42,6 +42,29 @@ admin.auth().getUserByPhoneNumber(phoneNumber)
   });
 // [END get_user_by_phone]
 
+// [START bulk_get_users]
+admin.auth().getUsers([
+    { uid: 'uid1' },
+    { email: 'user2@example.com' },
+    { phoneNumber: '+15555550003' },
+    { providerId: 'google.com', providerUid: 'google_uid4' },
+  ])
+  .then(function(getUsersResult) {
+    console.log('Successfully fetched user data:');
+    getUsersResult.users.forEach((userRecord) => {
+      console.log(userRecord);
+    });
+
+    console.log('Unable to find users corresponding to these identifiers:');
+    getUsersResult.notFound.forEach((userIdentifier) => {
+      console.log(userIdentifier);
+    });
+  })
+  .catch(function(error) {
+    console.log('Error fetching user data:', error);
+  });
+// [END bulk_get_users]
+
 // [START create_user]
 admin.auth().createUser({
   email: 'user@example.com',
@@ -104,6 +127,20 @@ admin.auth().deleteUser(uid)
     console.log('Error deleting user:', error);
   });
 // [END delete_user]
+
+// [START bulk_delete_users]
+admin.auth().deleteUsers([uid1, uid2, uid3])
+  .then(function(deleteUsersResult) {
+    console.log('Successfully deleted ' + deleteUsersResult.successCount + ' users');
+    console.log('Failed to delete ' +  deleteUsersResult.failureCount + ' users');
+    deleteUsersResult.errors.forEach(function(err) {
+      console.log(err.error.toJSON());
+    });
+  })
+  .catch(function(error) {
+    console.log('Error deleting users:', error);
+  });
+// [END bulk_delete_users]
 
 // [START list_all_users]
 function listAllUsers(nextPageToken) {
