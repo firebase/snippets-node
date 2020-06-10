@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "firebase-admin": "^8.12.1",
-    "firebase-functions": "^3.6.2",
+    "firebase-functions": "^3.7.0",
     "firebase-tools": "^8.4.2"
   }
 }
