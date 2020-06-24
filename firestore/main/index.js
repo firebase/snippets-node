@@ -89,7 +89,7 @@ async function quickstartAddData(db) {
 async function quickstartQuery(db) {
   // [START quickstart_query]
   // Realtime listens are not yet supported in the Node.js SDK
-  const snapshot = await db.collection('users').where('born', '<', 1900);
+  const snapshot = await db.collection('users').where('born', '<', 1900).get();
   snapshot.forEach(doc => {
     console.log(doc.id, '=>', doc.data());
   });
@@ -635,7 +635,7 @@ async function orderAndLimit(db) {
   // [END order_multi_field]
 
   // [START where_and_order]
-  const biggestRes = citiesRef.where('population', '>', 2500000)
+  const biggestRes = await citiesRef.where('population', '>', 2500000)
     .orderBy('population').limit(2).get();
   // [END where_and_order]
 
@@ -881,7 +881,8 @@ async function multipleCursorConditions(db) {
   const startAtNameAndStateRes = await db.collection('cities')
     .orderBy('name')
     .orderBy('state')
-    .startAt('Springfield', 'Missouri').res();
+    .startAt('Springfield', 'Missouri')
+    .get();
   // [END cursor_multiple_two_start]
 }
 
@@ -1062,15 +1063,15 @@ describe('Firestore Smoketests', () => {
   });
 
   it('should stream query data', (done) => {
-    return streamSnapshot(db, done);
+    streamSnapshot(db, done);
   });
 
   it('should listen with diffs', (done) => {
-    return listenDiffs(db, done);
+    listenDiffs(db, done);
   });
 
   it('should stream doc data', (done) => {
-    return streamDocument(db, done);
+    streamDocument(db, done);
   });
 
   it('should support simple cursors', () => {
