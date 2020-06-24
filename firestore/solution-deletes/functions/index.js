@@ -21,7 +21,7 @@ exports.mintAdminToken = functions.https.onCall(async (data, context) => {
     .auth()
     .createCustomToken(uid, { admin: true });
 
-  return { token }
+  return { token };
 });
 
 // [START recursive_delete_function]

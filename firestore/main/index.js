@@ -421,7 +421,7 @@ async function updateBatch(db) {
   await batch.commit();
   // [END update_data_batch]
 
-  console.log("Batched.");
+  console.log('Batched.');
 }
 
 // ============================================================================
@@ -581,7 +581,7 @@ async function queryAndFilter(db) {
   for (const q of [stateQueryRes, populationQueryRes, nameQueryRes]) {
     q.forEach(d => {
       console.log('Get: ', d);
-    })
+    });
   }
 }
 
@@ -845,7 +845,7 @@ async function paginateQuery(db) {
     .orderBy('population')
     .limit(3);
 
-  const snapshot = await first.get()
+  const snapshot = await first.get();
 
   // Get the last document
   const last = snapshot.docs[snapshot.docs.length - 1];
