@@ -14,15 +14,14 @@ admin.initializeApp();
  * 
  * @param {string} data.uid the user UID to set on the token.
  */
-exports.mintAdminToken = functions.https.onCall((data, context) => {
+exports.mintAdminToken = functions.https.onCall(async (data, context) => {
   const uid = data.uid;
 
-  return admin
+  const token = await admin
     .auth()
-    .createCustomToken(uid, { admin: true })
-    .then(function(token) {
-      return { token: token };
-    });
+    .createCustomToken(uid, { admin: true });
+
+  return { token };
 });
 
 // [START recursive_delete_function]
@@ -42,7 +41,7 @@ exports.recursiveDelete = functions
     timeoutSeconds: 540,
     memory: '2GB'
   })
-  .https.onCall((data, context) => {
+  .https.onCall(async (data, context) => {
     // Only allow admin users to execute this function.
     if (!(context.auth && context.auth.token && context.auth.token.admin)) {
       throw new functions.https.HttpsError(
@@ -59,17 +58,16 @@ exports.recursiveDelete = functions
     // Run a recursive delete on the given document or collection path.
     // The 'token' must be set in the functions config, and can be generated
     // at the command line by running 'firebase login:ci'.
-    return firebase_tools.firestore
+    await firebase_tools.firestore
       .delete(path, {
         project: process.env.GCLOUD_PROJECT,
         recursive: true,
         yes: true,
         token: functions.config().fb.token
-      })
-      .then(() => {
-        return {
-          path: path 
-        };
       });
+
+    return {
+      path: path 
+    };
   });
   // [END recursive_delete_function]

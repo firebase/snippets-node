@@ -115,7 +115,9 @@ function writingData() {
 
         // We'll only update if the name has changed.
         // This is crucial to prevent infinite loops.
-        if (data.name == previousData.name) return null;
+        if (data.name == previousData.name) {
+          return null;
+        }
 
         // Retrieve the current count of name changes
         let count = data.name_change_count;
