@@ -23,7 +23,6 @@ async function initializeApp() {
 async function initializeAppFunctions() {
   process.env.GCLOUD_PROJECT = 'firestorebeta1test2';
   // [START initialize_app_functions]
-  const admin = require('firebase-admin');  
   admin.initializeApp();
 
   const db = admin.firestore();
