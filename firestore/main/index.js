@@ -578,7 +578,7 @@ async function queryAndFilter(db) {
   // [END example_filters]
 
   // [START simple_query_not_equal]
-  const capitalNotFalseRes = await citiesRef.where("capital", "!=", false).get();
+  const capitalNotFalseRes = await citiesRef.where('capital', '!=', false).get();
   // [END simple_query_not_equal]
 
   for (const q of [stateQueryRes, populationQueryRes, nameQueryRes, capitalNotFalseRes]) {
@@ -615,7 +615,7 @@ async function inQueries(db) {
   // [END in_filter]
 
   // [START not_in_filter]
-  const notUsaOrJapan = await citiesRef.where("country", 'not-in', ["USA", "Japan"]).get();
+  const notUsaOrJapan = await citiesRef.where('country', 'not-in', ['USA', 'Japan']).get();
   // [END not_in_filter]
 
   // [START in_filter_with_array]
