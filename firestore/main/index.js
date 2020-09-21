@@ -577,7 +577,11 @@ async function queryAndFilter(db) {
   const nameQueryRes = await citiesRef.where('name', '>=', 'San Francisco').get();
   // [END example_filters]
 
-  for (const q of [stateQueryRes, populationQueryRes, nameQueryRes]) {
+  // [START simple_query_not_equal]
+  const capitalNotFalseRes = await citiesRef.where("capital", "!=", false);
+  // [END simple_query_not_equal]
+
+  for (const q of [stateQueryRes, populationQueryRes, nameQueryRes, capitalNotFalseRes]) {
     q.forEach(d => {
       console.log('Get: ', d);
     });
@@ -610,12 +614,17 @@ async function inQueries(db) {
   const usaOrJapan = await citiesRef.where('country', 'in', ['USA', 'Japan']).get();
   // [END in_filter]
 
+  // [START not_in_filter]
+  const notUsaOrJapan = await citiesRef.whereNotIn("country", ["USA", "Japan"]);s
+  // [END not_in_filter]
+
   // [START in_filter_with_array]
   const exactlyOneCoast = await citiesRef.where('region', 'in',
       [['west_coast', 'east_coast']]).get();
   // [END in_filter_with_array]
 
   console.log('USA or Japan get: ', usaOrJapan);
+  console.log('Not USA or Japan get: ', notUsaOrJapan);
   console.log('Exactly One Coast get: ', exactlyOneCoast);
 }
 
