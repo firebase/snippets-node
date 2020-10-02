@@ -5,19 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test-debug": "env DEBUG=firestore-snippets-node mocha index.js",
-    "test": "env ./node_modules/.bin/mocha --timeout 20000 index.js",
+    "test": "firebase --project=$GCLOUD_PROJECT emulators:exec './node_modules/.bin/mocha --timeout 20000 index.js'",
     "compile": "cp ../../tsconfig.json.template ./tsconfig.json && tsc"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google-cloud/firestore": "^2.6.0",
-    "firebase-admin": "^9.0.0",
-    "firebase-functions": "^3.9.0"
+    "@google-cloud/firestore": "^4.4.0",
+    "firebase-admin": "^9.2.0",
+    "firebase-functions": "^3.11.0"
   },
   "devDependencies": {
     "@types/mocha": "^7.0.2",
-    "firebase-tools": "^8.7.0",
+    "firebase-tools": "^8.11.2",
     "mocha": "^6.2.2"
   }
 }

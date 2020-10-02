@@ -16,4 +16,4 @@ npm run lerna-compile
 
 # 3) Run tests in emulator
 export GCLOUD_PROJECT="firestore-snippets"
-npx firebase --project="$GCLOUD_PROJECT" emulators:exec --only firestore "npm run lerna-test"
+npm run lerna-test

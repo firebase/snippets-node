@@ -20,10 +20,12 @@ app.get('/cloud-firestore-export', async (req, res) => {
   };
 
   const { outputUriPrefix } = req.query;
-  if (!outputUriPrefix) {
+  if (!(typeof outputUriPrefix === 'string')) {
     res.status(500).send('outputUriPrefix required');
-  } else if (outputUriPrefix && outputUriPrefix.indexOf('gs://') !== 0) {
+    return;
+  } else if (outputUriPrefix.indexOf('gs://') !== 0) {
     res.status(500).send(`Malformed outputUriPrefix: ${outputUriPrefix}`);
+    return;
   }
 
   // Construct a backup path folder based on the timestamp
@@ -41,7 +43,7 @@ app.get('/cloud-firestore-export', async (req, res) => {
 
   // If specified, mark specific collections for backup
   const { collections } = req.query;
-  if (collections) {
+  if (typeof collections === 'string') {
     body.collectionIds = collections.split(',');
   }
 
