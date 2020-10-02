@@ -7,7 +7,7 @@
   "scripts": {
     "lerna-test": "lerna run test",
     "lerna-compile": "lerna run compile",
-    "lerna-bootstrap": "lerna bootstrap --hoist",
+    "lerna-bootstrap": "lerna bootstrap",
     "lint": "find . -type f -name \"*.js\" -not -path \"*node_modules*\" | xargs eslint"
   },
   "devDependencies": {
