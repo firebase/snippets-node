@@ -76,7 +76,7 @@ admin
     });
   })
   .catch((error) => {
-    console.log(`Error importing users :`, error);
+    console.log("Error importing users :", error);
   });
 // [END import_with_hmac]
 
@@ -107,7 +107,7 @@ admin
     });
   })
   .catch((error) => {
-    console.log(`Error importing users :`, error);
+    console.log("Error importing users :", error);
   });
 // [END import_with_pbkdf]
 
@@ -141,7 +141,7 @@ admin
     });
   })
   .catch((error) => {
-    console.log(`Error importing users :`, error);
+    console.log("Error importing users :", error);
   });
 // [END import_with_standard_scrypt]
 
@@ -169,7 +169,7 @@ admin
     });
   })
   .catch((error) => {
-    console.log(`Error importing users :`, error);
+    console.log("Error importing users :", error);
   });
 // [END import_with_bcrypt]
 
@@ -205,7 +205,7 @@ admin
     });
   })
   .catch((error) => {
-    console.log(`Error importing users :`, error);
+    console.log("Error importing users :", error);
   });
 // [END import_with_scrypt]
 
@@ -240,6 +240,6 @@ admin
     });
   })
   .catch((error) => {
-    console.log(`Error importing users :`, error);
+    console.log("Error importing users :", error);
   });
 // [END import_without_password]
