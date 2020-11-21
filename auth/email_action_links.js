@@ -85,7 +85,7 @@ admin
   });
 // [END sign_in_with_email_link]
 
-const displayName;
+let displayName;
 const sendSignInEmail = (...args) => {
   // TODO: this function is just here to make the code "compile"
 };
