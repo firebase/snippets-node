@@ -16,7 +16,9 @@ admin.initializeApp({
 // [START custom_token]
 const uid = 'some-uid';
 
-admin.auth().createCustomToken(uid)
+admin
+  .auth()
+  .createCustomToken(uid)
   .then((customToken) => {
     // Send token back to client
   })
@@ -28,10 +30,12 @@ admin.auth().createCustomToken(uid)
 // [START custom_token_with_claims]
 const userId = 'some-uid';
 const additionalClaims = {
-  premiumAccount: true
+  premiumAccount: true,
 };
 
-admin.auth().createCustomToken(userId, additionalClaims)
+admin
+  .auth()
+  .createCustomToken(userId, additionalClaims)
   .then((customToken) => {
     // Send token back to client
   })
