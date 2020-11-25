@@ -71,14 +71,14 @@ admin
 
 // [START sign_in_with_email_link]
 // Admin SDK API to generate the sign in with email link.
-const usremail = 'user@example.com';
+const useremail = 'user@example.com';
 admin
   .auth()
-  .generateSignInWithEmailLink(usremail, actionCodeSettings)
+  .generateSignInWithEmailLink(useremail, actionCodeSettings)
   .then((link) => {
     // Construct sign-in with email link template, embed the link and
     // send using custom SMTP server.
-    return sendSignInEmail(usremail, displayName, link);
+    return sendSignInEmail(useremail, displayName, link);
   })
   .catch((error) => {
     // Some error occurred.
