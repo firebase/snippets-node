@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@google-cloud/logging": "^7.3.0",
-    "firebase-admin": "^9.4.1",
+    "firebase-admin": "^9.4.2",
     "firebase-functions": "^3.13.0"
   }
 }
