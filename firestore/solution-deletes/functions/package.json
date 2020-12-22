@@ -14,6 +14,6 @@
   "dependencies": {
     "firebase-admin": "^9.4.2",
     "firebase-functions": "^3.13.0",
-    "firebase-tools": "^9.0.1"
+    "firebase-tools": "^9.1.0"
   }
 }
