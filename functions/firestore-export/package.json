@@ -1,7 +1,7 @@
 {
     "name": "functions-firestore-export",
     "version": "1.0.0",
-    "description": "Scheduled Cloud Firestore exports.",
+    "description": "Scheduled Firestore exports.",
     "main": "index.js",
     "author": "",
     "license": "Apache-2.0",

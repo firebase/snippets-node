@@ -1,7 +1,7 @@
 {
   "name": "solution-scheduled-backups",
   "version": "1.0.0",
-  "description": "Scheduled Cloud Firestore backups via AppEngine cron",
+  "description": "Scheduled Firestore backups via AppEngine cron",
   "main": "app.js",
   "engines": {
     "node": "10.x.x"
