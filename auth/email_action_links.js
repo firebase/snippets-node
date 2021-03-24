@@ -10,22 +10,24 @@ const actionCodeSettings = {
   // This must be true for email link sign-in.
   handleCodeInApp: true,
   iOS: {
-    bundleId: 'com.example.ios'
+    bundleId: 'com.example.ios',
   },
   android: {
     packageName: 'com.example.android',
     installApp: true,
-    minimumVersion: '12'
+    minimumVersion: '12',
   },
   // FDL custom domain.
-  dynamicLinkDomain: 'coolapp.page.link'
+  dynamicLinkDomain: 'coolapp.page.link',
 };
 // [END init_action_code_settings]
 
 // [START password_reset_link]
 // Admin SDK API to generate the password reset link.
 const userEmail = 'user@example.com';
-admin.auth().generatePasswordResetLink(userEmail, actionCodeSettings)
+admin
+  .auth()
+  .generatePasswordResetLink(userEmail, actionCodeSettings)
   .then((link) => {
     // Construct password reset email template, embed the link and send
     // using custom SMTP server.
@@ -39,7 +41,9 @@ admin.auth().generatePasswordResetLink(userEmail, actionCodeSettings)
 // [START email_verification_link]
 // Admin SDK API to generate the password reset link.
 const email = 'user@example.com';
-admin.auth().generatePasswordResetLink(email, actionCodeSettings)
+admin
+  .auth()
+  .generatePasswordResetLink(email, actionCodeSettings)
   .then((link) => {
     // Construct password reset email template, embed the link and send
     // using custom SMTP server.
@@ -52,7 +56,9 @@ admin.auth().generatePasswordResetLink(email, actionCodeSettings)
 // [START email_verification_link]
 // Admin SDK API to generate the email verification link.
 const useremail = 'user@example.com';
-admin.auth().generateEmailVerificationLink(useremail, actionCodeSettings)
+admin
+  .auth()
+  .generateEmailVerificationLink(useremail, actionCodeSettings)
   .then((link) => {
     // Construct email verification template, embed the link and send
     // using custom SMTP server.
@@ -66,7 +72,9 @@ admin.auth().generateEmailVerificationLink(useremail, actionCodeSettings)
 // [START sign_in_with_email_link]
 // Admin SDK API to generate the sign in with email link.
 const usremail = 'user@example.com';
-admin.auth().generateSignInWithEmailLink(usremail, actionCodeSettings)
+admin
+  .auth()
+  .generateSignInWithEmailLink(usremail, actionCodeSettings)
   .then((link) => {
     // Construct sign-in with email link template, embed the link and
     // send using custom SMTP server.
@@ -78,13 +86,12 @@ admin.auth().generateSignInWithEmailLink(usremail, actionCodeSettings)
 // [END sign_in_with_email_link]
 
 let displayName;
-function sendSignInEmail(...args) {
+const sendSignInEmail = (...args) => {
   // TODO: this function is just here to make the code "compile"
-}
-function sendCustomVerificationEmail(...args) {
-    // TODO: this function is just here to make the code "compile"
-}
-function sendCustomPasswordResetEmail(...args) {
-    // TODO: this function is just here to make the code "compile"
-}
-
+};
+const sendCustomVerificationEmail = (...args) => {
+  // TODO: this function is just here to make the code "compile"
+};
+const sendCustomPasswordResetEmail = (...args) => {
+  // TODO: this function is just here to make the code "compile"
+};

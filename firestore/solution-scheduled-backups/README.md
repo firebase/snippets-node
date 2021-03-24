@@ -1,7 +1,7 @@
-# Cloud Firestore Scheduled Backups
+# Firestore Scheduled Backups
 
 This sample demonstrates using AppEngine cron jobs to run nightly backups
-of data in Cloud Firestore.
+of data in Firestore.
 
 ## Setup
 
@@ -11,7 +11,7 @@ Firestore database within the project.
 
 ### 2 - Configure IAM
 This sample will use the AppEngine default service account to perform
-backups of your Cloud Firestore data. To do this, you will need to give
+backups of your Firestore data. To do this, you will need to give
 the service account permission to access your data and save it to
 google cloud storage.
 
