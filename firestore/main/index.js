@@ -1,21 +1,22 @@
 const debug = require('debug')('firestore-snippets-node');
 
 // [START firestore_deps]
-const admin = require('firebase-admin');
+import { initializeApp, applicationDefault, cert } from 'firebase-admin/app';
+import { getFirestore, Timestamp, FieldValue } from 'firebase-admin/firestore';
 // [END firestore_deps]
 
 // We supress these logs when not in NODE_ENV=debug for cleaner Mocha output
 const console = {log: debug};
 
-async function initializeApp() {
+async function demoInitializeApp() {
   process.env.GCLOUD_PROJECT = 'firestorebeta1test2';
   // [START initialize_app]
 
-  admin.initializeApp({
-    credential: admin.credential.applicationDefault()
+  initializeApp({
+    credential: applicationDefault()
   });
 
-  const db = admin.firestore();
+  const db = getFirestore();
   // [END initialize_app]
   return db;
 }
@@ -23,9 +24,9 @@ async function initializeApp() {
 async function initializeAppFunctions() {
   process.env.GCLOUD_PROJECT = 'firestorebeta1test2';
   // [START initialize_app_functions]
-  admin.initializeApp();
+  initializeApp();
 
-  const db = admin.firestore();
+  const db = getFirestore();
 
   // [END initialize_app_functions]
   return db;
@@ -36,11 +37,11 @@ async function initializeAppSA() {
 
   const serviceAccount = require('./path/to/serviceAccountKey.json');
 
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
+  initializeApp({
+    credential: cert(serviceAccount)
   });
 
-  const db = admin.firestore();
+  const db = getFirestore();
 
   // [END initialize_app_service_account]
   return db;
@@ -171,7 +172,7 @@ async function dataTypes(db) {
     stringExample: 'Hello, World!',
     booleanExample: true,
     numberExample: 3.14159265,
-    dateExample: admin.firestore.Timestamp.fromDate(new Date('December 10, 1815')),
+    dateExample: Timestamp.fromDate(new Date('December 10, 1815')),
     arrayExample: [5, true, 'hello'],
     nullExample: null,
     objectExample: {
@@ -249,11 +250,11 @@ async function updateDocumentArray(db) {
 
   // Atomically add a new region to the "regions" array field.
   const unionRes = await washingtonRef.update({
-    regions: admin.firestore.FieldValue.arrayUnion('greater_virginia')
+    regions: FieldValue.arrayUnion('greater_virginia')
   });
   // Atomically remove a region from the "regions" array field.
   const removeRes = await washingtonRef.update({
-    regions: admin.firestore.FieldValue.arrayRemove('east_coast')
+    regions: FieldValue.arrayRemove('east_coast')
   });
   // [END firestore_data_set_array_operations]
   // [END update_document_array]
@@ -270,7 +271,7 @@ async function updateDocumentIncrement(db) {
 
   // Atomically increment the population of the city by 50.
   const res = await washingtonRef.update({
-    population: admin.firestore.FieldValue.increment(50)
+    population: FieldValue.increment(50)
   });
   // [END firestore_data_set_numeric_increment]
   // [END update_document_increment]
@@ -314,9 +315,6 @@ async function updateServerTimestamp(db) {
 
   // [START update_with_server_timestamp]
   // [START firestore_data_set_server_timestamp]
-  // Get the `FieldValue` object
-  const FieldValue = admin.firestore.FieldValue;
-
   // Create a document reference
   const docRef = db.collection('objects').doc('some-id');
 
@@ -334,9 +332,6 @@ async function updateDeleteField(db) {
   const admin = require('firebase-admin');
   // [START update_delete_field]
   // [START firestore_data_delete_field]
-  // Get the `FieldValue` object
-  const FieldValue = admin.firestore.FieldValue;
-
   // Create a document reference
   const cityRef = db.collection('cities').doc('BJ');
 
@@ -1058,8 +1053,8 @@ async function deleteQueryBatch(db, query, resolve) {
 
 describe('Firestore Smoketests', () => {
 
-  admin.initializeApp();
-  const db = admin.firestore();
+  initializeApp();
+  const db = getFirestore();
 
   it('should get an empty document', () => {
     return getDocumentEmpty(db);

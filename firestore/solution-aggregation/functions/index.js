@@ -1,7 +1,7 @@
 const functions = require('firebase-functions');
-const admin = require('firebase-admin');
+import { getFirestore } from 'firebase-admin/firestore';
 
-const db = admin.firestore();
+const db = getFirestore();
 // [START_EXCLUDE]
 const settings = {timestampsInSnapshots: true};
 db.settings(settings);
