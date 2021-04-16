@@ -1,6 +1,7 @@
 'use strict';
-const admin = require('firebase-admin');
-admin.initializeApp();
+import { initializeApp } from 'firebase-admin/app';
+import { getAuth } from 'firebase-admin/auth';
+initializeApp();
 
 // [START init_action_code_settings]
 const actionCodeSettings = {
@@ -25,8 +26,7 @@ const actionCodeSettings = {
 // [START password_reset_link]
 // Admin SDK API to generate the password reset link.
 const userEmail = 'user@example.com';
-admin
-  .auth()
+getAuth()
   .generatePasswordResetLink(userEmail, actionCodeSettings)
   .then((link) => {
     // Construct password reset email template, embed the link and send
@@ -41,8 +41,7 @@ admin
 // [START email_verification_link]
 // Admin SDK API to generate the password reset link.
 const email = 'user@example.com';
-admin
-  .auth()
+getAuth()
   .generatePasswordResetLink(email, actionCodeSettings)
   .then((link) => {
     // Construct password reset email template, embed the link and send
@@ -56,8 +55,7 @@ admin
 // [START email_verification_link]
 // Admin SDK API to generate the email verification link.
 const useremail = 'user@example.com';
-admin
-  .auth()
+getAuth()
   .generateEmailVerificationLink(useremail, actionCodeSettings)
   .then((link) => {
     // Construct email verification template, embed the link and send
@@ -72,8 +70,7 @@ admin
 // [START sign_in_with_email_link]
 // Admin SDK API to generate the sign in with email link.
 const usremail = 'user@example.com';
-admin
-  .auth()
+getAuth()
   .generateSignInWithEmailLink(usremail, actionCodeSettings)
   .then((link) => {
     // Construct sign-in with email link template, embed the link and

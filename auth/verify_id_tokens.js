@@ -1,13 +1,13 @@
 'use strict';
-const admin = require('firebase-admin');
-admin.initializeApp();
+import { initializeApp } from 'firebase-admin/app';
+import { getAuth } from 'firebase-admin/auth';
+initializeApp();
 
 const idToken = 'some_id_token';
 
 // [START verify_id_token]
 // idToken comes from the client app
-admin
-  .auth()
+getAuth()
   .verifyIdToken(idToken)
   .then((decodedToken) => {
     const uid = decodedToken.uid;
