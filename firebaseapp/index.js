@@ -1,4 +1,4 @@
-import { initializeApp, cert } from 'firebase-admin/app';
+const { initializeApp, cert } = require('firebase-admin/app');
 
 function multipleFirebaseApps() {
     // [START firebase_options]

@@ -1,5 +1,5 @@
-import { initializeApp } from 'firebase-admin/app';
-import { getRemoteConfig } from 'firebase-admin/remote-config';
+const { initializeApp } = require('firebase-admin/app');
+const { getRemoteConfig } = require('firebase-admin/remote-config');
 initializeApp();
 
 // [START validate_template]

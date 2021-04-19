@@ -1,6 +1,6 @@
 'use strict';
-import { initializeApp } from 'firebase-admin/app';
-import { getAuth } from 'firebase-admin/auth';
+const { initializeApp } = require('firebase-admin/app');
+const { getAuth } = require('firebase-admin/auth');
 
 // Initialize the Admin app with the default appication credentials
 // [START initialize_sdk_with_default_config]

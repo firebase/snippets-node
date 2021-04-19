@@ -1,4 +1,4 @@
-import { applicationDefault } from 'firebase-admin/app';
+const { applicationDefault } = require('firebase-admin/app');
 const requestPromise = require('request-promise');
 
 export function getAccessToken() {

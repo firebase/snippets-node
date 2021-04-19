@@ -1,5 +1,5 @@
 const functions = require('firebase-functions');
-import { getFirestore } from 'firebase-admin/firestore';
+const { getFirestore } = require('firebase-admin/firestore');
 
 const db = getFirestore();
 // [START_EXCLUDE]

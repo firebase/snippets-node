@@ -15,7 +15,7 @@
  */
 'use strict';
 // [START get_service_account_tokens]
-import { cert } from 'firebase-admin/app';
+const { cert } = require('firebase-admin/app');
 
 const serviceAccount = require('./path/to/serviceAccountKey.json');
 const credential = cert(serviceAccount);
