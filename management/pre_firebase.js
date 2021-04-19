@@ -1,4 +1,4 @@
-const {getAccessToken} from './post_firebase';
+const { getAccessToken } = require('./post_firebase');
 const requestPromise = require('request-promise');
 
 // [START list_available_projects]
