@@ -3,11 +3,11 @@ const admin = require('firebase-admin');
 function saveDataRef() {
   // [START rtdb_save_data_ref]
   // Import Admin SDK
-  const admin = require("firebase-admin");
+  const admin = require('firebase-admin');
 
   // Get a database reference to our blog
   const db = admin.database();
-  const ref = db.ref("server/saving-data/fireblog");
+  const ref = db.ref('server/saving-data/fireblog');
   // [END rtdb_save_data_ref]
 
   return ref;
@@ -17,15 +17,15 @@ function saveUsers() {
   const ref = saveDataRef();
 
   // [START rtdb_save_users]
-  const usersRef = ref.child("users");
+  const usersRef = ref.child('users');
   usersRef.set({
     alanisawesome: {
-      date_of_birth: "June 23, 1912",
-      full_name: "Alan Turing"
+      date_of_birth: 'June 23, 1912',
+      full_name: 'Alan Turing'
     },
     gracehop: {
-      date_of_birth: "December 9, 1906",
-      full_name: "Grace Hopper"
+      date_of_birth: 'December 9, 1906',
+      full_name: 'Grace Hopper'
     }
   });
   // [END rtdb_save_users]
@@ -35,14 +35,14 @@ function saveUserChild() {
   const ref = saveDataRef();
 
   // [START rtdb_save_user_child]
-  const usersRef = ref.child("users");
-  usersRef.child("alanisawesome").set({
-    date_of_birth: "June 23, 1912",
-    full_name: "Alan Turing"
+  const usersRef = ref.child('users');
+  usersRef.child('alanisawesome').set({
+    date_of_birth: 'June 23, 1912',
+    full_name: 'Alan Turing'
   });
-  usersRef.child("gracehop").set({
-    date_of_birth: "December 9, 1906",
-    full_name: "Grace Hopper"
+  usersRef.child('gracehop').set({
+    date_of_birth: 'December 9, 1906',
+    full_name: 'Grace Hopper'
   });
   // [END rtdb_save_user_child]
 }
@@ -51,10 +51,10 @@ function singleUserUpdate() {
   const ref = saveDataRef();
 
   // [START rtdb_single_user_update]
-  const usersRef = ref.child("users");
-  const hopperRef = usersRef.child("gracehop");
+  const usersRef = ref.child('users');
+  const hopperRef = usersRef.child('gracehop');
   hopperRef.update({
-    "nickname": "Amazing Grace"
+    'nickname': 'Amazing Grace'
   });
   // [END rtdb_single_user_update]
 }
@@ -63,10 +63,10 @@ function multiUserUpdate() {
   const ref = saveDataRef();
   
   // [START rtdb_multi_user_update]
-  const usersRef = ref.child("users");
+  const usersRef = ref.child('users');
   usersRef.update({
-    "alanisawesome/nickname": "Alan The Machine",
-    "gracehop/nickname": "Amazing Grace"
+    'alanisawesome/nickname': 'Alan The Machine',
+    'gracehop/nickname': 'Amazing Grace'
   });
   // [END rtdb_multi_user_update]
 }
@@ -75,13 +75,13 @@ function multiUserUpdateObjects() {
   const ref = saveDataRef();
 
   // [START rtdb_multi_user_update_objects]
-  const usersRef = ref.child("users");
+  const usersRef = ref.child('users');
   usersRef.update({
-    "alanisawesome": {
-      "nickname": "Alan The Machine"
+    'alanisawesome': {
+      'nickname': 'Alan The Machine'
     },
-    "gracehop": {
-      "nickname": "Amazing Grace"
+    'gracehop': {
+      'nickname': 'Amazing Grace'
     }
   });
   // [END rtdb_multi_user_update_objects]
@@ -91,11 +91,11 @@ function setCompletionCallback() {
   const dataRef = saveDataRef().push();
 
   // [START rtdb_set_completion_callback]
-  dataRef.set("I'm writing data", (error) => {
+  dataRef.set('I\'m writing data', (error) => {
     if (error) {
-      console.log("Data could not be saved." + error);
+      console.log('Data could not be saved.' + error);
     } else {
-      console.log("Data saved successfully.");
+      console.log('Data saved successfully.');
     }
   });
   // [END rtdb_set_completion_callback]
@@ -107,14 +107,14 @@ function pushPosts() {
   // [START rtdb_push_posts]
   const newPostRef = postsRef.push();
   newPostRef.set({
-    author: "gracehop",
-    title: "Announcing COBOL, a New Programming Language"
+    author: 'gracehop',
+    title: 'Announcing COBOL, a New Programming Language'
   });
 
   // we can also chain the two calls together
   postsRef.push().set({
-    author: "alanisawesome",
-    title: "The Turing Machine"
+    author: 'alanisawesome',
+    title: 'The Turing Machine'
   });
   // [END rtdb_push_posts]
 }
@@ -125,8 +125,8 @@ function pushAndSetValue() {
   // [START rtdb_push_and_set_value]
   // This is equivalent to the calls to push().set(...) above
   postsRef.push({
-    author: "gracehop",
-    title: "Announcing COBOL, a New Programming Language"
+    author: 'gracehop',
+    title: 'Announcing COBOL, a New Programming Language'
   });
   // [END rtdb_push_and_set_value]
 }
@@ -147,7 +147,7 @@ function saveTransaction() {
   const db = admin.database();
 
   // [START rtdb_save_transaction]
-  const upvotesRef = db.ref("server/saving-data/fireblog/posts/-JRHTHaIs-jNPLXOQivY/upvotes");
+  const upvotesRef = db.ref('server/saving-data/fireblog/posts/-JRHTHaIs-jNPLXOQivY/upvotes');
   upvotesRef.transaction((current_value) => {
     return (current_value || 0) + 1;
   });

@@ -1,7 +1,7 @@
 const admin = require('firebase-admin');
 
 function subscribeToTopic() {
-  const topic = "test";
+  const topic = 'test';
 
   // [START fcm_subscribe_to_topic]
   // These registration tokens come from the client FCM SDKs.
@@ -26,7 +26,7 @@ function subscribeToTopic() {
 }
 
 function unsubscribeFromTopic() {
-  const topic = "test";
+  const topic = 'test';
 
   // [START fcm_unsubscribe_from_topic]
   // These registration tokens come from the client FCM SDKs.
@@ -105,7 +105,7 @@ function sendMessageCondition() {
   // [START fcm_send_message_condition]
   // Define a condition which will send to devices which are subscribed
   // to either the Google stock or the tech industry topics.
-  const condition = "'stock-GOOG' in topics || 'industry-tech' in topics";
+  const condition = '\'stock-GOOG\' in topics || \'industry-tech\' in topics';
 
   // See documentation on defining a message payload.
   const message = {
@@ -142,7 +142,7 @@ function sendMessageMultipleDevices() {
   const message = {
     data: {score: '850', time: '2:45'},
     tokens: registrationTokens,
-  }
+  };
 
   admin.messaging().sendMulticast(message)
     .then((response) => {
@@ -163,7 +163,7 @@ function sendMulticast() {
   const message = {
     data: {score: '850', time: '2:45'},
     tokens: registrationTokens,
-  }
+  };
 
   admin.messaging().sendMulticast(message)
     .then((response) => {
@@ -181,7 +181,7 @@ function sendMulticast() {
 }
 
 function sendAll() {
-  const registrationToken = "...";
+  const registrationToken = '...';
 
   // [START fcm_send_all]
   // Create a list containing up to 500 messages.
@@ -204,7 +204,7 @@ function sendAll() {
 
 function notificationMessage() {
   // [START fcm_notification_message]
-  const topicName = 'industry-tech'
+  const topicName = 'industry-tech';
 
   const message = {
     notification: {
@@ -233,7 +233,7 @@ function notificationMessage() {
 
 function notificationMessageImage() {
   // [START fcm_notification_message_image]
-  const topicName = 'industry-tech'
+  const topicName = 'industry-tech';
 
   const message = {
     notification: {
@@ -275,7 +275,7 @@ function notificationMessageImage() {
 
 function notificationMessageClick() {
   // [START fcm_notification_message_click]
-  const topicName = 'industry-tech'
+  const topicName = 'industry-tech';
 
   const message = {
     notification: {
@@ -314,7 +314,7 @@ function notificationMessageClick() {
 
 function notificationMessageLocalization() {
   // [START fcm_notification_message_localization]
-  var topicName = 'industry-tech'
+  var topicName = 'industry-tech';
 
   var message = {
     android: {

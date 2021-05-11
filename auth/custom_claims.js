@@ -105,7 +105,7 @@ function customClaimsCloudFunction() {
         await admin.auth().setCustomUserClaims(user.uid, customClaims);
 
         // Update real-time database to notify client to force refresh.
-        const metadataRef = admin.database().ref("metadata/" + user.uid);
+        const metadataRef = admin.database().ref('metadata/' + user.uid);
 
         // Set the refresh time to the current UTC timestamp.
         // This will be captured on the client to force a token refresh.

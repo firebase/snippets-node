@@ -11,7 +11,7 @@ function initializeApplicationDefault() {
 
 function initializeRefreshToken() {
     // [START initialize_refresh_token]
-    const refreshToken = "..."; // Get refresh token from OAuth2 flow
+    const refreshToken = '...'; // Get refresh token from OAuth2 flow
 
     admin.initializeApp({
       credential: admin.credential.refreshToken(refreshToken),
