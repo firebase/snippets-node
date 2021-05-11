@@ -16,7 +16,8 @@
     "functions/stackdriver-logging",
     "functions/firestore-export",
     "management",
-    "messaging"
+    "messaging",
+    "storage"
   ],
   "version": "1.0.0"
 }
