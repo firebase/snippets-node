@@ -9,7 +9,7 @@
         "compile": "cp ../../tsconfig.json.template ./tsconfig.json && tsc"
     },
     "dependencies": {
-        "firebase-admin": "exp",
+        "@google-cloud/firestore": "^4.11.1",
         "firebase-functions": "^3.14.0"
     }
 }
