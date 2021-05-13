@@ -2,6 +2,8 @@
   "lerna": "2.8.0",
   "packages": [
     "auth",
+    "config",
+    "database",
     "firebaseapp",
     "firestore/main",
     "firestore/extend-with-functions",
@@ -14,7 +16,8 @@
     "functions/stackdriver-logging",
     "functions/firestore-export",
     "management",
-    "config"
+    "messaging",
+    "storage"
   ],
   "version": "1.0.0"
 }

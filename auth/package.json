@@ -8,6 +8,8 @@
     "compile": "cp ../tsconfig.json.template ./tsconfig.json && tsc"
   },
   "dependencies": {
-    "firebase-admin": "exp"
+    "express": "^4.17.1",
+    "firebase-admin": "exp",
+    "firebase-functions": "^3.14.0"
   }
 }
