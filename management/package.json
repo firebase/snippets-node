@@ -10,6 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "request-promise": "^4.2.5",
-    "firebase-admin": "exp"
+    "firebase-admin": "^9.100.0-alpha.0"
   }
 }
