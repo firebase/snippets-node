@@ -31,27 +31,12 @@ admin
   .then((link) => {
     // Construct password reset email template, embed the link and send
     // using custom SMTP server.
-    return sendCustomPasswordResetEmail(email, displayName, link);
+    return sendCustomPasswordResetEmail(userEmail, displayName, link);
   })
   .catch((error) => {
     // Some error occurred.
   });
 // [END password_reset_link]
-
-// [START email_verification_link]
-// Admin SDK API to generate the password reset link.
-const email = 'user@example.com';
-admin
-  .auth()
-  .generatePasswordResetLink(email, actionCodeSettings)
-  .then((link) => {
-    // Construct password reset email template, embed the link and send
-    // using custom SMTP server.
-    return sendCustomPasswordResetEmail(email, displayName, link);
-  })
-  .catch((error) => {
-    // Some error occurred.
-  });
 
 // [START email_verification_link]
 // Admin SDK API to generate the email verification link.
