@@ -231,11 +231,11 @@ async function updateDocumentArray(db) {
 
   // To add or remove multiple regions, 
   // pass all new items in the respective method.
-  const unionRes = await washingtonRef.update({
+  const multipleUnionRes = await washingtonRef.update({
     regions: admin.firestore.FieldValue.arrayUnion('south_carolina', 'texas')
     // Alternatively, you can use spread operator in ES6 syntax
-    //const newRegions = ['south_carolina', 'texas']
-    //regions: admin.firestore.FieldValue.arrayUnion(...newRegions)
+    // const newRegions = ['south_carolina', 'texas']
+    // regions: admin.firestore.FieldValue.arrayUnion(...newRegions)
   });
   // [END firestore_data_set_array_operations]
 
