@@ -1,11 +1,27 @@
 const debug = require('debug')('firestore-snippets-node');
 
 // [START firestore_deps]
+// [START firestore_setup_client_create]
 const admin = require('firebase-admin');
 // [END firestore_deps]
+// [END firestore_setup_client_create]
+
 
 // We supress these logs when not in NODE_ENV=debug for cleaner Mocha output
 const console = {log: debug};
+
+async function initializeAppWithProjectId() {
+  // [START firestore_setup_client_create]
+  admin.initializeApp({
+    // The `projectId` parameter is optional and represents which project the
+    // client will act on behalf of. If not supplied, it falls back to the default
+    // project inferred from the environment.
+    projectId: 'my-project-id',
+  });
+  const db = admin.firestore();
+  // [END firestore_setup_client_create]
+  return db;
+}
 
 async function initializeApp() {
   process.env.GCLOUD_PROJECT = 'firestorebeta1test2';
@@ -17,6 +33,8 @@ async function initializeApp() {
 
   const db = admin.firestore();
   // [END initialize_app]
+  await db.terminate();
+  // Destroy connection so we can run other tests that initialize the default app.
   return db;
 }
 
@@ -944,8 +962,12 @@ async function deleteQueryBatch(db, query, resolve) {
 
 describe('Firestore Smoketests', () => {
 
-  admin.initializeApp();
-  const db = admin.firestore();
+  const app = admin.initializeApp({}, 'tests');
+  const db = admin.firestore(app);
+
+  it('should initialize a db with the default credential', () => {
+    return initializeApp();
+  });
 
   it('should get an empty document', () => {
     return getDocumentEmpty(db);
