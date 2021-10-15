@@ -1,17 +1,19 @@
-const admin = require('firebase-admin');
+const { initializeApp } = require('firebase-admin/app');
+const { getStorage } = require('firebase-admin/storage');
 
 function initDefaultBucket() {
   // [START storage_init_default_bucket]
-  const admin = require('firebase-admin');
+  const { initializeApp, cert } = require('firebase-admin/app');
+  const { getStorage } = require('firebase-admin/storage');
 
   const serviceAccount = require('./path/to/serviceAccountKey.json');
 
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+  initializeApp({
+    credential: cert(serviceAccount),
     storageBucket: '<BUCKET_NAME>.appspot.com'
   });
 
-  const bucket = admin.storage().bucket();
+  const bucket = getStorage().bucket();
 
   // 'bucket' is an object defined in the @google-cloud/storage library.
   // See https://googlecloudplatform.github.io/google-cloud-node/#/docs/storage/latest/storage/bucket
@@ -21,16 +23,16 @@ function initDefaultBucket() {
 
 function customBucket() {
   // [START storage_custom_bucket]
-  const bucket = admin.storage().bucket('my-custom-bucket');
+  const bucket = getStorage().bucket('my-custom-bucket');
   // [END storage_custom_bucket]
 }
 
 function customApp() {
-  const customApp = admin.initializeApp({
+  const customApp = initializeApp({
     // ...
   }, 'custom');
 
   // [START storage_custom_app]
-  const bucket = customApp.storage().bucket();
+  const bucket = getStorage(customApp).bucket();
   // [END storage_custom_app]
 }

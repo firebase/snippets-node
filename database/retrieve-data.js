@@ -1,9 +1,9 @@
-const admin = require('firebase-admin');
+const { getDatabase } = require('firebase-admin/database');
 
 function readValue() {
   // [START rtdb_read_value]
   // Get a database reference to our posts
-  const db = admin.database();
+  const db = getDatabase();
   const ref = db.ref('server/saving-data/fireblog/posts');
 
   // Attach an asynchronous callback to read the data at our posts reference
@@ -16,7 +16,7 @@ function readValue() {
 }
 
 function childAdded() {
-  const db = admin.database();
+  const db = getDatabase();
   const ref = db.ref('server/saving-data/fireblog/posts');
 
   // [START rtdb_child_added]
@@ -31,7 +31,7 @@ function childAdded() {
 }
 
 function childChanged() {
-  const db = admin.database();
+  const db = getDatabase();
   const ref = db.ref('server/saving-data/fireblog/posts');
 
   // [START rtdb_child_changed]
@@ -44,7 +44,7 @@ function childChanged() {
 }
 
 function childRemoved() {
-  const db = admin.database();
+  const db = getDatabase();
 
   // [START rtdb_child_removed]
   // Get a reference to our posts
@@ -59,7 +59,7 @@ function childRemoved() {
 }
 
 function eventGuarantees() {
-  const db = admin.database();
+  const db = getDatabase();
   const ref = db.ref('server/saving-data/fireblog/posts');
 
   // [START rtdb_event_guarantees]
@@ -79,7 +79,7 @@ function eventGuarantees() {
 }
 
 function detatchCallbacks() {
-  const db = admin.database();
+  const db = getDatabase();
   const ref = db.ref('server/saving-data/fireblog/posts');
 
   const originalCallback = () => { 
@@ -92,7 +92,7 @@ function detatchCallbacks() {
 }
 
 function detatchCallbacksContext() {
-  const db = admin.database();
+  const db = getDatabase();
   const ref = db.ref('server/saving-data/fireblog/posts');
 
   const originalCallback = () => { 
@@ -108,7 +108,7 @@ function detatchCallbacksContext() {
 }
 
 function detachAllCallbacks() {
-  const db = admin.database();
+  const db = getDatabase();
   const ref = db.ref('server/saving-data/fireblog/posts');
 
   // [START rtdb_detach_all_callbacks]
@@ -121,7 +121,7 @@ function detachAllCallbacks() {
 }
 
 function readOnce() {
-  const db = admin.database();
+  const db = getDatabase();
   const ref = db.ref('server/saving-data/fireblog/posts');
 
   // [START rtdb_read_once]
@@ -132,7 +132,7 @@ function readOnce() {
 }
 
 function orderByChild() {
-  const db = admin.database();
+  const db = getDatabase();
 
   // [START rtdb_order_by_child]
   const ref = db.ref('dinosaurs');
@@ -144,7 +144,7 @@ function orderByChild() {
 }
 
 function orderByChildNested() {
-  const db = admin.database();
+  const db = getDatabase();
 
   // [START rtdb_order_by_child_nested]
   const ref = db.ref('dinosaurs');
@@ -155,7 +155,7 @@ function orderByChildNested() {
 }
 
 function orderByKey() {
-  const db = admin.database();
+  const db = getDatabase();
 
   // [START rtdb_order_by_key]
   var ref = db.ref('dinosaurs');
@@ -166,7 +166,7 @@ function orderByKey() {
 }
 
 function orderByValue() {
-  const db = admin.database();
+  const db = getDatabase();
 
   // [START rtdb_order_by_value]
   const scoresRef = db.ref('scores');
@@ -179,7 +179,7 @@ function orderByValue() {
 }
 
 function limitToLast() {
-  const db = admin.database();
+  const db = getDatabase();
 
   // [START rtdb_limit_to_last]
   const ref = db.ref('dinosaurs');
@@ -190,7 +190,7 @@ function limitToLast() {
 }
 
 function limitToFirst() {
-  const db = admin.database();
+  const db = getDatabase();
 
   // [START rtdb_limit_to_first]
   const ref = db.ref('dinosaurs');
@@ -201,7 +201,7 @@ function limitToFirst() {
 }
 
 function limitOrderValue() {
-  const db = admin.database();
+  const db = getDatabase();
 
   // [START rtdb_limit_order_value]
   const scoresRef = db.ref('scores');
@@ -214,7 +214,7 @@ function limitOrderValue() {
 }
 
 function startAt() {
-  const db = admin.database();
+  const db = getDatabase();
 
   // [START rtdb_start_at]
   const ref = db.ref('dinosaurs');
@@ -225,7 +225,7 @@ function startAt() {
 }
 
 function endAt() {
-  const db = admin.database();
+  const db = getDatabase();
   // [START rtdb_end_at]
   const ref = db.ref('dinosaurs');
   ref.orderByKey().endAt('pterodactyl').on('child_added', (snapshot) => {
@@ -235,7 +235,7 @@ function endAt() {
 }
 
 function startAtEndAt() {
-  const db = admin.database();
+  const db = getDatabase();
 
   // [START rtdb_start_at_end_at]
   var ref = db.ref('dinosaurs');
@@ -246,7 +246,7 @@ function startAtEndAt() {
 }
 
 function equalTo() {
-  const db = admin.database();
+  const db = getDatabase();
 
   // [START rtdb_equal_to]
   const ref = db.ref('dinosaurs');
@@ -257,7 +257,7 @@ function equalTo() {
 }
 
 function complexCombined() {
-  const db = admin.database();
+  const db = getDatabase();
 
   // [START rtdb_complex_combined]
   const ref = db.ref('dinosaurs');

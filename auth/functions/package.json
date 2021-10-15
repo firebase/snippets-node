@@ -1,7 +1,6 @@
 {
-  "name": "functions-stackdriver-logging",
+  "name": "auth-functions",
   "version": "1.0.0",
-  "description": "StackDriver logging for Cloud Functions",
   "main": "index.js",
   "author": "",
   "license": "Apache-2.0",
@@ -9,8 +8,7 @@
     "compile": "cp ../../tsconfig.json.template ./tsconfig.json && tsc"
   },
   "dependencies": {
-    "@google-cloud/logging": "^7.3.0",
     "firebase-admin": "^10.0.0",
-    "firebase-functions": "^3.15.7"
+    "firebase-functions": "^3.14.1"
   }
 }

@@ -1,12 +1,12 @@
-const admin = require('firebase-admin');
+const { getDatabase } = require('firebase-admin/database');
 
 function saveDataRef() {
   // [START rtdb_save_data_ref]
   // Import Admin SDK
-  const admin = require('firebase-admin');
+  const { getDatabase } = require('firebase-admin/database');
 
   // Get a database reference to our blog
-  const db = admin.database();
+  const db = getDatabase();
   const ref = db.ref('server/saving-data/fireblog');
   // [END rtdb_save_data_ref]
 
@@ -144,7 +144,7 @@ function pushKey() {
 }
 
 function saveTransaction() {
-  const db = admin.database();
+  const db = getDatabase();
 
   // [START rtdb_save_transaction]
   const upvotesRef = db.ref('server/saving-data/fireblog/posts/-JRHTHaIs-jNPLXOQivY/upvotes');

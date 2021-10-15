@@ -1,4 +1,4 @@
-const admin = require('firebase-admin');
+const { getMessaging } = require('firebase-admin/messaging');
 
 function subscribeToTopic() {
   const topic = 'test';
@@ -13,7 +13,7 @@ function subscribeToTopic() {
 
   // Subscribe the devices corresponding to the registration tokens to the
   // topic.
-  admin.messaging().subscribeToTopic(registrationTokens, topic)
+  getMessaging().subscribeToTopic(registrationTokens, topic)
     .then((response) => {
       // See the MessagingTopicManagementResponse reference documentation
       // for the contents of response.
@@ -38,7 +38,7 @@ function unsubscribeFromTopic() {
 
   // Unsubscribe the devices corresponding to the registration tokens from
   // the topic.
-  admin.messaging().unsubscribeFromTopic(registrationTokens, topic)
+  getMessaging().unsubscribeFromTopic(registrationTokens, topic)
     .then((response) => {
       // See the MessagingTopicManagementResponse reference documentation
       // for the contents of response.
@@ -65,7 +65,7 @@ function sendMessageToken() {
 
   // Send a message to the device corresponding to the provided
   // registration token.
-  admin.messaging().send(message)
+  getMessaging().send(message)
     .then((response) => {
       // Response is a message ID string.
       console.log('Successfully sent message:', response);
@@ -90,7 +90,7 @@ function sendMessageTopic() {
   };
 
   // Send a message to devices subscribed to the provided topic.
-  admin.messaging().send(message)
+  getMessaging().send(message)
     .then((response) => {
       // Response is a message ID string.
       console.log('Successfully sent message:', response);
@@ -118,7 +118,7 @@ function sendMessageCondition() {
 
   // Send a message to devices subscribed to the combination of topics
   // specified by the provided condition.
-  admin.messaging().send(message)
+  getMessaging().send(message)
     .then((response) => {
       // Response is a message ID string.
       console.log('Successfully sent message:', response);
@@ -144,7 +144,7 @@ function sendMessageMultipleDevices() {
     tokens: registrationTokens,
   };
 
-  admin.messaging().sendMulticast(message)
+  getMessaging().sendMulticast(message)
     .then((response) => {
       console.log(response.successCount + ' messages were sent successfully');
     });
@@ -165,7 +165,7 @@ function sendMulticast() {
     tokens: registrationTokens,
   };
 
-  admin.messaging().sendMulticast(message)
+  getMessaging().sendMulticast(message)
     .then((response) => {
       if (response.failureCount > 0) {
         const failedTokens = [];
@@ -195,7 +195,7 @@ function sendAll() {
     topic: 'readers-club',
   });
 
-  admin.messaging().sendAll(messages)
+  getMessaging().sendAll(messages)
     .then((response) => {
       console.log(response.successCount + ' messages were sent successfully');
     });
@@ -220,7 +220,7 @@ function notificationMessage() {
     topic: topicName,
   };
 
-  admin.messaging().send(message)
+  getMessaging().send(message)
     .then((response) => {
       // Response is a message ID string.
       console.log('Successfully sent message:', response);
@@ -262,7 +262,7 @@ function notificationMessageImage() {
     topic: topicName,
   };
 
-  admin.messaging().send(message)
+  getMessaging().send(message)
     .then((response) => {
       // Response is a message ID string.
       console.log('Successfully sent message:', response);
@@ -301,7 +301,7 @@ function notificationMessageClick() {
     topic: topicName,
   };
 
-  admin.messaging().send(message)
+  getMessaging().send(message)
     .then((response) => {
       // Response is a message ID string.
       console.log('Successfully sent message:', response);
@@ -337,7 +337,7 @@ function notificationMessageLocalization() {
     topic: topicName,
   };
 
-  admin.messaging().send(message)
+  getMessaging().send(message)
     .then((response) => {
       // Response is a message ID string.
       console.log('Successfully sent message:', response);
@@ -364,7 +364,7 @@ function sendToDevice() {
 
   // Send a message to the device corresponding to the provided
   // registration token.
-  admin.messaging().sendToDevice(registrationToken, payload)
+  getMessaging().sendToDevice(registrationToken, payload)
     .then((response) => {
       // See the MessagingDevicesResponse reference documentation for
       // the contents of response.
@@ -396,7 +396,7 @@ function sendToDeviceMultiple() {
 
   // Send a message to the devices corresponding to the provided
   // registration tokens.
-  admin.messaging().sendToDevice(registrationTokens, payload)
+  getMessaging().sendToDevice(registrationTokens, payload)
     .then((response) => {
       // See the MessagingDevicesResponse reference documentation for
       // the contents of response.
@@ -425,7 +425,7 @@ function sendToDeviceGroup() {
 
   // Send a message to the device group corresponding to the provided
   // notification key.
-  admin.messaging().sendToDeviceGroup(notificationKey, payload)
+  getMessaging().sendToDeviceGroup(notificationKey, payload)
     .then((response) => {
       // See the MessagingDeviceGroupResponse reference documentation for
       // the contents of response.
@@ -497,7 +497,7 @@ function messageOptions() {
 
   // Send a message to the device corresponding to the provided
   // registration token with the provided options.
-  admin.messaging().sendToDevice(registrationToken, payload, options)
+  getMessaging().sendToDevice(registrationToken, payload, options)
     .then((response) => {
       console.log('Successfully sent message:', response);
     })

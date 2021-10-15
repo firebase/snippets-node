@@ -1,14 +1,15 @@
-const admin = require('firebase-admin');
-admin.initializeApp();
+const { initializeApp } = require('firebase-admin/app');
+const { getRemoteConfig } = require('firebase-admin/remote-config');
+initializeApp();
 
 // [START validate_template]
 function validateTemplate(template) {
-  admin.remoteConfig().validateTemplate(template)
-      .then(function (validatedTemplate) {
+  getRemoteConfig().validateTemplate(template)
+      .then((validatedTemplate) => {
         // The template is valid and safe to use.
         console.log('Template was valid and safe to use');
       })
-      .catch(function (err) {
+      .catch((err) => {
         console.error('Template is invalid and cannot be published');
         console.error(err);
       });

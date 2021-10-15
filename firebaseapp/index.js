@@ -1,9 +1,11 @@
-const admin = require('firebase-admin');
+const { initializeApp, getApp, cert, applicationDefault, refreshToken } = require('firebase-admin/app');
+const { getAuth } = require('firebase-admin/auth');
+const { getDatabase } = require('firebase-admin/database');
 
 function initializeApplicationDefault() {
     // [START initialize_application_default]
-    admin.initializeApp({
-        credential: admin.credential.applicationDefault(),
+    initializeApp({
+        credential: applicationDefault(),
         databaseURL: 'https://<DATABASE_NAME>.firebaseio.com'
     });
     // [END initialize_application_default]
@@ -11,10 +13,10 @@ function initializeApplicationDefault() {
 
 function initializeRefreshToken() {
     // [START initialize_refresh_token]
-    const refreshToken = '...'; // Get refresh token from OAuth2 flow
+    const myRefreshToken = '...'; // Get refresh token from OAuth2 flow
 
-    admin.initializeApp({
-      credential: admin.credential.refreshToken(refreshToken),
+    initializeApp({
+      credential: refreshToken(myRefreshToken),
       databaseURL: 'https://<DATABASE_NAME>.firebaseio.com'
     });
     // [END initialize_refresh_token]
@@ -22,7 +24,7 @@ function initializeRefreshToken() {
 
 function initializeEmpty() {
     // [START initialize_empty]
-    const app = admin.initializeApp();
+    const app = initializeApp();
     // [END initialize_empty]
 }
 
@@ -31,17 +33,17 @@ function initializeDefaultApp() {
 
     // [START initialize_default_app]
     // Initialize the default app
-    const defaultApp = admin.initializeApp(defaultAppConfig);
+    const defaultApp = initializeApp(defaultAppConfig);
 
     console.log(defaultApp.name);  // '[DEFAULT]'
 
     // Retrieve services via the defaultApp variable...
-    let defaultAuth = defaultApp.auth();
-    let defaultDatabase = defaultApp.database();
+    let defaultAuth = getAuth(defaultApp);
+    let defaultDatabase = getDatabase(defaultApp);
 
     // ... or use the equivalent shorthand notation
-    defaultAuth = admin.auth();
-    defaultDatabase = admin.database();
+    defaultAuth = getAuth();
+    defaultDatabase = getDatabase();
     // [END initialize_default_app]
 }
 
@@ -51,21 +53,21 @@ function initializeMultipleApps() {
 
     // [START initialize_multiple_apps]
     // Initialize the default app
-    admin.initializeApp(defaultAppConfig);
+    initializeApp(defaultAppConfig);
 
     // Initialize another app with a different config
-    var otherApp = admin.initializeApp(otherAppConfig, 'other');
+    var otherApp = initializeApp(otherAppConfig, 'other');
 
-    console.log(admin.app().name);  // '[DEFAULT]'
+    console.log(getApp().name);  // '[DEFAULT]'
     console.log(otherApp.name);     // 'other'
 
     // Use the shorthand notation to retrieve the default app's services
-    const defaultAuth = admin.auth();
-    const defaultDatabase = admin.database();
+    const defaultAuth = getAuth();
+    const defaultDatabase = getDatabase();
 
     // Use the otherApp variable to retrieve the other app's services
-    const otherAuth = otherApp.auth();
-    const otherDatabase = otherApp.database();
+    const otherAuth = getAuth(otherApp);
+    const otherDatabase = getDatabase(otherApp);
     // [END initialize_multiple_apps]
 }
 
@@ -76,14 +78,14 @@ function multipleFirebaseApps() {
     // All required options are specified by the service account,
     // add service-specific configuration like databaseURL as needed.
     const secondaryAppConfig = {
-        credential: admin.credential.cert(secondaryServiceAccount),
+        credential: cert(secondaryServiceAccount),
         // databaseURL: 'https://<DATABASE_NAME>.firebaseio.com'
     };
     // [END firebase_options]
 
     // [START firebase_secondary]
     // Initialize another app with a different config
-    const secondary = admin.initializeApp(secondaryAppConfig, 'secondary');
+    const secondary = initializeApp(secondaryAppConfig, 'secondary');
     // Access services, such as the Realtime Database
     // const secondaryDatabase = secondary.database();
     // [END firebase_secondary]
