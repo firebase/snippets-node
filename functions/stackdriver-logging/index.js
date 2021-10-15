@@ -11,7 +11,7 @@ exports.helloError = functions.https.onRequest((request, response) => {
 // [END sd_example_function]
 
 // [START sd_logging_setup]
-// Instantiate the StackDriver Logging SDK. The project ID will
+// Instantiate the logging SDK. The project ID will
 // be automatically inferred from the Cloud Functions environment.
 const logging = new Logging();
 const log = logging.log('my-custom-log-name');
