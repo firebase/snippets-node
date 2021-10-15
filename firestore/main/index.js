@@ -13,18 +13,18 @@ async function initializeAppWithProjectId() {
   // [START firestore_setup_client_create]
   const admin = require('firebase-admin');
 
-  admin.initializeApp({
+  initializeApp({
     // The `projectId` parameter is optional and represents which project the
     // client will act on behalf of. If not supplied, it falls back to the default
     // project inferred from the environment.
     projectId: 'my-project-id',
   });
-  const db = admin.firestore();
+  const db = getFirestore();
   // [END firestore_setup_client_create]
   return db;
 }
 
-async function initializeApp() {
+async function initializeAppDefault() {
   process.env.GCLOUD_PROJECT = 'firestorebeta1test2';
   // [START initialize_app]
 
@@ -249,10 +249,10 @@ async function updateDocumentArray(db) {
 
   // To add or remove multiple items, pass multiple arguments to arrayUnion/arrayRemove
   const multipleUnionRes = await washingtonRef.update({
-    regions: admin.firestore.FieldValue.arrayUnion('south_carolina', 'texas')
+    regions: FieldValue.arrayUnion('south_carolina', 'texas')
     // Alternatively, you can use spread operator in ES6 syntax
     // const newRegions = ['south_carolina', 'texas']
-    // regions: admin.firestore.FieldValue.arrayUnion(...newRegions)
+    // regions: FieldValue.arrayUnion(...newRegions)
   });
   // [END firestore_data_set_array_operations]
 
@@ -953,8 +953,8 @@ async function deleteQueryBatch(db, query, resolve) {
 
 describe('Firestore Smoketests', () => {
 
-  const app = admin.initializeApp({}, 'tests');
-  const db = admin.firestore(app);
+  const app = initializeApp({}, 'tests');
+  const db = getFirestore(app);
 
   it('should initialize a db with the default credential', () => {
     return initializeApp();
