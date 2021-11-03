@@ -13,11 +13,11 @@
   "dependencies": {
     "@google-cloud/firestore": "^4.4.0",
     "firebase-admin": "^10.0.0",
-    "firebase-functions": "^3.15.7"
+    "firebase-functions": "^3.16.0"
   },
   "devDependencies": {
     "@types/mocha": "^7.0.2",
-    "firebase-tools": "^9.18.0",
+    "firebase-tools": "^9.21.0",
     "mocha": "^6.2.2"
   }
 }
