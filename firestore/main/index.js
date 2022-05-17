@@ -638,7 +638,7 @@ async function inQueries(db) {
   // [END firestore_query_filter_not_in]
 
   // [START firestore_query_filter_in_with_array]
-  const exactlyOneCoast = await citiesRef.where('region', 'in',
+  const exactlyOneCoast = await citiesRef.where('regions', 'in',
       [['west_coast', 'east_coast']]).get();
   // [END firestore_query_filter_in_with_array]
 
