@@ -55,20 +55,22 @@ function emailVerificationLink() {
   // [END email_verification_link]
 }
 
-// [START sign_in_with_email_link]
-// Admin SDK API to generate the sign in with email link.
-const usremail = 'user@example.com';
-getAuth()
-  .generateSignInWithEmailLink(usremail, actionCodeSettings)
-  .then((link) => {
-    // Construct sign-in with email link template, embed the link and
-    // send using custom SMTP server.
-    return sendSignInEmail(useremail, displayName, link);
-  })
-  .catch((error) => {
-    // Some error occurred.
-  });
-// [END sign_in_with_email_link]
+function signInWithEmailLink() {
+  // [START sign_in_with_email_link]
+  // Admin SDK API to generate the sign in with email link.
+  const useremail = 'user@example.com';
+  getAuth()
+    .generateSignInWithEmailLink(useremail, actionCodeSettings)
+    .then((link) => {
+      // Construct sign-in with email link template, embed the link and
+      // send using custom SMTP server.
+      return sendSignInEmail(useremail, displayName, link);
+    })
+    .catch((error) => {
+      // Some error occurred.
+    });
+  // [END sign_in_with_email_link]
+}
 
 let displayName;
 const sendSignInEmail = (...args) => {
