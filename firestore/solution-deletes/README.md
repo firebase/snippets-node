@@ -1,7 +1,7 @@
 # Solution: Recursive Deletes
 
 This solution shows how to write a Cloud Function that deletes data
-in Cloud Firestore and securely call this function from your
+in Firestore and securely call this function from your
 mobile app or website.
 
 ## Setup

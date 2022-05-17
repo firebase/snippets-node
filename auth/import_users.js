@@ -1,6 +1,7 @@
 'use strict';
-const admin = require('firebase-admin');
-admin.initializeApp();
+const { initializeApp } = require('firebase-admin/app');
+const { getAuth } = require('firebase-admin/auth');
+initializeApp();
 
 //[START build_user_list]
 // Up to 1000 users can be imported at once.
@@ -22,8 +23,7 @@ const userImportRecords = [
 //[END build_user_list]
 
 // [START import_users]
-admin
-  .auth()
+getAuth()
   .importUsers(userImportRecords, {
     hash: {
       algorithm: 'HMAC_SHA256',
@@ -49,8 +49,7 @@ admin
 // [END import_users]
 
 // [START import_with_hmac]
-admin
-  .auth()
+getAuth()
   .importUsers(
     [
       {
@@ -81,8 +80,7 @@ admin
 // [END import_with_hmac]
 
 // [START import_with_pbkdf]
-admin
-  .auth()
+getAuth()
   .importUsers(
     [
       {
@@ -112,8 +110,7 @@ admin
 // [END import_with_pbkdf]
 
 // [START import_with_standard_scrypt]
-admin
-  .auth()
+getAuth()
   .importUsers(
     [
       {
@@ -146,8 +143,7 @@ admin
 // [END import_with_standard_scrypt]
 
 // [START import_with_bcrypt]
-admin
-  .auth()
+getAuth()
   .importUsers(
     [
       {
@@ -174,8 +170,7 @@ admin
 // [END import_with_bcrypt]
 
 // [START import_with_scrypt]
-admin
-  .auth()
+getAuth()
   .importUsers(
     [
       {
@@ -210,8 +205,7 @@ admin
 // [END import_with_scrypt]
 
 // [START import_without_password]
-admin
-  .auth()
+getAuth()
   .importUsers([
     {
       uid: 'some-uid',

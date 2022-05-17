@@ -1,8 +1,10 @@
-const admin = require('firebase-admin');
+const { initializeApp } = require('firebase-admin/app');
+const { getAuth } = require('firebase-admin/auth');
+
 const firebase_tools = require('firebase-tools');
 const functions = require('firebase-functions');
 
-admin.initializeApp();
+initializeApp();
 
 
 /**
@@ -17,8 +19,7 @@ admin.initializeApp();
 exports.mintAdminToken = functions.https.onCall(async (data, context) => {
   const uid = data.uid;
 
-  const token = await admin
-    .auth()
+  const token = await getAuth()
     .createCustomToken(uid, { admin: true });
 
   return { token };

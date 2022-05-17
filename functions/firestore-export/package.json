@@ -1,7 +1,7 @@
 {
     "name": "functions-firestore-export",
     "version": "1.0.0",
-    "description": "Scheduled Cloud Firestore exports.",
+    "description": "Scheduled Firestore exports.",
     "main": "index.js",
     "author": "",
     "license": "Apache-2.0",
@@ -9,7 +9,7 @@
         "compile": "cp ../../tsconfig.json.template ./tsconfig.json && tsc"
     },
     "dependencies": {
-        "firebase-admin": "^9.4.1",
-        "firebase-functions": "^3.11.0"
+        "firebase-admin": "^10.0.0",
+        "firebase-functions": "^3.16.0"
     }
 }

@@ -1,6 +1,8 @@
 'use strict';
-const admin = require('firebase-admin');
-admin.initializeApp();
+const { initializeApp } = require('firebase-admin/app');
+const { getAuth } = require('firebase-admin/auth');
+const { getDatabase } = require('firebase-admin/database');
+initializeApp();
 
 const uid = 'some_uid_1234';
 const idToken = 'some_id_token';
@@ -9,11 +11,10 @@ const utcRevocationTimeSecs = 60 * 60;
 // [START revoke_tokens]
 // Revoke all refresh tokens for a specified user for whatever reason.
 // Retrieve the timestamp of the revocation, in seconds since the epoch.
-admin
-  .auth()
+getAuth()
   .revokeRefreshTokens(uid)
   .then(() => {
-    return admin.auth().getUser(uid);
+    return getAuth().getUser(uid);
   })
   .then((userRecord) => {
     return new Date(userRecord.tokensValidAfterTime).getTime() / 1000;
@@ -24,7 +25,7 @@ admin
 // [END revoke_tokens]
 
 // [START save_revocation_in_db]
-const metadataRef = admin.database().ref('metadata/' + uid);
+const metadataRef = getDatabase().ref('metadata/' + uid);
 metadataRef.set({ revokeTime: utcRevocationTimeSecs }).then(() => {
   console.log('Database updated successfully.');
 });
@@ -34,8 +35,7 @@ metadataRef.set({ revokeTime: utcRevocationTimeSecs }).then(() => {
 // Verify the ID token while checking if the token is revoked by passing
 // checkRevoked true.
 let checkRevoked = true;
-admin
-  .auth()
+getAuth()
   .verifyIdToken(idToken, checkRevoked)
   .then((payload) => {
     // Token is valid.

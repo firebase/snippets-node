@@ -1,6 +1,8 @@
 'use strict';
-const admin = require('firebase-admin');
-admin.initializeApp();
+const { initializeApp } = require('firebase-admin/app');
+const { getAuth } = require('firebase-admin/auth');
+initializeApp();
+
 const express = require('express');
 const app = express();
 
@@ -20,8 +22,7 @@ app.post('/sessionLogin', (req, res) => {
   // The session cookie will have the same claims as the ID token.
   // To only allow session cookie setting on recent sign-in, auth_time in ID token
   // can be checked to ensure user was recently signed in before creating a session cookie.
-  admin
-    .auth()
+  getAuth()
     .createSessionCookie(idToken, { expiresIn })
     .then(
       (sessionCookie) => {
@@ -43,14 +44,13 @@ app.post('/verifyToken', (req, res) => {
   // Set session expiration to 5 days.
   const expiresIn = 60 * 60 * 24 * 5 * 1000;
   // [START check_auth_time]
-  admin
-    .auth()
+  getAuth()
     .verifyIdToken(idToken)
     .then((decodedIdToken) => {
       // Only process if the user just signed in in the last 5 minutes.
       if (new Date().getTime() / 1000 - decodedIdToken.auth_time < 5 * 60) {
         // Create session cookie and set it.
-        return admin.auth().createSessionCookie(idToken, { expiresIn });
+        return getAuth().createSessionCookie(idToken, { expiresIn });
       }
       // A user that was not recently signed in is trying to set a session cookie.
       // To guard against ID token theft, require re-authentication.
@@ -65,8 +65,7 @@ app.post('/profile', (req, res) => {
   const sessionCookie = req.cookies.session || '';
   // Verify the session cookie. In this case an additional check is added to detect
   // if the user's Firebase session was revoked, user deleted/disabled, etc.
-  admin
-    .auth()
+  getAuth()
     .verifySessionCookie(sessionCookie, true /** checkRevoked */)
     .then((decodedClaims) => {
       serveContentForUser('/profile', req, res, decodedClaims);
@@ -81,8 +80,7 @@ app.post('/profile', (req, res) => {
 app.post('/verifySessionCookie', (req, res) => {
   const sessionCookie = req.cookies.session || '';
   // [START session_verify_with_permission_check]
-  admin
-    .auth()
+  getAuth()
     .verifySessionCookie(sessionCookie, true)
     .then((decodedClaims) => {
       // Check custom claims to confirm user is an admin.
@@ -109,11 +107,10 @@ app.post('/sessionLogout', (req, res) => {
 app.post('/sessionLogout', (req, res) => {
   const sessionCookie = req.cookies.session || '';
   res.clearCookie('session');
-  admin
-    .auth()
+  getAuth()
     .verifySessionCookie(sessionCookie)
     .then((decodedClaims) => {
-      return admin.auth().revokeRefreshTokens(decodedClaims.sub);
+      return getAuth().revokeRefreshTokens(decodedClaims.sub);
     })
     .then(() => {
       res.redirect('/login');

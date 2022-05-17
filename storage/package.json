@@ -1,0 +1,14 @@
+{
+  "name": "storage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "Apache-2.0",
+  "scripts": {
+    "compile": "cp ../tsconfig.json.template ./tsconfig.json && tsc"
+  },
+  "dependencies": {
+    "firebase-admin": "^10.0.0"
+  }
+}
