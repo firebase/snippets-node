@@ -63,7 +63,7 @@ exports.recursiveDelete = functions
       .delete(path, {
         project: process.env.GCLOUD_PROJECT,
         recursive: true,
-        yes: true,
+        force: true,
         token: functions.config().fb.token
       });
 
