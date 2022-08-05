@@ -14,7 +14,7 @@
   "author": "Google, Inc.",
   "license": "Apache-2.0",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "dateformat": "^3.0.3",
     "express": "^4.17.1",
     "googleapis": "^42.0.0"
