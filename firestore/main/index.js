@@ -1145,4 +1145,12 @@ describe('Firestore Smoketests', () => {
   it('should find all museums when querying a collection group', () => {
     return collectionGroupQuery(db);
   });
+
+  it('should count the number of documents in a collection', () => {
+    return countAggregateCollection(db);
+  });
+
+  it('should count the number of documents in a filtered query', () => {
+    return countAggregateQuery(db);
+  });
 });
