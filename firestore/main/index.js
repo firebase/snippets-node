@@ -27,12 +27,14 @@ async function initializeAppWithProjectId() {
 async function initializeAppDefault() {
   process.env.GCLOUD_PROJECT = 'firestorebeta1test2';
   // [START initialize_app]
+  // [START firestore_initialize_app]
 
   initializeApp({
     credential: applicationDefault()
   });
 
   const db = getFirestore();
+  // [END firestore_initialize_app]
   // [END initialize_app]
   await db.terminate();
   // Destroy connection so we can run other tests that initialize the default app.
@@ -42,16 +44,19 @@ async function initializeAppDefault() {
 async function initializeAppFunctions() {
   process.env.GCLOUD_PROJECT = 'firestorebeta1test2';
   // [START initialize_app_functions]
+  // [START firestore_initialize_app_functions]
   initializeApp();
 
   const db = getFirestore();
 
+  // [END firestore_initialize_app_functions]
   // [END initialize_app_functions]
   return db;
 }
 
 async function initializeAppSA() {
   // [START initialize_app_service_account]
+  // [START firestore_initialize_app_service_account]
 
   const serviceAccount = require('./path/to/serviceAccountKey.json');
 
@@ -61,12 +66,14 @@ async function initializeAppSA() {
 
   const db = getFirestore();
 
+  // [END firestore_initialize_app_service_account]
   // [END initialize_app_service_account]
   return db;
 }
 
 async function demoInitialize(db) {
   // [START demo_initialize]
+  // [START firestore_demo_initialize]
   // Fetch data from Firestore
   const snapshot = await db.collection('cities').get();
 
@@ -74,6 +81,7 @@ async function demoInitialize(db) {
   snapshot.forEach(doc => {
     console.log(doc.id, ' => ', doc.data());
   });
+  // [END firestore_demo_initialize]
   // [END demo_initialize]
 }
 
@@ -105,13 +113,13 @@ async function quickstartAddData(db) {
 }
 
 async function quickstartQuery(db) {
-  // [START quickstart_query]
+  // [START firestore_quickstart_query]
   // Realtime listens are not yet supported in the Node.js SDK
   const snapshot = await db.collection('users').where('born', '<', 1900).get();
   snapshot.forEach(doc => {
     console.log(doc.id, '=>', doc.data());
   });
-  // [END quickstart_query]
+  // [END firestore_quickstart_query]
 }
 
 async function quickstartListen(db) {
@@ -275,7 +283,6 @@ async function updateDocumentIncrement(db) {
 
 async function updateDocumentMany(db) {
   // [START firestore_update_document_many]
-  // [START update_document_many]
   const cityRef = db.collection('cities').doc('DC');
 
   const res = await cityRef.update({
@@ -283,7 +290,6 @@ async function updateDocumentMany(db) {
     country: 'USA',
     capital: true
   });
-  // [END update_document_many]
   // [END firestore_update_document_many]
 
   console.log('Update: ', res);
