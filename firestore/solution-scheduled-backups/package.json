@@ -16,7 +16,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "dateformat": "^3.0.3",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "googleapis": "^42.0.0"
   },
   "devDependencies": {
