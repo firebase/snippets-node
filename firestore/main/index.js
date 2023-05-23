@@ -647,6 +647,33 @@ async function inQueries(db) {
   console.log('Exactly One Coast get: ', exactlyOneCoast);
 }
 
+async function orQueries(db) {
+  const citiesRef = db.collection("cities");
+
+  // [START firestore_query_or]
+  const bigCities = await citiesRef.where(
+    citiesRef.or(
+      citiesRef.where("capital", "==", true),
+      citiesRef.where("population", ">=", 1000000)
+    )
+  ).get();
+  // [END firestore_query_or]
+
+  // [START firestore_query_or_compound]
+  const bigCitiesInCalifornia = await citiesRef
+    .where("state", "==", "CA")
+    .where(
+      citiesRef.or(
+        citiesRef.where("capital", "==", true),
+        citiesRef.where("population", ">=", 1000000)
+      )
+    ).get();
+  // [END firestore_query_or_compound]
+  
+    console.log('Big cities get: ', bigCities);
+    console.log('Big cities in California get: ', bigCitiesInCalifornia);
+}
+
 async function orderAndLimit(db) {
   const citiesRef = db.collection('cities');
   // [START firestore_query_order_limit]
@@ -1069,6 +1096,10 @@ describe('Firestore Smoketests', () => {
 
   it('should support in queries', () => {
     return inQueries(db);
+  });
+
+  it('should support or queries', () => {
+    return orQueries(db);
   });
 
   it('should order and limit', () => {
