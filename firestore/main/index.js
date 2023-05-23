@@ -647,6 +647,11 @@ async function inQueries(db) {
   console.log('Exactly One Coast get: ', exactlyOneCoast);
 }
 
+/**
+ * Demonstrate OR queries
+ * 
+ * @param {FirebaseFirestore.Firestore} db 
+ */
 async function orQueries(db) {
   const citiesRef = db.collection("cities");
 
