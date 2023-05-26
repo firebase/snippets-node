@@ -11,10 +11,10 @@
     "lint": "find . -type f -name \"*.js\" -not -path \"*node_modules*\" | xargs eslint"
   },
   "devDependencies": {
-    "@types/node": "^13.9.8",
-    "eslint": "^5.15.3",
-    "eslint-config-google": "^0.12.0",
-    "firebase-tools": "^9.21.0",
+    "@types/node": "^20.2.4",
+    "eslint": "^8.41.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-tools": "^12.2.1",
     "pnpm": "^8.5.1",
     "typescript": "^5.0.4"
   }
