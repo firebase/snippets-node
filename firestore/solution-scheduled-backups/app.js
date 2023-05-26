@@ -57,7 +57,7 @@ app.get('/cloud-firestore-export', async (req, res) => {
       .send(response.data)
       .end();
   } catch (e) {
-    if (e.response) {
+    if (axios.default.isAxiosError(e)) {
       console.warn(e.response.data);
     }
 
