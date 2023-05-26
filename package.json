@@ -5,9 +5,9 @@
   "author": "Firebase (https://firebase.google.com/)",
   "license": "Apache-2.0",
   "scripts": {
-    "lerna-test": "lerna run test",
-    "lerna-compile": "lerna run compile",
-    "lerna-bootstrap": "lerna bootstrap",
+    "test": "pnpm -r --workspace-concurrency=1 --aggregate-output run test",
+    "compile": "pnpm -r --workspace-concurrency=4 --aggregate-output run compile",
+    "bootstrap": "pnpm -r install",
     "lint": "find . -type f -name \"*.js\" -not -path \"*node_modules*\" | xargs eslint"
   },
   "devDependencies": {
@@ -15,7 +15,7 @@
     "eslint": "^5.15.3",
     "eslint-config-google": "^0.12.0",
     "firebase-tools": "^9.21.0",
-    "lerna": "^3.13.1",
-    "typescript": "^3.8.3"
+    "pnpm": "^8.5.1",
+    "typescript": "^5.0.4"
   }
 }

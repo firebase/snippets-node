@@ -3,7 +3,7 @@
   "description": "Cloud Functions and Firestore",
   "main": "index.js",
   "scripts": {
-    "compile": "cp ../../../tsconfig.json.template ./tsconfig.json && tsc"
+    "compile": "cp ../../../tsconfig.template.json ./tsconfig.json && tsc"
   },
   "dependencies": {
     "@google-cloud/firestore": "^4.4.0",

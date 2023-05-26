@@ -6,7 +6,7 @@
   "scripts": {
     "test-debug": "env DEBUG=firestore-snippets-node mocha index.js",
     "test": "firebase --project=$GCLOUD_PROJECT emulators:exec './node_modules/.bin/mocha --timeout 20000 index.js'",
-    "compile": "cp ../../tsconfig.json.template ./tsconfig.json && tsc"
+    "compile": "cp ../../tsconfig.template.json ./tsconfig.json && tsc"
   },
   "author": "",
   "license": "ISC",

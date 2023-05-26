@@ -6,7 +6,7 @@
   "author": "",
   "license": "Apache-2.0",
   "scripts": {
-    "compile": "cp ../../tsconfig.json.template ./tsconfig.json && tsc"
+    "compile": "cp ../../tsconfig.template.json ./tsconfig.json && tsc"
   },
   "dependencies": {
     "@google-cloud/logging": "^7.3.0",

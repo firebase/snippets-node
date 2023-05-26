@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "Documents with Timestamp fields sharded to increase write throughput",
   "engines": {
-    "node": "8"
+    "node": "18"
   },
   "author": "Google, Inc.",
   "license": "Apache-2.0",
   "scripts": {
-    "compile": "cp ../../tsconfig.json.template ./tsconfig.json && tsc"
+    "compile": "cp ../../tsconfig.template.json ./tsconfig.json && tsc"
   },
   "dependencies": {
     "@google-cloud/firestore": "^4.4.0",

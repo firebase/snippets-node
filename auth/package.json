@@ -5,7 +5,7 @@
   "author": "Firebase (https://firebase.google.com/)",
   "license": "Apache-2.0",
   "scripts": {
-    "compile": "cp ../tsconfig.json.template ./tsconfig.json && tsc"
+    "compile": "cp ../tsconfig.template.json ./tsconfig.json && tsc"
   },
   "dependencies": {
     "express": "^4.17.1",
