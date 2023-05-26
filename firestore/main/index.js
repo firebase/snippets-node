@@ -2,7 +2,7 @@ const debug = require('debug')('firestore-snippets-node');
 
 // [START firestore_deps]
 const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
-const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
+const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore');
 // [END firestore_deps]
 
 
@@ -657,7 +657,7 @@ async function orQueries(db) {
 
   // [START firestore_query_or]
   const bigCities = await citiesRef.where(
-    citiesRef.or(
+    Filter.or(
       citiesRef.where("capital", "==", true),
       citiesRef.where("population", ">=", 1000000)
     )
