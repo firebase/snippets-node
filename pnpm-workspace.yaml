@@ -1,0 +1,11 @@
+packages:
+  - 'auth/**'
+  - 'config'
+  - 'database'
+  - 'firebaseapp'
+  - 'firestore/**'
+  - 'functions/**'
+  - 'management'
+  - 'messaging'
+  - 'storage'
+
