@@ -13,3 +13,8 @@ firebase-debug.log
 
 .idea/
 
+# pnpm manages deps in the pnpm-lock.yaml file instead
+**/package-lock.json
+# keep the root package-lock so that tools are consistent
+!/package-lock.json
+
