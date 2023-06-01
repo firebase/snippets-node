@@ -29,38 +29,38 @@ importers:
         specifier: ^4.18.2
         version: 4.18.2
       firebase-admin:
-        specifier: ^11.8.0
-        version: 11.8.0
+        specifier: ^11.9.0
+        version: 11.9.0
       firebase-functions:
         specifier: ^4.4.0
-        version: 4.4.0(firebase-admin@11.8.0)
+        version: 4.4.0(firebase-admin@11.9.0)
 
   auth/functions:
     dependencies:
       firebase-admin:
-        specifier: ^11.8.0
-        version: 11.8.0
+        specifier: ^11.9.0
+        version: 11.9.0
       firebase-functions:
         specifier: ^4.4.0
-        version: 4.4.0(firebase-admin@11.8.0)
+        version: 4.4.0(firebase-admin@11.9.0)
 
   config:
     dependencies:
       firebase-admin:
-        specifier: ^11.8.0
-        version: 11.8.0
+        specifier: ^11.9.0
+        version: 11.9.0
 
   database:
     dependencies:
       firebase-admin:
-        specifier: ^11.8.0
-        version: 11.8.0
+        specifier: ^11.9.0
+        version: 11.9.0
 
   firebaseapp:
     dependencies:
       firebase-admin:
-        specifier: ^11.8.0
-        version: 11.8.0
+        specifier: ^11.9.0
+        version: 11.9.0
 
   firestore/extend-with-functions/functions:
     dependencies:
@@ -68,11 +68,11 @@ importers:
         specifier: ^6.6.0
         version: 6.6.0
       firebase-admin:
-        specifier: ^11.8.0
-        version: 11.8.0
+        specifier: ^11.9.0
+        version: 11.9.0
       firebase-functions:
         specifier: ^4.4.0
-        version: 4.4.0(firebase-admin@11.8.0)
+        version: 4.4.0(firebase-admin@11.9.0)
 
   firestore/main:
     dependencies:
@@ -80,11 +80,11 @@ importers:
         specifier: ^6.6.0
         version: 6.6.0
       firebase-admin:
-        specifier: ^11.8.0
-        version: 11.8.0
+        specifier: ^11.9.0
+        version: 11.9.0
       firebase-functions:
         specifier: ^4.4.0
-        version: 4.4.0(firebase-admin@11.8.0)
+        version: 4.4.0(firebase-admin@11.9.0)
     devDependencies:
       '@types/mocha':
         specifier: ^10.0.1
@@ -99,20 +99,20 @@ importers:
   firestore/solution-aggregation/functions:
     dependencies:
       firebase-admin:
-        specifier: ^11.8.0
-        version: 11.8.0
+        specifier: ^11.9.0
+        version: 11.9.0
       firebase-functions:
         specifier: ^4.4.0
-        version: 4.4.0(firebase-admin@11.8.0)
+        version: 4.4.0(firebase-admin@11.9.0)
 
   firestore/solution-deletes/functions:
     dependencies:
       firebase-admin:
-        specifier: ^11.8.0
-        version: 11.8.0
+        specifier: ^11.9.0
+        version: 11.9.0
       firebase-functions:
         specifier: ^4.4.0
-        version: 4.4.0(firebase-admin@11.8.0)
+        version: 4.4.0(firebase-admin@11.9.0)
       firebase-tools:
         specifier: ^12.2.1
         version: 12.2.1
@@ -142,17 +142,17 @@ importers:
         specifier: ^6.6.0
         version: 6.6.0
       firebase-admin:
-        specifier: ^11.8.0
-        version: 11.8.0
+        specifier: ^11.9.0
+        version: 11.9.0
 
   functions/firestore-export:
     dependencies:
       firebase-admin:
-        specifier: ^11.8.0
-        version: 11.8.0
+        specifier: ^11.9.0
+        version: 11.9.0
       firebase-functions:
         specifier: ^4.4.0
-        version: 4.4.0(firebase-admin@11.8.0)
+        version: 4.4.0(firebase-admin@11.9.0)
 
   functions/stackdriver-logging:
     dependencies:
@@ -160,17 +160,17 @@ importers:
         specifier: ^10.4.1
         version: 10.4.1
       firebase-admin:
-        specifier: ^11.8.0
-        version: 11.8.0
+        specifier: ^11.9.0
+        version: 11.9.0
       firebase-functions:
         specifier: ^4.4.0
-        version: 4.4.0(firebase-admin@11.8.0)
+        version: 4.4.0(firebase-admin@11.9.0)
 
   management:
     dependencies:
       firebase-admin:
-        specifier: ^11.8.0
-        version: 11.8.0
+        specifier: ^11.9.0
+        version: 11.9.0
       request-promise:
         specifier: ^4.2.6
         version: 4.2.6(request@2.88.2)
@@ -178,14 +178,14 @@ importers:
   messaging:
     dependencies:
       firebase-admin:
-        specifier: ^11.8.0
-        version: 11.8.0
+        specifier: ^11.9.0
+        version: 11.9.0
 
   storage:
     dependencies:
       firebase-admin:
-        specifier: ^11.8.0
-        version: 11.8.0
+        specifier: ^11.9.0
+        version: 11.9.0
 
 packages:
 
@@ -689,7 +689,7 @@ packages:
   /@types/jsonwebtoken@9.0.2:
     resolution: {integrity: sha512-drE6uz7QBKq1fYqqoFKTDRdFCPHd5TCub75BM+D+cMx7NU9hUz7SESLfC2fSCXVFMO5Yj8sOWHuGqPgjc+fz0Q==}
     dependencies:
-      '@types/node': 20.2.4
+      '@types/node': 20.2.5
     dev: false
 
   /@types/linkify-it@3.0.2:
@@ -724,6 +724,10 @@ packages:
 
   /@types/node@20.2.4:
     resolution: {integrity: sha512-ni5f8Xlf4PwnT/Z3f0HURc3ZSw8UyrqMqmM3L5ysa7VjHu8c3FOmIo1nKCcLrV/OAmtf3N4kFna/aJqxsfEtnA==}
+
+  /@types/node@20.2.5:
+    resolution: {integrity: sha512-JJulVEQXmiY9Px5axXHeYGLSjhkZEnD+MDPDGbCbIAbMslkKwmygtZFy1X6s/075Yo94sf8GuSlFfPzysQrWZQ==}
+    dev: false
 
   /@types/qs@6.9.7:
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
@@ -2013,14 +2017,14 @@ packages:
       path-exists: 4.0.0
     dev: true
 
-  /firebase-admin@11.8.0:
-    resolution: {integrity: sha512-RxO0wWDnuqVikXExhVjnhVaaXpziKCad4D1rOX5c1WJdk1jAu9hfE4rbrFKZQZgF1okZS04kgCBIFJro7xn8NQ==}
+  /firebase-admin@11.9.0:
+    resolution: {integrity: sha512-My7qrInVZFmImX8aTulrp9kgY6d88Wn+ie8UIXKzZ3SJqQQhDwFT7Q3pgQXK9RfdsUtcxJJ3rCK7MWBm4GGtuw==}
     engines: {node: '>=14'}
     dependencies:
       '@fastify/busboy': 1.2.1
       '@firebase/database-compat': 0.3.4
       '@firebase/database-types': 0.10.4
-      '@types/node': 20.2.4
+      '@types/node': 20.2.5
       jsonwebtoken: 9.0.0
       jwks-rsa: 3.0.1
       node-forge: 1.3.1
@@ -2033,7 +2037,7 @@ packages:
       - supports-color
     dev: false
 
-  /firebase-functions@4.4.0(firebase-admin@11.8.0):
+  /firebase-functions@4.4.0(firebase-admin@11.9.0):
     resolution: {integrity: sha512-Vdkr9/y/UKQez//cPm2Iu/9CeayqQ2tQF6o3KXozDDBokK9AOlAalVHImCpKo6nWptT/ncZ8djJFk5cR8l+E+A==}
     engines: {node: '>=14.10.0'}
     hasBin: true
@@ -2044,7 +2048,7 @@ packages:
       '@types/express': 4.17.3
       cors: 2.8.5
       express: 4.18.2
-      firebase-admin: 11.8.0
+      firebase-admin: 11.9.0
       node-fetch: 2.6.11
       protobufjs: 7.2.3
     transitivePeerDependencies:
