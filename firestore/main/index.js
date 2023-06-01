@@ -658,8 +658,8 @@ async function orQueries(db) {
   // [START firestore_query_or]
   const bigCities = await citiesRef.where(
     Filter.or(
-      citiesRef.where("capital", "==", true),
-      citiesRef.where("population", ">=", 1000000)
+      Filter.where("capital", "==", true),
+      Filter.where("population", ">=", 1000000)
     )
   ).get();
   // [END firestore_query_or]
@@ -668,9 +668,9 @@ async function orQueries(db) {
   const bigCitiesInCalifornia = await citiesRef
     .where("state", "==", "CA")
     .where(
-      citiesRef.or(
-        citiesRef.where("capital", "==", true),
-        citiesRef.where("population", ">=", 1000000)
+      Filter.or(
+        Filter.where("capital", "==", true),
+        Filter.where("population", ">=", 1000000)
       )
     ).get();
   // [END firestore_query_or_compound]
