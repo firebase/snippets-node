@@ -653,26 +653,29 @@ async function inQueries(db) {
  * @param {FirebaseFirestore.Firestore} db 
  */
 async function orQueries(db) {
-  const citiesRef = db.collection("cities");
+  const citiesRef = db.collection('cities');
 
   // [START firestore_query_or]
-  const bigCities = await citiesRef.where(
-    Filter.or(
-      Filter.where("capital", "==", true),
-      Filter.where("population", ">=", 1000000)
+  const bigCities = await citiesRef
+    .where(
+      Filter.or(
+        Filter.where('capital', '==', true),
+        Filter.where('population', '>=', 1000000)
+      )
     )
-  ).get();
+    .get();
   // [END firestore_query_or]
 
   // [START firestore_query_or_compound]
   const bigCitiesInCalifornia = await citiesRef
-    .where("state", "==", "CA")
+    .where('state', '==', 'CA')
     .where(
       Filter.or(
-        Filter.where("capital", "==", true),
-        Filter.where("population", ">=", 1000000)
+        Filter.where('capital', '==', true),
+        Filter.where('population', '>=', 1000000)
       )
-    ).get();
+    )
+    .get();
   // [END firestore_query_or_compound]
   
     console.log('Big cities get: ', bigCities);
