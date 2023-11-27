@@ -25,7 +25,7 @@ async function initializeAppWithProjectId() {
 }
 
 async function initializeAppDefault() {
-  process.env.GCLOUD_PROJECT = 'shweta-vscode';
+  process.env.GCLOUD_PROJECT = 'firestorebeta1test2';
   // [START initialize_app]
 
   initializeApp({
@@ -40,7 +40,7 @@ async function initializeAppDefault() {
 }
 
 async function initializeAppFunctions() {
-  process.env.GCLOUD_PROJECT = 'shweta-vscode';
+  process.env.GCLOUD_PROJECT = 'firestorebeta1test2';
   // [START initialize_app_functions]
   initializeApp();
 
