@@ -25,7 +25,7 @@ async function initializeAppWithProjectId() {
 }
 
 async function initializeAppDefault() {
-  process.env.GCLOUD_PROJECT = 'firestorebeta1test2';
+  process.env.GCLOUD_PROJECT = 'shweta-vscode';
   // [START initialize_app]
 
   initializeApp({
@@ -40,7 +40,7 @@ async function initializeAppDefault() {
 }
 
 async function initializeAppFunctions() {
-  process.env.GCLOUD_PROJECT = 'firestorebeta1test2';
+  process.env.GCLOUD_PROJECT = 'shweta-vscode';
   // [START initialize_app_functions]
   initializeApp();
 
@@ -587,7 +587,7 @@ async function queryAndFilter(db) {
   const citiesRef = db.collection('cities');
 
   // Create a query against the collection
-  const allCapitalsRes = await citiesRef.where('capital', '==', true).get();
+  const allCapitalsRes = await citiesRef.where('capital', '==', true);
   // [END firestore_query_filter_eq_boolean]
 
   // [START firestore_query_filter_single_examples]
