@@ -587,7 +587,7 @@ async function queryAndFilter(db) {
   const citiesRef = db.collection('cities');
 
   // Create a query against the collection
-  const allCapitalsRes = await citiesRef.where('capital', '==', true);
+  const allCapitalsRes = citiesRef.where('capital', '==', true);
   // [END firestore_query_filter_eq_boolean]
 
   // [START firestore_query_filter_single_examples]
