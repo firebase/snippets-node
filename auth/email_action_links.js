@@ -18,8 +18,8 @@ const actionCodeSettings = {
     installApp: true,
     minimumVersion: '12',
   },
-  // FDL custom domain.
-  dynamicLinkDomain: 'coolapp.page.link',
+  // The domain must be configured in Firebase Hosting and owned by the project.
+  linkDomain: 'custom-domain.com',
 };
 // [END init_action_code_settings]
 
