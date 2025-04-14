@@ -15,7 +15,7 @@
     "eslint": "^8.41.0",
     "eslint-config-google": "^0.14.0",
     "firebase-tools": "^12.2.1",
-    "pnpm": "^8.5.1",
+    "pnpm": "^9.15.0",
     "typescript": "^5.0.4"
   }
 }
