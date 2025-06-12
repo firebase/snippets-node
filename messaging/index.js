@@ -180,6 +180,35 @@ function sendMulticast() {
   // [END fcm_send_multicast]
 }
 
+function sendEachForMulticast() {
+  // [START fcm_send_each_for_multicast]
+  // These registration tokens come from the client FCM SDKs.
+  const registrationTokens = [
+    'YOUR_REGISTRATION_TOKEN_1',
+    // …
+    'YOUR_REGISTRATION_TOKEN_N',
+  ];
+
+  const message = {
+    data: {score: '850', time: '2:45'},
+    tokens: registrationTokens,
+  };
+
+  getMessaging().sendEachForMulticast(message)
+    .then((response) => {
+      if (response.failureCount > 0) {
+        const failedTokens = [];
+        response.responses.forEach((resp, idx) => {
+          if (!resp.success) {
+            failedTokens.push(registrationTokens[idx]);
+          }
+        });
+        console.log('List of tokens that caused failures: ' + failedTokens);
+      }
+    });
+  // [END fcm_send_each_for_multicast]
+}
+
 function sendAll() {
   const registrationToken = '...';
 
@@ -200,6 +229,28 @@ function sendAll() {
       console.log(response.successCount + ' messages were sent successfully');
     });
   // [END fcm_send_all]
+}
+
+function sendEach() {
+  const registrationToken = '...';
+
+  // [START fcm_send_each]
+  // Create a list containing up to 500 messages.
+  const messages = [];
+  messages.push({
+    notification: { title: 'Price drop', body: '5% off all electronics' },
+    token: registrationToken,
+  });
+  messages.push({
+    notification: { title: 'Price drop', body: '2% off all books' },
+    topic: 'readers-club',
+  });
+
+  getMessaging().sendEach(messages)
+    .then((response) => {
+      console.log(response.successCount + ' messages were sent successfully');
+    });
+  // [END fcm_send_each]
 }
 
 function notificationMessage() {
