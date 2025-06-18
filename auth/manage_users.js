@@ -46,6 +46,17 @@ getAuth()
   });
 // [END get_user_by_phone]
 
+// [START get_user_by_federated_id]
+admin.auth().getUserByProviderUid('google.com', 'google_uid1234')
+  .then(function(userRecord) {
+    // See the UserRecord reference doc for the contents of userRecord.
+    console.log('Successfully fetched user data:', userRecord.toJSON());
+  })
+  .catch(function(error) {
+    console.log('Error fetching user data:', error);
+  });
+// [END get_user_by_federated_id]
+
 // [START bulk_get_users]
 getAuth()
   .getUsers([
@@ -125,6 +136,37 @@ getAuth()
     console.log('Error updating user:', error);
   });
 // [END update_user]
+
+// [START update_user_link_federated]
+// Link the user with a federated identity provider (like Google).
+admin.auth().updateUser(uid, {
+    providerToLink: {
+      providerId: 'google.com',
+      uid: 'google_uid12345'
+    }
+  })
+  .then(function(userRecord) {
+    // See the UserRecord reference doc for the contents of userRecord.
+    console.log('Successfully updated user', userRecord.toJSON());
+  })
+  .catch(function(error) {
+    console.log('Error updating user:', error);
+  });
+// [END update_user_link_federated]
+
+// [START update_user_unlink_federated]
+// Unlink the user from a federated identity provider (like Google).
+admin.auth().updateUser(uid, {
+    providersToDelete: ['google.com']
+  })
+  .then(function(userRecord) {
+    // See the UserRecord reference doc for the contents of userRecord.
+    console.log('Successfully updated user', userRecord.toJSON());
+  })
+  .catch(function(error) {
+    console.log('Error updating user:', error);
+  });
+// [END update_user_unlink_federated]
 
 // [START delete_user]
 getAuth()
