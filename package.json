@@ -14,7 +14,7 @@
     "@types/node": "^20.2.4",
     "eslint": "^8.41.0",
     "eslint-config-google": "^0.14.0",
-    "firebase-tools": "^12.2.1",
+    "firebase-tools": "^12.9.1",
     "pnpm": "^8.5.1",
     "typescript": "^5.0.4"
   }
