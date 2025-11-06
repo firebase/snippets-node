@@ -982,6 +982,25 @@ async function deleteQueryBatch(db, query, resolve) {
 
 // [END firestore_data_delete_collection]
 
+async function countAggregateCollection(db) {
+  // [START count_aggregation_collection]
+  const collectionRef = db.collection('cities');
+  const snapshot = await collectionRef.count().get();
+
+  console.log(snapshot.data.count);
+  // [END count_aggregation_collection]
+}
+
+async function countAggregateQuery(db) {
+  // [START count_aggregation_query]
+  const collectionRef = db.collection('cities');
+  const query = collectionRef.where('state', '==', 'CA');
+  const snapshot = await collectionRef.count().get();
+
+  console.log(snapshot.data.count);
+  // [END count_aggregation_query]
+}
+
 // ============================================================================
 // MAIN
 // ============================================================================
@@ -1164,5 +1183,13 @@ describe('Firestore Smoketests', () => {
 
   it('should find all museums when querying a collection group', () => {
     return collectionGroupQuery(db);
+  });
+
+  it('should count the number of documents in a collection', () => {
+    return countAggregateCollection(db);
+  });
+
+  it('should count the number of documents in a filtered query', () => {
+    return countAggregateQuery(db);
   });
 });
