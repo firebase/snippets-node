@@ -1,9 +1,11 @@
 const util = require('util');
-const admin = require('firebase-admin');
-admin.initializeApp();
+const { initializeApp } = require('firebase-admin/app');
+const { getFirestore, Timestamp } = require('firebase-admin/firestore');
+
+initializeApp();
 
 // Create a new client
-const fs = admin.firestore();
+const fs = getFirestore();
 const MAX_IN_VALUES = 10;
 
 // [START fs_sharded_timestamps_define_shards]
@@ -44,7 +46,7 @@ async function insertData() {
       },
       exchange: 'EXCHG1',
       instrumentType: 'commonstock',
-      timestamp: admin.firestore.Timestamp.fromMillis(
+      timestamp: Timestamp.fromMillis(
           Date.parse('2019-01-01T13:45:23.010Z'))
     },
     {
@@ -56,7 +58,7 @@ async function insertData() {
       },
       exchange: 'EXCHG2',
       instrumentType: 'commonstock',
-      timestamp: admin.firestore.Timestamp.fromMillis(
+      timestamp: Timestamp.fromMillis(
           Date.parse('2019-01-01T13:45:23.101Z'))
     },
     {
@@ -68,7 +70,7 @@ async function insertData() {
       },
       exchange: 'EXCHG1',
       instrumentType: 'etf',
-      timestamp: admin.firestore.Timestamp.fromMillis(
+      timestamp: Timestamp.fromMillis(
           Date.parse('2019-01-01T13:45:23.001Z'))
     }
   ];

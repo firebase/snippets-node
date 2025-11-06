@@ -1,11 +1,7 @@
 const functions = require('firebase-functions');
-const admin = require('firebase-admin');
+const { getFirestore } = require('firebase-admin/firestore');
 
-const db = admin.firestore();
-// [START_EXCLUDE]
-const settings = {timestampsInSnapshots: true};
-db.settings(settings);
-// [END_EXCLUDE]
+const db = getFirestore();
 
 // [START aggregate_function]
 exports.aggregateRatings = functions.firestore

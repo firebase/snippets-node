@@ -15,10 +15,10 @@
  */
 'use strict';
 // [START get_service_account_tokens]
-const admin = require('firebase-admin');
+const { cert } = require('firebase-admin/app');
 
 const serviceAccount = require('./path/to/serviceAccountKey.json');
-const credential = admin.credential.cert(serviceAccount);
+const credential = cert(serviceAccount);
 
 credential.getAccessToken().then((accessTokenInfo) => {
   const accessToken = accessTokenInfo.access_token;

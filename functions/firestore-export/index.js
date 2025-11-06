@@ -10,7 +10,7 @@ exports.scheduledFirestoreExport = functions.pubsub
                                             .schedule('every 24 hours')
                                             .onRun((context) => {
                                               
-  const projectId = process.env.GCP_PROJECT || process.env.GCLOUD_PROJECT;
+  const projectId = process.env.GCP_PROJECT;
   const databaseName = 
     client.databasePath(projectId, '(default)');
 

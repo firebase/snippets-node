@@ -1,6 +1,7 @@
 'use strict';
-const admin = require('firebase-admin');
-admin.initializeApp();
+const { initializeApp } = require('firebase-admin/app');
+const { getAuth } = require('firebase-admin/auth');
+initializeApp();
 
 const uid = 'some_uid_1234';
 const uid1 = 'some_uid_1';
@@ -10,8 +11,7 @@ const email = 'someone@example.com';
 const phoneNumber = '+15558675309';
 
 // [START get_user_by_id]
-admin
-  .auth()
+getAuth()
   .getUser(uid)
   .then((userRecord) => {
     // See the UserRecord reference doc for the contents of userRecord.
@@ -23,8 +23,7 @@ admin
 // [END get_user_by_id]
 
 // [START get_user_by_email]
-admin
-  .auth()
+getAuth()
   .getUserByEmail(email)
   .then((userRecord) => {
     // See the UserRecord reference doc for the contents of userRecord.
@@ -36,8 +35,7 @@ admin
 // [END get_user_by_email]
 
 // [START get_user_by_phone]
-admin
-  .auth()
+getAuth()
   .getUserByPhoneNumber(phoneNumber)
   .then((userRecord) => {
     // See the UserRecord reference doc for the contents of userRecord.
@@ -60,8 +58,7 @@ admin.auth().getUserByProviderUid('google.com', 'google_uid1234')
 // [END get_user_by_federated_id]
 
 // [START bulk_get_users]
-admin
-  .auth()
+getAuth()
   .getUsers([
     { uid: 'uid1' },
     { email: 'user2@example.com' },
@@ -85,8 +82,7 @@ admin
 // [END bulk_get_users]
 
 // [START create_user]
-admin
-  .auth()
+getAuth()
   .createUser({
     email: 'user@example.com',
     emailVerified: false,
@@ -106,8 +102,7 @@ admin
 // [END create_user]
 
 // [START create_user_with_uid]
-admin
-  .auth()
+getAuth()
   .createUser({
     uid: 'some-uid',
     email: 'user@example.com',
@@ -123,8 +118,7 @@ admin
 // [END create_user_with_uid]
 
 // [START update_user]
-admin
-  .auth()
+getAuth()
   .updateUser(uid, {
     email: 'modifiedUser@example.com',
     phoneNumber: '+11234567890',
@@ -175,8 +169,7 @@ admin.auth().updateUser(uid, {
 // [END update_user_unlink_federated]
 
 // [START delete_user]
-admin
-  .auth()
+getAuth()
   .deleteUser(uid)
   .then(() => {
     console.log('Successfully deleted user');
@@ -187,8 +180,7 @@ admin
 // [END delete_user]
 
 // [START bulk_delete_users]
-admin
-  .auth()
+getAuth()
   .deleteUsers([uid1, uid2, uid3])
   .then((deleteUsersResult) => {
     console.log(`Successfully deleted ${deleteUsersResult.successCount} users`);
@@ -205,8 +197,7 @@ admin
 // [START list_all_users]
 const listAllUsers = (nextPageToken) => {
   // List batch of users, 1000 at a time.
-  admin
-    .auth()
+  getAuth()
     .listUsers(1000, nextPageToken)
     .then((listUsersResult) => {
       listUsersResult.users.forEach((userRecord) => {

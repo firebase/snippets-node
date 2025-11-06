@@ -1,0 +1,13 @@
+{
+  "name": "extend-with-functions",
+  "description": "Cloud Functions and Firestore",
+  "main": "index.js",
+  "scripts": {
+    "compile": "cp ../../../tsconfig.template.json ./tsconfig.json && tsc"
+  },
+  "dependencies": {
+    "@google-cloud/firestore": "^6.6.0",
+    "firebase-admin": "^11.9.0",
+    "firebase-functions": "^4.4.0"
+  }
+}
