@@ -4,12 +4,12 @@
   "description": "",
   "main": "post_firebase.js",
   "scripts": {
-    "compile": "cp ../tsconfig.json.template ./tsconfig.json && tsc"
+    "compile": "cp ../tsconfig.template.json ./tsconfig.json && tsc"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "request-promise": "^4.2.5",
-    "firebase-admin": "^10.0.0"
+    "firebase-admin": "^11.9.0",
+    "request-promise": "^4.2.6"
   }
 }

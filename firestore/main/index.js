@@ -2,7 +2,7 @@ const debug = require('debug')('firestore-snippets-node');
 
 // [START firestore_deps]
 const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
-const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
+const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore');
 // [END firestore_deps]
 
 
@@ -587,7 +587,7 @@ async function queryAndFilter(db) {
   const citiesRef = db.collection('cities');
 
   // Create a query against the collection
-  const allCapitalsRes = await citiesRef.where('capital', '==', true).get();
+  const allCapitalsRes = citiesRef.where('capital', '==', true);
   // [END firestore_query_filter_eq_boolean]
 
   // [START firestore_query_filter_single_examples]
@@ -645,6 +645,41 @@ async function inQueries(db) {
   console.log('USA or Japan get: ', usaOrJapan);
   console.log('Not USA or Japan get: ', notUsaOrJapan);
   console.log('Exactly One Coast get: ', exactlyOneCoast);
+}
+
+/**
+ * Demonstrate OR queries
+ * 
+ * @param {FirebaseFirestore.Firestore} db 
+ */
+async function orQueries(db) {
+  const citiesRef = db.collection('cities');
+
+  // [START firestore_query_or]
+  const bigCities = await citiesRef
+    .where(
+      Filter.or(
+        Filter.where('capital', '==', true),
+        Filter.where('population', '>=', 1000000)
+      )
+    )
+    .get();
+  // [END firestore_query_or]
+
+  // [START firestore_query_or_compound]
+  const bigCitiesInCalifornia = await citiesRef
+    .where('state', '==', 'CA')
+    .where(
+      Filter.or(
+        Filter.where('capital', '==', true),
+        Filter.where('population', '>=', 1000000)
+      )
+    )
+    .get();
+  // [END firestore_query_or_compound]
+  
+    console.log('Big cities get: ', bigCities);
+    console.log('Big cities in California get: ', bigCitiesInCalifornia);
 }
 
 async function orderAndLimit(db) {
@@ -1088,6 +1123,10 @@ describe('Firestore Smoketests', () => {
 
   it('should support in queries', () => {
     return inQueries(db);
+  });
+
+  it('should support or queries', () => {
+    return orQueries(db);
   });
 
   it('should order and limit', () => {
