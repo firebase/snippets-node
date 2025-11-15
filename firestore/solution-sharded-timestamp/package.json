@@ -12,6 +12,6 @@
   },
   "dependencies": {
     "@google-cloud/firestore": "^6.6.0",
-    "firebase-admin": "^11.9.0"
+    "firebase-admin": "^13.6.0"
   }
 }
