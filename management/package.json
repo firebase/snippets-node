@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "firebase-admin": "^11.9.0",
+    "firebase-admin": "^13.6.0",
     "request-promise": "^4.2.6"
   }
 }
