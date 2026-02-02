@@ -553,13 +553,13 @@ async function getAll(db) {
 }
 
 async function getCollections(db) {
-  // [START firestore_data_get_sub_collections]
+  // [START firestore_query_subcollection]
   const sfRef = db.collection('cities').doc('SF');
   const collections = await sfRef.listCollections();
   collections.forEach(collection => {
     console.log('Found subcollection with id:', collection.id);
   });
-  // [END firestore_data_get_sub_collections]
+  // [END firestore_query_subcollection]
 }
 
 // ============================================================================
