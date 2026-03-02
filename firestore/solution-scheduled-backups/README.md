@@ -26,9 +26,9 @@ Give the service account permission to write to the GCS bucket you
 are going to use. Here, we will use the default bucket:
 
 ```shell
-$ gsutil iam ch \
-  serviceAccount:YOUR_PROJECT_ID@appspot.gserviceaccount.com:objectCreator \
-  gs://YOUR_PROJECT_ID.appspot.com
+$ gcloud storage buckets add-iam-policy-binding gs://YOUR_PROJECT_ID.appspot.com \
+  --member serviceAccount:YOUR_PROJECT_ID@appspot.gserviceaccount.com \
+  --role roles/storage.objectCreator
 ```
 
 ### 3 - Configure Cron
