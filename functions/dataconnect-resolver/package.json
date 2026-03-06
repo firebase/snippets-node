@@ -1,0 +1,14 @@
+{
+  "name": "dataconnect-resolver",
+  "version": "1.0.0",
+  "description": "Skeleton implementations of Data Connect custom resolvers",
+  "main": "index.js",
+  "license": "Apache-2.0",
+  "scripts": {
+    "compile": "cp ../../tsconfig.template.json ./tsconfig.json && tsc"
+  },
+  "dependencies": {
+    "firebase-admin": "^11.11.1",
+    "firebase-functions": "^7.1.0"
+  }
+}
