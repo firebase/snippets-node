@@ -25,9 +25,11 @@ export default defineConfig([{
             ...globals.mocha,
         },
 
-        ecmaVersion: 2020,
+        ecmaVersion: 8,
         sourceType: 'module',
     },
+
+    ignores: ['**/eslint.config.*'],
 
     rules: {
         'linebreak-style': ['error', 'unix'],
