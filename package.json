@@ -8,7 +8,7 @@
     "test": "pnpm -r --workspace-concurrency=1 --aggregate-output run test",
     "compile": "pnpm -r --workspace-concurrency=4 --aggregate-output run compile",
     "bootstrap": "pnpm -r install",
-    "lint": "find . -type f -name \"*.js\" -not -path \"*node_modules*\" | xargs eslint"
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",
