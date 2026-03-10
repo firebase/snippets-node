@@ -1,41 +1,37 @@
 import { defineConfig } from 'eslint/config';
-import globals from 'globals';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import js from '@eslint/js';
-import { FlatCompat } from '@eslint/eslintrc';
+import stylistic from '@stylistic/eslint-plugin';
+import globals from 'globals';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
-});
-
-export default defineConfig([{
-    extends: compat.extends('eslint:recommended'),
-
-    languageOptions: {
-        globals: {
-            ...globals.browser,
-            ...globals.commonjs,
-            ...globals.es2015,
-            ...globals.node,
-            ...globals.mocha,
+export default defineConfig([
+    js.configs.recommended,
+    {
+        plugins: {
+            '@stylistic': stylistic,
         },
-
-        ecmaVersion: 8,
-        sourceType: 'module',
+        languageOptions: {
+            globals: {
+                ...globals.browser,
+                ...globals.commonjs,
+                ...globals.es2017,
+                ...globals.node,
+                ...globals.mocha,
+            },
+            ecmaVersion: 2017,
+            sourceType: 'module',
+        },
+        rules: {
+            'no-console': 'off',
+            'no-unused-vars': 'off',
+            '@stylistic/linebreak-style': ['error', 'unix'],
+            '@stylistic/quotes': ['error', 'single'],
+            '@stylistic/semi': ['error', 'always'],
+        },
     },
-
-    ignores: ['**/eslint.config.*'],
-
-    rules: {
-        'linebreak-style': ['error', 'unix'],
-        quotes: ['error', 'single'],
-        semi: ['error', 'always'],
-        'no-console': 0,
-        'no-unused-vars': 0,
-    },
-}]);
+    {
+        files: ['**/eslint.config.*'],
+        languageOptions: {
+            ecmaVersion: 2021, // Node 18
+        }
+    }
+]);

@@ -11,11 +11,10 @@
     "lint": "eslint ."
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.5",
     "@eslint/js": "9.39.4",
+    "@stylistic/eslint-plugin": "^5.10.0",
     "@types/node": "^24.10.0",
     "eslint": "^9.39.4",
-    "eslint-config-google": "^0.14.0",
     "firebase-tools": "^14.24.0",
     "globals": "^17.4.0",
     "pnpm": "^10.20.0",
