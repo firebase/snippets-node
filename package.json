@@ -15,7 +15,7 @@
     "@stylistic/eslint-plugin": "^5.10.0",
     "@types/node": "^24.10.0",
     "eslint": "^9.39.4",
-    "firebase-tools": "^14.24.0",
+    "firebase-tools": "^15.10.0",
     "globals": "^17.4.0",
     "pnpm": "^10.20.0",
     "typescript": "^5.9.3"
