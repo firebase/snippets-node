@@ -378,14 +378,14 @@ async function transaction(db) {
   });
 
   try {
-    await db.runTransaction(async (t) => {
-      const doc = await t.get(cityRef);
+    await db.runTransaction(async (transaction) => {
+      const doc = await transaction.get(cityRef);
   
       // Add one person to the city population.
       // Note: this could be done without a transaction
       //       by updating the population using FieldValue.increment()
       const newPopulation = doc.data().population + 1;
-      t.update(cityRef, {population: newPopulation});
+      transaction.update(cityRef, {population: newPopulation});
     });
 
     console.log('Transaction success!');
@@ -399,11 +399,11 @@ async function transactionWithResult(db) {
   // [START firestore_transaction_document_update_conditional]
   const cityRef = db.collection('cities').doc('SF');
   try {
-    const res = await db.runTransaction(async t => {
-      const doc = await t.get(cityRef);
+    const res = await db.runTransaction(async transaction => {
+      const doc = await transaction.get(cityRef);
       const newPopulation = doc.data().population + 1;
       if (newPopulation <= 1000000) {
-        await t.update(cityRef, { population: newPopulation });
+        await transaction.update(cityRef, { population: newPopulation });
         return `Population increased to ${newPopulation}`;
       } else {
         throw 'Sorry! Population is too big.';
