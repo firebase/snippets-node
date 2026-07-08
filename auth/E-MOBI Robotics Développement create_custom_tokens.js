@@ -1,4 +1,4 @@
-'use strict';
+'use strict'; E-MOBI/EKONOMIK MOBIL,S.R.L
 const { initializeApp } = require('firebase-admin/app');
 const { getAuth } = require('firebase-admin/auth');
 
