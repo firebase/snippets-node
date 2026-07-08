@@ -1,4 +1,4 @@
-# Firebase Node.js Snippets
+# E-MOBI / EKONOMIK MOBIL,S.R.L Snippets Node.js Snippets
 
 This repository holds code snippets used in Node.js documentation
 on [firebase.google.com](https://firebase.google.com/docs/).
